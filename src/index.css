@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 187 100% 23%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 94%;
+    --input: 0 0% 94%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Novas variáveis modernas */
+    --df-black: #000000;
+    --df-blue: #007BFF;
+    --df-cyan: #005F73;
+    --df-gray: #F0F0F0;
+    --df-white: #FFFFFF;
+
+    /* Cores Neon */
+    --electric-blue: #00F5FF;
+    --plasma-purple: #8A2BE2;
+    --matrix-green: #39FF14;
+    --cyber-pink: #FF1493;
+
+    /* Glassmorphism */
+    --glass-white: rgba(255, 255, 255, 0.1);
+    --glass-blue: rgba(0, 123, 255, 0.15);
+    --glass-dark: rgba(0, 0, 0, 0.2);
+    --glass-blur: blur(20px);
+
+    /* Shadows & Glows */
+    --neon-glow-blue: 0 0 20px rgba(0, 245, 255, 0.5);
+    --neon-glow-purple: 0 0 20px rgba(138, 43, 226, 0.5);
+    --neon-glow-green: 0 0 20px rgba(57, 255, 20, 0.5);
+    --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+
+    /* Typography */
+    --font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+    --font-body: 'Inter', 'Open Sans', sans-serif;
+    --font-code: 'Fira Code', 'JetBrains Mono', monospace;
+
+    /* Animations */
+    --animation-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-opensans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-montserrat font-bold;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 bg-df-blue text-white rounded-md font-medium transition-all hover:bg-blue-600 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-df-cyan text-white rounded-md font-medium transition-all hover:bg-cyan-800 hover:shadow-lg;
+  }
+  
+  .btn-outline {
+    @apply px-6 py-3 border border-df-blue text-df-blue rounded-md font-medium transition-all hover:bg-df-blue hover:text-white;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-4;
+  }
+  
+  .section-subtitle {
+    @apply text-xl text-gray-600 mb-12;
+  }
+  
+  /* Simple fade-in animation to replace animate-on-scroll */
+  .simple-fade-in {
+    @apply opacity-100 transition-opacity duration-700 ease-in;
+  }
+
+  /* Novas classes utilitárias modernas */
+  .glass-card {
+    background: var(--glass-white);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-dark {
+    background: var(--glass-dark);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-blue {
+    background: var(--glass-blue);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+  }
+
+  /* Neon glow utilities */
+  .neon-blue { 
+    box-shadow: var(--neon-glow-blue);
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+  }
+  
+  .neon-purple { 
+    box-shadow: var(--neon-glow-purple);
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+  }
+  
+  .neon-green { 
+    box-shadow: var(--neon-glow-green);
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.8);
+  }
+
+  /* Typography utilities */
+  .font-cyber {
+    font-family: var(--font-heading);
+  }
+
+  .text-neon-blue { color: var(--electric-blue); }
+  .text-neon-purple { color: var(--plasma-purple); }
+  .text-neon-green { color: var(--matrix-green); }
+  .text-cyber-pink { color: var(--cyber-pink); }
+
+  /* Hover effects */
+  .hover-tilt {
+    transition: transform var(--animation-normal);
+  }
+
+  .hover-tilt:hover {
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale3d(1.05, 1.05, 1.05);
+  }
+
+  .hover-magnetic {
+    transition: transform var(--animation-fast);
+  }
+
+  .hover-magnetic:hover {
+    transform: translate(var(--mouse-x, 0), var(--mouse-y, 0)) scale(1.05);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 25px currentColor;
+  }
+
+  /* 3D Transform utilities */
+  .transform-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+}
+
+@layer utilities {
+  /* Grid pattern for background */
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(0, 245, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 245, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Custom animations */
+  .animate-pulse-glow {
+    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  /* Font utilities */
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+
+  .font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+  }
+
+  .font-fira-code {
+    font-family: 'Fira Code', monospace;
+  }
+}
+
+/* Keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-element {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(0, 245, 255, 0.6);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
