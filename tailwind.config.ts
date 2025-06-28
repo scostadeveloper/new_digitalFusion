@@ -80,6 +80,9 @@ export default {
 				'plasma-purple': '#8A2BE2',
 				'matrix-green': '#39FF14',
 				'cyber-pink': '#FF1493',
+				// Cores principais do projeto
+				'neon-cyan': '#00F5FF',
+				'cyber-purple': '#8A2BE2',
 				// Cores glassmorphism
 				'glass-white': 'rgba(255, 255, 255, 0.1)',
 				'glass-blue': 'rgba(0, 123, 255, 0.15)',
