@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -83,6 +82,25 @@ export default {
 				// Cores principais do projeto
 				'neon-cyan': '#00F5FF',
 				'cyber-purple': '#8A2BE2',
+				// Theme colors (dark/light mode)
+				'theme': {
+					'bg': {
+						'dark': '#000000',
+						'light': '#FFFFFF',
+						'dark-secondary': '#1a1a1a',
+						'light-secondary': '#f8fafc'
+					},
+					'text': {
+						'dark': '#ffffff',
+						'light': '#1f2937',
+						'dark-secondary': '#9ca3af',
+						'light-secondary': '#6b7280'
+					},
+					'border': {
+						'dark': 'rgba(255, 255, 255, 0.1)',
+						'light': 'rgba(0, 0, 0, 0.1)'
+					}
+				},
 				// Cores glassmorphism
 				'glass-white': 'rgba(255, 255, 255, 0.1)',
 				'glass-blue': 'rgba(0, 123, 255, 0.15)',

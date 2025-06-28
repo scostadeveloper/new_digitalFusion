@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -26,40 +27,42 @@ const queryClient = new QueryClient();
  */
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      {/* Componentes de notificação */}
-      <Toaster />
-      <Sonner />
-      
-      {/* Configuração do roteamento */}
-      <BrowserRouter>
-        {/* Google Analytics */}
-        <GoogleAnalytics />
+    <ThemeProvider>
+      <TooltipProvider>
+        {/* Componentes de notificação */}
+        <Toaster />
+        <Sonner />
         
-        <div className="min-h-screen flex flex-col">
-          {/* Navegação principal */}
-          <Navbar />
+        {/* Configuração do roteamento */}
+        <BrowserRouter>
+          {/* Google Analytics */}
+          <GoogleAnalytics />
           
-          {/* Conteúdo principal */}
-          <main className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/portfolio" element={<Portfolio />} />
-              <Route path="/portfolio/:id" element={<PortfolioDetail />} />
-              <Route path="/contact" element={<Contact />} />
-              {/* Rota de fallback para páginas não encontradas */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          
-          {/* Rodapé do site */}
-          <Footer />
-          <WhatsappPopup />
-        </div>
-      </BrowserRouter>
-    </TooltipProvider>
+          <div className="min-h-screen flex flex-col">
+            {/* Navegação principal */}
+            <Navbar />
+            
+            {/* Conteúdo principal */}
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/portfolio/:id" element={<PortfolioDetail />} />
+                <Route path="/contact" element={<Contact />} />
+                {/* Rota de fallback para páginas não encontradas */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </main>
+            
+            {/* Rodapé do site */}
+            <Footer />
+            <WhatsappPopup />
+          </div>
+        </BrowserRouter>
+      </TooltipProvider>
+    </ThemeProvider>
   </QueryClientProvider>
 );
 
