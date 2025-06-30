@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Sparkles, Zap, Code, Palette, Globe, Users, Calendar, TrendingUp } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import NewsletterSignup from '@/components/modern/NewsletterSignup';
 import SocialProof from '@/components/modern/SocialProof';
 import ScrollNavigator from '@/components/modern/ScrollNavigator';
 
 const Home = () => {
   const { theme } = useTheme();
+  const navigate = useNavigate();
   const [currentSection, setCurrentSection] = useState('hero');
 
   // Hook para detectar seção atual durante scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'services', 'stats', 'contact', 'footer'];
+      const sections = ['hero', 'services', 'recent-projects', 'stats', 'contact', 'footer'];
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       
@@ -47,7 +48,7 @@ const Home = () => {
 
   // Função para scroll suave entre seções (navegação sequencial)
   const scrollToNextSection = () => {
-    const sections = ['hero', 'services', 'stats', 'contact', 'footer'];
+    const sections = ['hero', 'services', 'recent-projects', 'stats', 'contact', 'footer'];
     const currentScrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     
@@ -254,11 +255,27 @@ const Home = () => {
                 </p>
               </motion.div>
 
+              {/* Descrição Principal */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-center max-w-4xl mx-auto px-4 sm:px-6"
+              >
+                <p className={`text-base sm:text-lg md:text-xl leading-relaxed font-body ${
+                  theme === 'dark' 
+                    ? 'text-gray-300' 
+                    : 'text-gray-700'
+                }`}>
+                  Transformamos ideias em experiências digitais de alto impacto, impulsionando o crescimento do seu negócio.
+                </p>
+              </motion.div>
+
               {/* CTAs com cores da Digital Fusion - Totalmente responsivos */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center relative z-20 pt-4 px-4 sm:px-0"
               >
                 <motion.button
@@ -403,6 +420,212 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Projetos Recentes Section */}
+      <section 
+        id="recent-projects"
+        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        style={{ background: servicesBackground }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16 lg:mb-20"
+          >
+            <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 font-heading ${
+              theme === 'dark' 
+                ? 'bg-gradient-to-r from-white to-cyan-300 bg-clip-text text-transparent' 
+                : 'bg-gradient-to-r from-gray-900 to-blue-600 bg-clip-text text-transparent'
+            }`}>
+              Projetos Recentes
+            </h2>
+            <p className={`text-lg sm:text-xl max-w-3xl mx-auto font-body px-4 sm:px-0 ${
+              theme === 'dark' 
+                ? 'text-gray-300' 
+                : 'text-gray-600'
+            }`}>
+              Conheça nossos trabalhos mais recentes e veja como transformamos ideias em soluções digitais inovadoras
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            {[
+              {
+                id: "sabor-nordestino",
+                title: "Cardápio Digital - Sabor Nordestino",
+                description: "Sistema completo de cardápio digital com painel administrativo para gestão de categorias, produtos e promoções. Inclui integração com WhatsApp para pedidos.",
+                imageUrl: "/sabor-nordestino.jpg",
+                category: "Aplicativos Web",
+                technologies: ["React", "Node.js", "WhatsApp API"],
+                year: "2024",
+                gradient: theme === 'dark' 
+                  ? 'from-cyan-500/20 via-blue-500/20 to-purple-500/20'
+                  : 'from-blue-500/20 via-cyan-500/20 to-indigo-500/20'
+              },
+              {
+                id: "marketing-digital-lp",
+                title: "Landing Page - Marketing Digital",
+                description: "Página de alta conversão desenvolvida para captação de leads, com elementos persuasivos, depoimentos em vídeo e integração com sistema de pagamentos.",
+                imageUrl: "/marketing-digital-lp.jpg",
+                category: "Landing Pages",
+                technologies: ["React", "Stripe", "Analytics"],
+                year: "2024",
+                gradient: theme === 'dark'
+                  ? 'from-blue-500/20 via-purple-500/20 to-pink-500/20'
+                  : 'from-indigo-500/20 via-purple-500/20 to-blue-500/20'
+              },
+              {
+                id: "cardapio-digital-simples",
+                title: "Cardápio Digital Simples",
+                description: "Sistema de cardápio digital sem necessidade de banco de dados, com interface moderna e responsiva para estabelecimentos que precisam de uma solução rápida.",
+                imageUrl: "/cardapio-digital-simples.png",
+                category: "Aplicativos Web",
+                technologies: ["HTML5", "CSS3", "JavaScript"],
+                year: "2024",
+                gradient: theme === 'dark'
+                  ? 'from-green-500/20 via-cyan-500/20 to-blue-500/20'
+                  : 'from-cyan-500/20 via-blue-500/20 to-green-500/20'
+              }
+            ].map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className={`group relative overflow-hidden rounded-2xl sm:rounded-3xl backdrop-blur-md border transition-all duration-500 ${
+                  theme === 'dark'
+                    ? 'bg-black/20 border-white/10 hover:border-cyan-400/30 hover:shadow-[0_0_30px_rgba(110,249,245,0.2)]'
+                    : 'bg-white/40 border-blue-200/30 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(0,123,255,0.15)]'
+                }`}
+              >
+                {/* Imagem Real do Projeto */}
+                <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden">
+                  <img 
+                    src={project.imageUrl} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback para gradiente se imagem não carregar
+                      const target = e.currentTarget as HTMLImageElement;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling as HTMLElement;
+                      if (fallback) fallback.style.display = 'flex';
+                    }}
+                  />
+                  
+                  {/* Fallback gradient (escondido por padrão) */}
+                  <div className={`hidden w-full h-full bg-gradient-to-br ${project.gradient} items-center justify-center relative`}>
+                    <div className={`text-6xl sm:text-7xl lg:text-8xl opacity-40 ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-500'
+                    }`}>
+                      🌐
+                    </div>
+                  </div>
+                    
+                  {/* Overlay com tecnologias - visível no hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                    <div className="flex gap-2 flex-wrap">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className={`px-2 py-1 text-xs rounded-full backdrop-blur-sm ${
+                            techIndex % 3 === 0 ? 'bg-cyan-400/20 text-cyan-300' :
+                            techIndex % 3 === 1 ? 'bg-blue-400/20 text-blue-300' :
+                            'bg-purple-400/20 text-purple-300'
+                          }`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    {/* Badge da categoria */}
+                    <div className="absolute top-4 right-4">
+                      <span className={`px-3 py-1 text-xs font-medium rounded-full backdrop-blur-sm ${
+                        theme === 'dark'
+                          ? 'bg-cyan-400/20 text-cyan-300 border border-cyan-400/30'
+                          : 'bg-blue-500/20 text-blue-600 border border-blue-500/30'
+                      }`}>
+                        {project.category}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Conteúdo do Projeto */}
+                <div className="p-6 sm:p-8">
+                  <h3 className={`text-xl sm:text-2xl font-bold mb-3 sm:mb-4 font-heading ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {project.title}
+                  </h3>
+                  
+                  <p className={`text-sm sm:text-base lg:text-lg leading-relaxed font-body mb-6 ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
+                    {project.description}
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <span className={`text-xs sm:text-sm font-medium ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                    }`}>
+                      Concluído em {project.year}
+                    </span>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => navigate(`/portfolio/${project.id}`)}
+                      className={`px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer ${
+                        theme === 'dark'
+                          ? 'bg-cyan-400/20 text-cyan-300 hover:bg-cyan-400/30 border border-cyan-400/30'
+                          : 'bg-blue-500/20 text-blue-600 hover:bg-blue-500/30 border border-blue-500/30'
+                      }`}
+                    >
+                      Ver Detalhes
+                    </motion.button>
+                  </div>
+                </div>
+
+                {/* Hover effect com cores da Digital Fusion */}
+                <div className={`absolute inset-0 rounded-2xl sm:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+                  theme === 'dark'
+                    ? 'bg-gradient-to-r from-cyan-500/5 to-blue-500/5'
+                    : 'bg-gradient-to-r from-blue-500/5 to-cyan-500/5'
+                }`} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA para ver todos os projetos */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mt-12 sm:mt-16 lg:mt-20"
+          >
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => navigate('/portfolio')}
+              className={`group px-8 sm:px-12 py-4 sm:py-6 rounded-xl sm:rounded-2xl font-bold text-lg sm:text-xl transition-all duration-300 cursor-pointer flex items-center gap-3 mx-auto ${
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:shadow-[0_0_30px_rgba(110,249,245,0.5)]'
+                  : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-[0_0_20px_rgba(0,123,255,0.4)]'
+              }`}
+            >
+              Ver Todos os Projetos
+              <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </motion.button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Social Proof Section com cores da Digital Fusion */}
       <section className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-black/30 to-gray-900/20' : 'bg-gradient-to-b from-white to-blue-50/30'}`}>
         <div className="container mx-auto px-4">
@@ -476,15 +699,6 @@ const Home = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter Section com cores da Digital Fusion */}
-      <section className={`py-20 ${theme === 'dark' ? 'bg-gradient-to-b from-gray-900/30 to-black/30' : 'bg-gradient-to-b from-blue-50/40 to-white'}`}>
-        <div className="container mx-auto px-4">
-          <div className="max-w-2xl mx-auto">
-            <NewsletterSignup />
           </div>
         </div>
       </section>

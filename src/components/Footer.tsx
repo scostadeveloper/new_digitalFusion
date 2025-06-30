@@ -186,25 +186,25 @@ const Footer = () => {
             viewport={{ once: true }}
             className="lg:col-span-4 mt-8"
           >
-            <div className="flex flex-col md:flex-row items-center justify-between p-8 rounded-xl bg-gradient-to-r from-cyber-purple/10 to-neon-cyan/10 backdrop-blur-sm border border-neon-cyan/20">
-              <div className="mb-4 md:mb-0">
-                <h4 className="text-xl font-bold text-white mb-2 font-orbitron">
+            <div className="flex flex-col md:flex-row items-center justify-between p-6 sm:p-8 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm border border-cyan-400/20">
+              <div className="mb-4 md:mb-0 md:mr-6">
+                <h4 className="text-xl font-bold text-white mb-2 font-heading">
                   Fique por dentro das novidades
                 </h4>
-                <p className="text-gray-300">
+                <p className="text-gray-300 font-body">
                   Receba dicas, trends e insights sobre tecnologia e marketing digital
                 </p>
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                 <input
                   type="email"
                   placeholder="Seu melhor email"
-                  className="px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-neon-cyan focus:outline-none transition-colors duration-300"
+                  className="px-4 py-3 bg-black/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 min-w-[250px]"
                 />
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-6 py-3 bg-gradient-to-r from-neon-cyan to-cyber-purple text-black font-bold rounded-lg hover:shadow-lg hover:shadow-neon-cyan/50 transition-all duration-300"
+                  className="px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-cyan-400/50 transition-all duration-300 whitespace-nowrap"
                 >
                   Inscrever
                 </motion.button>
