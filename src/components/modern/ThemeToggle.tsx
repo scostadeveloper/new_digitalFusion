@@ -16,8 +16,8 @@ const ThemeToggle = () => {
       }}
       whileHover={{ 
         boxShadow: theme === 'dark' 
-          ? '0 0 30px rgba(0, 245, 255, 0.4)' 
-          : '0 0 30px rgba(255, 193, 7, 0.4)'
+          ? '0 0 30px rgba(110, 249, 245, 0.4)' 
+          : '0 0 30px rgba(0, 123, 255, 0.4)'
       }}
       whileTap={{ scale: 0.95 }}
     >

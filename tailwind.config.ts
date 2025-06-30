@@ -21,6 +21,14 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+		screens: {
+			'sm': '640px',
+			'md': '768px',
+			'lg': '1024px',
+			'xl': '1280px',
+			'2xl': '1400px',
+			'ultra-wide': '2560px',
+		},
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
@@ -178,10 +186,10 @@ export default {
 				sans: ['Inter', 'sans-serif'],
 				montserrat: ['Montserrat', 'sans-serif'],
 				opensans: ['Open Sans', 'sans-serif'],
-				// Novas fontes futurísticas
-				heading: ['Orbitron', 'Rajdhani', 'sans-serif'],
-				cyber: ['Orbitron', 'monospace'],
-				modern: ['Rajdhani', 'sans-serif'],
+				// Novas fontes da identidade Digital Fusion
+				heading: ['Poppins', 'Montserrat', 'sans-serif'],
+				brand: ['Poppins', 'sans-serif'],
+				modern: ['Montserrat', 'sans-serif'],
 				code: ['Fira Code', 'JetBrains Mono', 'monospace']
 			},
 			boxShadow: {

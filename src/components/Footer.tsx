@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin, Zap, ArrowUp } from 'lucide-react';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const Footer = () => {
+  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
@@ -11,20 +13,31 @@ const Footer = () => {
   };
   
   return (
-    <footer className="relative bg-black border-t border-neon-cyan/20 mt-20">
+    <footer 
+      id="footer"
+      className={`relative border-t mt-20 ${
+        theme === 'dark' 
+          ? 'bg-black border-cyan-400/20' 
+          : 'bg-gray-900 border-blue-400/20'
+      }`}
+    >
       {/* Background Effects */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-cyber-purple/5 via-black to-black" />
+        <div className={`absolute inset-0 ${
+          theme === 'dark'
+            ? 'bg-gradient-to-b from-cyan-500/5 via-black to-black'
+            : 'bg-gradient-to-b from-blue-500/5 via-gray-900 to-gray-900'
+        }`} />
         <div className="absolute inset-0 opacity-30">
           <div className="grid-pattern animate-pulse-slow" />
         </div>
       </div>
 
-      <div className="relative z-10 pt-20 pb-8">
-        <div className="container mx-auto px-4">
+      <div className="relative z-10 pt-16 xl:pt-20 2xl:pt-24 ultra-wide:pt-32 pb-8">
+        <div className="container mx-auto px-4 xl:px-6 2xl:px-8 ultra-wide:px-12">
           {/* Footer Top Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {/* Company Info */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 xl:gap-10 2xl:gap-12 ultra-wide:gap-16 mb-16">
+            {/* Company Info com Logo Vertical */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -32,18 +45,18 @@ const Footer = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="flex items-center gap-2">
-                <div className="relative">
-                  <Zap className="w-8 h-8 text-neon-cyan" />
-                  <div className="absolute inset-0 blur-sm bg-neon-cyan opacity-50" />
-                </div>
-                <h3 className="text-2xl font-bold font-orbitron">
-                  <span className="text-neon-cyan">Digital</span>
-                  <span className="text-cyber-purple">Fusion</span>
-                </h3>
+              <div className="flex flex-col items-center text-center">
+                {/* Usando apenas LOGO VERTICAL DARK em ambos os temas */}
+                <img 
+                  src="/LOGO VERTICAL DARK.png"
+                  alt="Digital Fusion"
+                  className="h-20 md:h-24 xl:h-28 2xl:h-32 ultra-wide:h-40 w-auto object-contain mb-4"
+                />
               </div>
               
-              <p className="text-gray-300 leading-relaxed">
+              <p className={`leading-relaxed text-center xl:text-lg 2xl:text-xl ultra-wide:text-2xl ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-400'
+              }`}>
                 Design inteligente. Código eficiente. Tráfego que converte.
               </p>
               
@@ -73,15 +86,17 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold mb-6 text-neon-cyan font-rajdhani">
+              <h4 className={`text-lg xl:text-xl 2xl:text-2xl ultra-wide:text-3xl font-semibold mb-6 font-heading ${
+                theme === 'dark' ? 'text-cyan-400' : 'text-blue-400'
+              }`}>
                 Links Rápidos
               </h4>
               <ul className="space-y-3">
-                <FooterLink to="/">Home</FooterLink>
-                <FooterLink to="/about">Sobre Nós</FooterLink>
-                <FooterLink to="/services">Serviços</FooterLink>
-                <FooterLink to="/portfolio">Portfólio</FooterLink>
-                <FooterLink to="/contact">Contato</FooterLink>
+                <FooterLink to="/" theme={theme}>Home</FooterLink>
+                <FooterLink to="/about" theme={theme}>Sobre Nós</FooterLink>
+                <FooterLink to="/services" theme={theme}>Serviços</FooterLink>
+                <FooterLink to="/portfolio" theme={theme}>Portfólio</FooterLink>
+                <FooterLink to="/contact" theme={theme}>Contato</FooterLink>
               </ul>
             </motion.div>
             
@@ -92,14 +107,16 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold mb-6 text-neon-cyan font-rajdhani">
+              <h4 className={`text-lg xl:text-xl 2xl:text-2xl ultra-wide:text-3xl font-semibold mb-6 font-heading ${
+                theme === 'dark' ? 'text-cyan-400' : 'text-blue-400'
+              }`}>
                 Serviços
               </h4>
               <ul className="space-y-3">
-                <FooterLink to="/services#websites">Desenvolvimento de Sites</FooterLink>
-                <FooterLink to="/services#webapps">Aplicativos Web</FooterLink>
-                <FooterLink to="/services#landing">Landing Pages</FooterLink>
-                <FooterLink to="/services#traffic">SEO & Marketing</FooterLink>
+                <FooterLink to="/services#websites" theme={theme}>Desenvolvimento de Sites</FooterLink>
+                <FooterLink to="/services#webapps" theme={theme}>Aplicativos Web</FooterLink>
+                <FooterLink to="/services#landing" theme={theme}>Landing Pages</FooterLink>
+                <FooterLink to="/services#traffic" theme={theme}>SEO & Marketing</FooterLink>
               </ul>
             </motion.div>
           
@@ -111,24 +128,42 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-lg font-semibold mb-6 text-neon-cyan font-rajdhani">
+              <h4 className={`text-lg xl:text-xl 2xl:text-2xl ultra-wide:text-3xl font-semibold mb-6 font-heading ${
+                theme === 'dark' ? 'text-cyan-400' : 'text-blue-400'
+              }`}>
                 Contato
               </h4>
               <ul className="space-y-4">
                 <li className="flex items-start group">
-                  <Mail size={20} className="mr-3 mt-1 text-cyber-purple group-hover:text-neon-cyan transition-colors duration-300" />
+                  <Mail size={20} className={`mr-3 mt-1 transition-colors duration-300 ${
+                    theme === 'dark' 
+                      ? 'text-blue-400 group-hover:text-cyan-400' 
+                      : 'text-cyan-600 group-hover:text-blue-600'
+                  }`} />
                   <a 
                     href="mailto:contato@digitalfusion.com.br"
-                    className="text-gray-300 hover:text-white transition-colors duration-300"
+                    className={`transition-colors duration-300 xl:text-lg 2xl:text-xl ${
+                      theme === 'dark' 
+                        ? 'text-gray-300 hover:text-white' 
+                        : 'text-gray-400 hover:text-gray-200'
+                    }`}
                   >
                     contato@digitalfusion.com.br
                   </a>
                 </li>
                 <li className="flex items-start group">
-                  <Phone size={20} className="mr-3 mt-1 text-cyber-purple group-hover:text-neon-cyan transition-colors duration-300" />
+                  <Phone size={20} className={`mr-3 mt-1 transition-colors duration-300 ${
+                    theme === 'dark' 
+                      ? 'text-blue-400 group-hover:text-cyan-400' 
+                      : 'text-cyan-600 group-hover:text-blue-600'
+                  }`} />
                   <a 
                     href="tel:+5521976958970"
-                    className="text-gray-300 hover:text-white transition-colors duration-300"
+                    className={`transition-colors duration-300 xl:text-lg 2xl:text-xl ${
+                      theme === 'dark' 
+                        ? 'text-gray-300 hover:text-white' 
+                        : 'text-gray-400 hover:text-gray-200'
+                    }`}
                   >
                     +55 (21) 9 7695-8970
                   </a>
@@ -246,17 +281,23 @@ const SocialLink = ({ href, icon, label }: { href: string; icon: React.ReactNode
 );
 
 // Helper component for footer links
-const FooterLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+const FooterLink = ({ to, children, theme }: { to: string; children: React.ReactNode; theme: string }) => (
   <motion.li
     whileHover={{ x: 5 }}
     transition={{ duration: 0.2 }}
   >
     <Link 
       to={to} 
-      className="group relative text-gray-400 hover:text-white transition-colors duration-300"
+      className={`group relative transition-colors duration-300 xl:text-lg 2xl:text-xl ultra-wide:text-2xl ${
+        theme === 'dark' 
+          ? 'text-gray-400 hover:text-cyan-400' 
+          : 'text-gray-400 hover:text-blue-500'
+      }`}
     >
       <span className="relative z-10">{children}</span>
-      <span className="absolute bottom-0 left-0 h-0.5 w-0 bg-neon-cyan transition-all duration-300 group-hover:w-full"></span>
+      <span className={`absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full ${
+        theme === 'dark' ? 'bg-cyan-400' : 'bg-blue-500'
+      }`}></span>
     </Link>
   </motion.li>
 );

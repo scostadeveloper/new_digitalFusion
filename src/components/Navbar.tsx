@@ -41,54 +41,38 @@ const Navbar = () => {
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`
+      transition={{ duration: 0.6, ease: "easeOut" }}        className={`
         fixed top-0 left-0 w-full z-50 transition-all duration-300
         ${scrolled 
           ? `${theme === 'dark' 
-              ? 'bg-black/80 backdrop-blur-md border-b border-neon-cyan/20 shadow-lg shadow-neon-cyan/10' 
-              : 'bg-white/80 backdrop-blur-md border-b border-gray-200/50 shadow-lg shadow-gray-500/10'
+              ? 'bg-black/80 backdrop-blur-md border-b border-cyan-400/20 shadow-lg shadow-cyan-400/10' 
+              : 'bg-white/80 backdrop-blur-md border-b border-blue-400/20 shadow-lg shadow-blue-400/10'
             }` 
           : 'bg-transparent'
         }
       `}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center py-4">
-        {/* Logo */}
+      <div className="container mx-auto px-4 xl:px-6 2xl:px-8 ultra-wide:px-12 flex justify-between items-center py-4 xl:py-6 2xl:py-8 ultra-wide:py-10">
+        {/* Logo - Responsive para telas grandes - Updated */}
         <Link to="/" className="flex items-center z-10 group">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2"
+            className="flex items-center"
           >
-            <div className="relative">
-              <Zap className={`w-8 h-8 transition-colors duration-300 ${
-                theme === 'dark' 
-                  ? 'text-neon-cyan group-hover:text-cyber-purple' 
-                  : 'text-blue-600 group-hover:text-purple-600'
-              }`} />
-              <div className={`absolute inset-0 blur-sm opacity-50 transition-all duration-300 ${
-                theme === 'dark'
-                  ? 'bg-neon-cyan group-hover:bg-cyber-purple'
-                  : 'bg-blue-600 group-hover:bg-purple-600'
-              }`} />
-            </div>
-            <span className="text-2xl font-bold font-orbitron">
-              <span className={`transition-colors duration-300 ${
-                theme === 'dark'
-                  ? 'text-neon-cyan group-hover:text-white'
-                  : 'text-blue-600 group-hover:text-gray-800'
-              }`}>Digital</span>
-              <span className={`transition-colors duration-300 ${
-                theme === 'dark'
-                  ? 'text-cyber-purple group-hover:text-neon-cyan'
-                  : 'text-purple-600 group-hover:text-blue-600'
-              }`}>Fusion</span>
-            </span>
+            {/* Tema LIGHT = logo DARK (contraste), Tema DARK = logo LIGHT (contraste) */}
+            <img 
+              src={theme === 'light' 
+                ? "/LOGO HORIZONTAL DARK.png" 
+                : "/LOGO HORIZONTAL LIGHT.png"
+              }
+              alt="Digital Fusion"
+              className="h-8 md:h-10 xl:h-12 2xl:h-16 ultra-wide:h-20 w-auto object-contain transition-all duration-300"
+            />
           </motion.div>
         </Link>
         
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        {/* Desktop Navigation - Responsivo para telas grandes */}
+        <nav className="hidden md:flex items-center space-x-6 xl:space-x-8 2xl:space-x-10 ultra-wide:space-x-12">
           <NavLinks isActive={isActive} theme={theme} />
           <ThemeToggle />
           <motion.div
@@ -97,10 +81,10 @@ const Navbar = () => {
           >
             <Link 
               to="/contact"
-              className={`px-6 py-3 font-bold rounded-lg transition-all duration-300 ${
+              className={`px-6 py-3 xl:px-8 xl:py-4 2xl:px-10 2xl:py-5 ultra-wide:px-12 ultra-wide:py-6 font-bold rounded-lg xl:rounded-xl 2xl:rounded-2xl transition-all duration-300 text-sm xl:text-base 2xl:text-lg ultra-wide:text-xl ${
                 theme === 'dark'
-                  ? 'bg-gradient-to-r from-neon-cyan to-cyber-purple text-black hover:shadow-lg hover:shadow-neon-cyan/50'
-                  : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:shadow-lg hover:shadow-blue-500/50'
+                  ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:shadow-lg hover:shadow-cyan-400/50'
+                  : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg hover:shadow-blue-500/50'
               }`}
             >
               Contato
@@ -114,8 +98,8 @@ const Navbar = () => {
           whileTap={{ scale: 0.9 }}
           className={`md:hidden z-10 transition-colors duration-300 ${
             theme === 'dark'
-              ? 'text-neon-cyan hover:text-cyber-purple'
-              : 'text-blue-600 hover:text-purple-600'
+              ? 'text-cyan-400 hover:text-blue-400'
+              : 'text-blue-600 hover:text-blue-700'
           }`}
           onClick={toggleMenu}
           aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
@@ -146,8 +130,8 @@ const Navbar = () => {
                     to="/contact"
                     className={`px-8 py-4 font-bold rounded-lg ${
                       theme === 'dark'
-                        ? 'bg-gradient-to-r from-neon-cyan to-cyber-purple text-black'
-                        : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                        ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black'
+                        : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white'
                     }`}
                   >
                     Contato
@@ -192,11 +176,11 @@ const NavLinks = ({
             to={item.path}
             className={`
               relative font-medium transition-all duration-300 group
-              ${mobile ? 'text-2xl py-2' : 'text-base'}
+              ${mobile ? 'text-2xl py-2' : 'text-sm xl:text-base 2xl:text-lg ultra-wide:text-xl'}
               ${isActive(item.path) 
-                ? (theme === 'dark' ? 'text-neon-cyan' : 'text-blue-600')
+                ? (theme === 'dark' ? 'text-cyan-400' : 'text-blue-600')
                 : (theme === 'dark' 
-                    ? 'text-white hover:text-neon-cyan' 
+                    ? 'text-white hover:text-cyan-400' 
                     : 'text-gray-700 hover:text-blue-600'
                   )
               }
@@ -205,7 +189,7 @@ const NavLinks = ({
             {item.name}
             <span className={`
               absolute bottom-0 left-0 h-0.5 transition-all duration-300
-              ${theme === 'dark' ? 'bg-neon-cyan' : 'bg-blue-600'}
+              ${theme === 'dark' ? 'bg-cyan-400' : 'bg-blue-600'}
               ${isActive(item.path) ? 'w-full' : 'w-0 group-hover:w-full'}
             `} />
           </Link>
