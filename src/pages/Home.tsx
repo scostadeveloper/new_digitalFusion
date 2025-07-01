@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Sparkles, Zap, Code, Palette, Globe, Users, Calendar, TrendingUp } from 'lucide-react';
+import { ArrowRight, Code, Palette, Globe, Users, Calendar, TrendingUp } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import SocialProof from '@/components/modern/SocialProof';
 import ScrollNavigator from '@/components/modern/ScrollNavigator';
