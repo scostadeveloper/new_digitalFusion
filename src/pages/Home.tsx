@@ -139,62 +139,216 @@ const Home = () => {
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
         style={{ background: heroBackground }}
       >
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          {/* Animated Grid com cores da Digital Fusion */}
-          <div className={`absolute inset-0 ${theme === 'dark' ? 'opacity-15' : 'opacity-20'}`}>
-            <div 
-              className="w-full h-full"
-              style={{
-                backgroundImage: theme === 'dark' 
-                  ? 'linear-gradient(rgba(110, 249, 245, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(110, 249, 245, 0.08) 1px, transparent 1px)'
-                  : 'linear-gradient(rgba(0, 123, 255, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 123, 255, 0.15) 1px, transparent 1px)',
-                backgroundSize: window.innerWidth < 768 ? '30px 30px' : '50px 50px',
-                animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
-              }}
+        {/* Animated Tech Background - Versão Avançada */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Base Grid Animado com movimento */}
+          <motion.div 
+            animate={{
+              backgroundPosition: ['0px 0px', '60px 60px'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className={`absolute inset-0 ${theme === 'dark' ? 'opacity-25' : 'opacity-30'}`}
+            style={{
+              backgroundImage: theme === 'dark' 
+                ? 'linear-gradient(rgba(110, 249, 245, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(110, 249, 245, 0.15) 1px, transparent 1px)'
+                : 'linear-gradient(rgba(0, 123, 255, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 123, 255, 0.25) 1px, transparent 1px)',
+              backgroundSize: window.innerWidth < 768 ? '40px 40px' : '60px 60px',
+            }}
+          />
+
+          {/* Circuitos SVG Avançados com Gradientes */}
+          <svg className="absolute inset-0 w-full h-full" style={{ opacity: theme === 'dark' ? 0.6 : 0.7 }}>
+            <defs>
+              <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={theme === 'dark' ? '#6EF9F5' : '#007BFF'} stopOpacity="0.9">
+                  <animate attributeName="stop-opacity" values="0.9;1;0.5;0.9" dur="4s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="50%" stopColor={theme === 'dark' ? '#3B82F6' : '#00C9FF'} stopOpacity="0.7">
+                  <animate attributeName="stop-opacity" values="0.7;0.3;1;0.7" dur="3s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="100%" stopColor={theme === 'dark' ? '#1E40AF' : '#005F73'} stopOpacity="0.5">
+                  <animate attributeName="stop-opacity" values="0.5;0.9;0.3;0.5" dur="5s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+              
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge> 
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/> 
+                </feMerge>
+              </filter>
+            </defs>
+            
+            {/* Linhas Horizontais Dinâmicas */}
+            <motion.line 
+              x1="0" y1="15%" x2="100%" y2="20%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="3"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
+            <motion.line 
+              x1="0" y1="45%" x2="100%" y2="40%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="2"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            />
+            <motion.line 
+              x1="0" y1="75%" x2="100%" y2="80%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="1.5"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            />
+            
+            {/* Linhas Verticais */}
+            <motion.line 
+              x1="20%" y1="0" x2="25%" y2="100%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="2"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
+            <motion.line 
+              x1="70%" y1="0" x2="75%" y2="100%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="1.5"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            />
+
+            {/* Circuitos Curvos Complexos */}
+            <motion.path
+              d="M 0 30 Q 25 10 50 35 T 100 25"
+              stroke="url(#circuitGradient)"
+              strokeWidth="2"
+              fill="transparent"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+            />
+            <motion.path
+              d="M 0 70 Q 35 50 70 75 T 100 65"
+              stroke="url(#circuitGradient)"
+              strokeWidth="1.5"
+              fill="transparent"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+            />
+          </svg>
+
+          {/* Efeito Matrix Avançado */}
+          <div className={`absolute inset-0 ${theme === 'dark' ? 'opacity-20' : 'opacity-25'}`}>
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={`matrix-${i}`}
+                animate={{
+                  y: [-200, window.innerHeight + 200],
+                }}
+                transition={{
+                  duration: 12 + i * 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 3
+                }}
+                className={`absolute text-sm font-mono ${
+                  theme === 'dark' ? 'text-cyan-400/70' : 'text-blue-600/70'
+                }`}
+                style={{
+                  left: `${5 + i * 10}%`,
+                  fontFamily: 'monospace',
+                  fontSize: window.innerWidth < 768 ? '12px' : '14px'
+                }}
+              >
+                {Array.from({ length: 30 }, (_, j) => (
+                  <div key={j} style={{ opacity: 1 - (j * 0.035) }}>
+                    {['01', '10', '11', '00', '</', '/>', '{}', '[]', '()', '&&', '||', '==', '!=', '=>', '++', '--', 'AI', 'ML', 'API', 'SQL'][Math.floor(Math.random() * 20)]}
+                  </div>
+                ))}
+              </motion.div>
+            ))}
           </div>
-          
-          {/* Additional Pattern Overlay com gradientes da marca */}
+
+          {/* Pulsos Radiais Múltiplos */}
+          <motion.div
+            animate={{
+              scale: [1, 3.5, 1],
+              opacity: [0.02, 0.15, 0.02]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border ${
+              theme === 'dark' 
+                ? 'border-cyan-400/10' 
+                : 'border-blue-500/15'
+            }`}
+            style={{
+              width: window.innerWidth < 768 ? '400px' : '600px',
+              height: window.innerWidth < 768 ? '400px' : '600px',
+              background: theme === 'dark' 
+                ? 'radial-gradient(circle, rgba(110, 249, 245, 0.08) 0%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(0, 123, 255, 0.12) 0%, transparent 70%)'
+            }}
+          />
+
+          <motion.div
+            animate={{
+              scale: [1, 2.8, 1],
+              opacity: [0.03, 0.2, 0.03]
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full border ${
+              theme === 'dark' 
+                ? 'border-blue-400/15' 
+                : 'border-cyan-500/20'
+            }`}
+            style={{
+              width: window.innerWidth < 768 ? '300px' : '450px',
+              height: window.innerWidth < 768 ? '300px' : '450px',
+              background: theme === 'dark' 
+                ? 'radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 60%)'
+                : 'radial-gradient(circle, rgba(0, 201, 255, 0.1) 0%, transparent 60%)'
+            }}
+          />
+
+          {/* Overlay Avançado para Tema Claro */}
           {theme === 'light' && (
-            <div className="absolute inset-0 opacity-8">
+            <div className="absolute inset-0 opacity-15">
               <div 
                 className="w-full h-full"
                 style={{
-                  backgroundImage: 'radial-gradient(circle at 25% 25%, rgba(0, 123, 255, 0.2) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(0, 95, 117, 0.15) 0%, transparent 50%)',
-                  animation: 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite reverse'
+                  backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(0, 123, 255, 0.4) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0, 95, 117, 0.35) 0%, transparent 50%), radial-gradient(circle at 50% 50%, rgba(0, 200, 255, 0.3) 0%, transparent 70%)',
                 }}
               />
             </div>
           )}
-          
-          {/* Floating Orbs com cores da Digital Fusion - Responsivos */}
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              animate={{ 
-                y: [0, -30, 0],
-                x: [0, 20, 0],
-                rotate: [0, 360]
-              }}
-              transition={{
-                duration: 8 + i * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5
-              }}
-              className={`absolute rounded-full floating-orb ${
-                i % 3 === 0 ? 'df-orb-blue' : 
-                i % 3 === 1 ? 'df-orb-dark' : 'df-orb-cyan'
-              }`}
-              style={{
-                left: `${15 + i * 12}%`,
-                top: `${20 + (i % 3) * 20}%`,
-                width: window.innerWidth < 768 ? '12px' : '16px',
-                height: window.innerWidth < 768 ? '12px' : '16px'
-              }}
-            />
-          ))}
         </div>
         
         {/* Content Container - Responsivo */}
