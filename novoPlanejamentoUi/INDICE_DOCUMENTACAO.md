@@ -26,23 +26,35 @@ Este índice organiza toda a documentação criada para o projeto de refatoraç�
 **Para quem**: Desenvolvedores, histórico de implementação
 **Status**: ✅ Finalizado
 
+### **4. REFATORAÇÃO SERVICES PAGE** 🛠️
+**Arquivo**: `SERVICES_PAGE_REFATORACAO_COMPLETA.md`
+**Descrição**: Documentação completa da refatoração da página Services - componentes, melhorias e implementação
+**Para quem**: Desenvolvedores, referência de implementação
+**Status**: ✅ Concluído
+
+### **5. REFATORAÇÃO PORTFOLIO PAGE** 📁
+**Arquivo**: `PORTFOLIO_PAGE_REFATORACAO_COMPLETA.md`
+**Descrição**: Documentação completa da refatoração da página Portfolio - componentes, melhorias e implementação
+**Para quem**: Desenvolvedores, referência de implementação
+**Status**: ✅ Concluído
+
 ---
 
 ## 🧩 **DOCUMENTAÇÃO TÉCNICA**
 
-### **4. COMPONENTES REUTILIZÁVEIS** 🔧
+### **6. COMPONENTES REUTILIZÁVEIS** 🔧
 **Arquivo**: `COMPONENTES_REUTILIZAVEIS.md`
 **Descrição**: Sistema unificado de componentes para todas as páginas
 **Para quem**: Desenvolvedores, arquitetura de código
 **Status**: ✅ Especificado
 
-### **5. REFINAMENTOS FINAIS** ✨
+### **7. REFINAMENTOS FINAIS** ✨
 **Arquivo**: `REFINAMENTOS_FINAIS.md`
 **Descrição**: Melhorias opcionais de performance, acessibilidade e funcionalidades
 **Para quem**: Desenvolvedores, otimizações avançadas
 **Status**: ✅ Documentado
 
-### **6. DESIGN SYSTEM** 🎨
+### **8. DESIGN SYSTEM** 🎨
 **Arquivo**: `DESIGN_SYSTEM_MODERNO.md`
 **Descrição**: Padrões visuais, cores, tipografia e componentes
 **Para quem**: Designers, desenvolvedores
@@ -52,19 +64,19 @@ Este índice organiza toda a documentação criada para o projeto de refatoraç�
 
 ## 📈 **DOCUMENTOS DE APOIO**
 
-### **7. GUIA DE IMPLEMENTAÇÃO** 📖
+### **9. GUIA DE IMPLEMENTAÇÃO** 📖
 **Arquivo**: `GUIA_IMPLEMENTACAO_TECNICA.md`
 **Descrição**: Aspectos técnicos, configurações e boas práticas
 **Para quem**: Desenvolvedores, configuração técnica
 **Status**: ✅ Disponível
 
-### **8. PLANEJAMENTO GERAL** 🗺️
+### **10. PLANEJAMENTO GERAL** 🗺️
 **Arquivo**: `PLANEJAMENTO_REFATORACAO_UI.md`
 **Descrição**: Visão geral inicial da refatoração
 **Para quem**: Contexto histórico, planejamento inicial
 **Status**: ✅ Referência
 
-### **9. CRONOGRAMA** ⏱️
+### **11. CRONOGRAMA** ⏱️
 **Arquivo**: `CRONOGRAMA_IMPLEMENTACAO.md`
 **Descrição**: Timeline e estimativas de desenvolvimento
 **Para quem**: Gestão de projeto, planning
@@ -225,13 +237,13 @@ novoPlanejamentoUi/
 
 ## 🚀 **PRÓXIMOS PASSOS**
 
-1. **Escolher próxima página** (recomendado: Portfolio)
+1. **Escolher próxima página** (recomendado: Contact)
 2. **Consultar planejamento específico**
 3. **Implementar componentes base necessários**
 4. **Desenvolver página seguindo especificações**
 5. **Validar qualidade e consistência**
 6. **Documentar progresso**
-7. **Repetir para demais páginas**
+7. **Finalizar projeto com testes completos**
 
 ---
 
