@@ -3,27 +3,53 @@ import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
 
 interface ScrollNavigatorProps {
-  onClick: () => void;
+  onClick?: () => void;
+  onNavigate?: (section: string) => void;
   className?: string;
   isLastSection?: boolean;
+  sections?: string[];
+  currentSection?: string;
 }
 
 const ScrollNavigator: React.FC<ScrollNavigatorProps> = ({ 
   onClick, 
+  onNavigate,
   className = "",
-  isLastSection = false
+  isLastSection = false,
+  sections = [],
+  currentSection = ""
 }) => {
   const { theme } = useTheme();
   
+  // Determinar se estamos na última seção
+  const isLast = isLastSection || (sections.length > 0 && currentSection === sections[sections.length - 1]);
+  
+  // Função para lidar com o clique no navegador
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    } else if (onNavigate && sections.length > 0) {
+      const currentIndex = sections.indexOf(currentSection);
+      if (isLast) {
+        // Se for a última seção, navegar para o topo (primeira seção)
+        onNavigate(sections[0]);
+      } else if (currentIndex >= 0 && currentIndex < sections.length - 1) {
+        // Navegar para a próxima seção
+        onNavigate(sections[currentIndex + 1]);
+      }
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5 }}
       className={`fixed bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-50 hidden sm:block cursor-pointer group ${className}`}
-      onClick={onClick}
-      title={isLastSection ? "Voltar ao topo" : "Próxima seção"}
+      onClick={handleClick}
+      title={isLast ? "Voltar ao topo" : "Próxima seção"}
     >
+      
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
@@ -33,7 +59,7 @@ const ScrollNavigator: React.FC<ScrollNavigatorProps> = ({
             : 'border-blue-500/50 group-hover:border-blue-500 group-hover:shadow-blue-500/25'
         }`}
       >
-        {isLastSection ? (
+        {isLast ? (
           // Bolinha animada para cima (voltar ao topo)
           <motion.div
             animate={{ y: [20, 0, 20] }}
@@ -64,7 +90,7 @@ const ScrollNavigator: React.FC<ScrollNavigatorProps> = ({
           ? 'bg-gray-800 text-gray-200 border border-cyan-400/20'
           : 'bg-gray-900 text-gray-100 border border-blue-500/20'
       }`}>
-        {isLastSection ? "Voltar ao topo" : "Próxima seção"}
+        {isLast ? "Voltar ao topo" : "Próxima seção"}
       </div>
     </motion.div>
   );

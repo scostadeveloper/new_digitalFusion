@@ -557,7 +557,7 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 max-w-4xl mx-auto">
             {/* Membro 1 */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -565,37 +565,37 @@ const About = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`group relative p-8 rounded-3xl backdrop-blur-md border transition-all duration-500 ${
+              className={`group relative p-8 rounded-3xl backdrop-blur-md border transition-all duration-500 min-w-0 w-[320px] sm:w-[360px] md:w-[400px] lg:w-[420px] xl:w-[440px] ${
                 theme === 'dark'
                   ? 'bg-black/20 border-white/10 hover:border-cyan-400/30 hover:shadow-[0_0_30px_rgba(110,249,245,0.2)]'
                   : 'bg-white/40 border-blue-200/30 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(0,123,255,0.15)]'
               }`}
             >
               <div className="text-center">
-                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl ${
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30'
                     : 'bg-gradient-to-r from-blue-500/15 to-cyan-500/15 border border-blue-500/30'
                 }`}>
-                  👨‍💻
+                  <img src="/perfil-sergio.jpg" alt="Sergio Costa" className="w-full h-full object-cover" />
                 </div>
                 <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                  Sérgio Santos
+                  Sergio Costa
                 </h3>
                 <p className={`text-sm sm:text-base font-medium mb-4 ${
                   theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
                 }`}>
-                  Co-Fundador & CTO
+                  Fundador, CTO
                 </p>
                 <p className={`text-sm sm:text-base leading-relaxed font-body mb-6 ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Especialista em desenvolvimento full-stack com mais de 5 anos de experiência. Apaixonado por criar soluções escaláveis e inovadoras.
+                  Especialista em desenvolvimento web, apaixonado por criar soluções digitais inovadoras, escaláveis e de alto impacto. Atua como CTO liderando projetos que unem tecnologia de ponta, experiência do usuário e resultados reais para empresas que querem crescer no mundo digital.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {['React', 'Node.js', 'TypeScript', 'AWS'].map((skill, index) => (
+                  {['NodeJS', 'TypeScript', 'T-SQL', 'React', 'NextJS', 'micro-services', 'C#', '.NET'].map((skill, index) => (
                     <span 
                       key={index}
                       className={`px-3 py-1 text-xs rounded-full ${
@@ -618,24 +618,24 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className={`group relative p-8 rounded-3xl backdrop-blur-md border transition-all duration-500 ${
+              className={`group relative p-8 rounded-3xl backdrop-blur-md border transition-all duration-500 min-w-0 w-[320px] sm:w-[360px] md:w-[400px] lg:w-[420px] xl:w-[440px] ${
                 theme === 'dark'
                   ? 'bg-black/20 border-white/10 hover:border-cyan-400/30 hover:shadow-[0_0_30px_rgba(110,249,245,0.2)]'
                   : 'bg-white/40 border-blue-200/30 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(0,123,255,0.15)]'
               }`}
             >
               <div className="text-center">
-                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl ${
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30'
                     : 'bg-gradient-to-r from-blue-500/15 to-purple-500/15 border border-blue-500/30'
                 }`}>
-                  👩‍🎨
+                  <img src="/perfil-rebeca.jpg" alt="Rebeca Costa" className="w-full h-full object-cover" />
                 </div>
                 <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
                 }`}>
-                  Ana Silva
+                  Rebeca Costa
                 </h3>
                 <p className={`text-sm sm:text-base font-medium mb-4 ${
                   theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
@@ -645,7 +645,7 @@ const About = () => {
                 <p className={`text-sm sm:text-base leading-relaxed font-body mb-6 ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Designer UX/UI com expertise em criar experiências digitais memoráveis. Foco em design centrado no usuário e conversões.
+                  Designer UX/UI com expertise em criar experiências digitais memoráveis, que encantam e convertem. Apaixonada por design centrado no usuário, branding estratégico e interfaces que elevam o valor das marcas. Lidera projetos que unem criatividade, inovação e resultados para clientes que buscam destaque no universo digital.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
                   {['Figma', 'UI/UX', 'Branding', 'Prototyping'].map((skill, index) => (
@@ -655,6 +655,59 @@ const About = () => {
                         theme === 'dark'
                           ? 'bg-blue-400/20 text-blue-300 border border-blue-400/30'
                           : 'bg-purple-500/20 text-purple-600 border border-purple-500/30'
+                      }`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Membro 3 - Kaique Brito */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className={`group relative p-8 rounded-3xl backdrop-blur-md border transition-all duration-500 min-w-0 w-[320px] sm:w-[360px] md:w-[400px] lg:w-[420px] xl:w-[440px] ${
+                theme === 'dark'
+                  ? 'bg-black/20 border-white/10 hover:border-cyan-400/30 hover:shadow-[0_0_30px_rgba(110,249,245,0.2)]'
+                  : 'bg-white/40 border-blue-200/30 hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(0,123,255,0.15)]'
+              }`}
+            >
+              <div className="text-center">
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
+                  theme === 'dark'
+                    ? 'bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-400/30'
+                    : 'bg-gradient-to-r from-cyan-500/15 to-purple-500/15 border border-cyan-500/30'
+                }`}>
+                  <img src="/perfil-kaique.jpeg" alt="Kaique Brito" className="w-full h-full object-cover" />
+                </div>
+                <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}>
+                  Kaique Brito
+                </h3>
+                <p className={`text-sm sm:text-base font-medium mb-4 ${
+                  theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                }`}>
+                  Especialista em Tráfego Pago & Marketing Digital
+                </p>
+                <p className={`text-sm sm:text-base leading-relaxed font-body mb-6 ${
+                  theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                }`}>
+                  Gestor de tráfego com foco em otimização de campanhas, traqueamento de sites e estratégias de marketing digital. Atua desde 2020 criando publicidade digital de alta performance para negócios locais e empresas em crescimento. Especialista em Facebook Ads, Google Ads, Instagram Ads e tráfego orgânico, desenvolve estratégias que potencializam resultados e aumentam a visibilidade das marcas no ambiente online.
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {['Facebook Ads', 'Google Ads', 'Instagram Ads', 'Tráfego Orgânico', 'Marketing Digital'].map((skill, index) => (
+                    <span 
+                      key={index}
+                      className={`px-3 py-1 text-xs rounded-full ${
+                        theme === 'dark'
+                          ? 'bg-purple-400/20 text-purple-300 border border-purple-400/30'
+                          : 'bg-cyan-500/20 text-cyan-600 border border-cyan-500/30'
                       }`}
                     >
                       {skill}

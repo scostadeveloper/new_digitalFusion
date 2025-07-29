@@ -1,0 +1,111 @@
+
+# Diretrizes de Código – pt-BR
+
+Always respond in Portuguese (pt-BR). These are coding guidelines to be followed in all projects.
+
+Estas regras devem ser **seguidas estritamente**. Nunca assuma intenções ou modifique algo além do solicitado. Sempre priorize segurança, clareza e comunicação ao sugerir ou aplicar mudanças. Evite ao máximo quebrar qualquer parte funcional do sistema existente.
+
+## GENERAL PRINCIPLES
+
+- Always prefer simple solutions.
+- Avoid code duplication whenever possible. Before writing new code, check if similar logic already exists.
+- Keep code structured and organized.
+- Be careful to only make changes that are requested or well understood and directly related to the task.
+- When fixing bugs, avoid introducing new patterns or technologies unless existing approaches have been exhausted. If you must introduce a new approach, remove the old implementation to avoid duplicated logic.
+- Always write code that accounts for different environments: dev, test, and prod.
+- Avoid writing throwaway scripts in source files. If a script is to be used only once, isolate it or run it externally.
+- Avoid files with more than 200–300 lines. Refactor or split files based on responsibility when reaching this threshold (e.g., components, hooks, services).
+- Mock data should only be used for tests. Never use mocked data in dev or prod environments.
+- Never overwrite the `.env` file without asking and confirming first.
+
+## CODE STYLE & ARCHITECTURE
+
+- Use functional components and TypeScript interfaces.
+- Use declarative JSX.
+- Prefer `function` declarations over `const` when defining React components.
+- Use Shadcn UI, Radix, and Tailwind Aria for components and styling.
+- Use Tailwind CSS and follow mobile-first principles.
+- Place static content and interfaces at the bottom of the file.
+- Use content variables outside of render functions for static data.
+- Minimize use of `'use client'`, `useEffect`, and `setState`. Prefer Server Components (RSC).
+- Wrap client components with `<Suspense fallback={...}>` when using async data or lazy-loaded components.
+- Use dynamic loading (`next/dynamic`) for non-critical components.
+- Optimize images: use WebP, define size, and lazy load.
+
+> When a file exceeds 200–300 lines, split it into smaller files based on responsibility.  
+> When a function becomes too long, break it into smaller functions.
+
+After writing any code, reflect on scalability and maintainability. Provide a 1–2 paragraph analysis and suggest improvements or next steps.
+
+## ERROR HANDLING & VALIDATION
+
+- Model expected errors as return values. Avoid `try/catch` for expected errors.  
+  Use `useActionState` to manage and return these to the client.
+- Use `error.tsx` and `global-error.tsx` as error boundaries for unexpected errors.
+- Use `useActionState` with `react-hook-form` for validation.
+- Write services (e.g. `services/`) with clear, user-friendly error messages, consumable by `tanstack-query`.
+
+## next-safe-action
+
+- Use `next-safe-action` for all server actions.
+- Define `zod` schemas for input validation.
+- Always return the `ActionResponse` type.
+- Handle all errors gracefully and consistently.
+
+```ts
+'use server'
+// Required to declare server actions in Next.js app directory
+
+import { createSafeActionClient } from 'next-safe-action'
+import { z } from 'zod'
+import type { ActionResponse } from '@/app/actions/actions'
+
+const schema = z.object({
+  value: z.string()
+})
+
+export const someAction = createSafeActionClient()
+  .schema(schema)
+  .action(async (input): Promise<ActionResponse> => {
+    try {
+      return { success: true, data: /* result */ }
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof AppError ? error : appErrors.UNEXPECTED_ERROR,
+      }
+    }
+  })
+```
+
+## SAFE MODIFICATION PRINCIPLES
+
+- Never modify files that are not directly related to the current task or issue.
+- Before changing existing logic, explain the impact and confirm the intent.
+- Never delete files, functions or variables without verifying that they are unused (search project-wide).
+- Do not refactor or reformat code outside the scope of the task.
+- Never change global configuration files (`tsconfig.json`, `tailwind.config.ts`, `next.config.js`, etc.) without explicit request and validation.
+
+## COMMUNICATION & DECISION MAKING
+
+- Always explain decisions involving architecture, patterns, or new libraries.
+- If uncertain, stop and ask rather than assume.
+- When finding poorly structured code, suggest improvements first instead of immediately changing it.
+
+## PROJECT INTEGRITY
+
+- Do not run `npm install`, `yarn`, `bun`, `npx` or other commands that alter dependencies without explaining the purpose.
+- Never install new dependencies without justification and confirmation.
+- When modifying code, verify results with automated or manual tests and clearly report what was tested.
+
+## ORGANIZATION & CONSISTENCY
+
+- Follow the existing folder structure. Do not move files arbitrarily.
+- Follow the naming conventions already used in the codebase.
+- Name new files and components clearly and descriptively.
+
+## GIT & VERSION CONTROL (if applicable)
+
+- Make small, descriptive commits with clear explanations of changes and reasons.
+- Never use `--force` with `git push` unless explicitly instructed.
+- After finishing a change, clearly summarize what was done and whether tests are required or included.
