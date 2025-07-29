@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import ContactCTA from '@/components/ContactCTA';
-import { Monitor, Smartphone, Layout, Target, Share2, Search, LineChart, ArrowRight, ChevronDown as ChevronDownIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
+import { Monitor, Smartphone, Layout, Target, Search, ArrowRight, ChevronDown as ChevronDownIcon, CheckCircle, Clock, Users, Zap, Code, Globe, Lightbulb, Rocket } from 'lucide-react';
+import ContactCTA from '@/components/ContactCTA';
 import ScrollNavigator from '@/components/modern/ScrollNavigator';
+import { GlassCard } from '@/components/modern/GlassCard';
+import { NeonButton } from '@/components/modern/NeonButton';
 import { Disclosure } from '@headlessui/react';
 
 const Services = () => {
@@ -239,7 +240,7 @@ const Services = () => {
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
         style={{ background: heroBackground }}
       >
-        {/* Animated Tech Background */}
+        {/* Animated Tech Background - Versão Digital Fusion */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Base Grid Animado com movimento */}
           <motion.div 
@@ -260,10 +261,10 @@ const Services = () => {
             }}
           />
 
-          {/* Linhas Animadas */}
+          {/* Circuitos SVG Avançados com Gradientes */}
           <svg className="absolute inset-0 w-full h-full" style={{ opacity: theme === 'dark' ? 0.6 : 0.7 }}>
             <defs>
-              <linearGradient id="serviceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="circuitGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor={theme === 'dark' ? '#6EF9F5' : '#007BFF'} stopOpacity="0.9">
                   <animate attributeName="stop-opacity" values="0.9;1;0.5;0.9" dur="4s" repeatCount="indefinite" />
                 </stop>
@@ -287,7 +288,7 @@ const Services = () => {
             {/* Linhas Horizontais Dinâmicas */}
             <motion.line 
               x1="0" y1="15%" x2="100%" y2="20%" 
-              stroke="url(#serviceGradient)" 
+              stroke="url(#circuitGradient)" 
               strokeWidth="3"
               filter="url(#glow)"
               initial={{ pathLength: 0 }}
@@ -296,7 +297,7 @@ const Services = () => {
             />
             <motion.line 
               x1="0" y1="45%" x2="100%" y2="40%" 
-              stroke="url(#serviceGradient)" 
+              stroke="url(#circuitGradient)" 
               strokeWidth="2"
               filter="url(#glow)"
               initial={{ pathLength: 0 }}
@@ -305,16 +306,90 @@ const Services = () => {
             />
             <motion.line 
               x1="0" y1="75%" x2="100%" y2="80%" 
-              stroke="url(#serviceGradient)" 
+              stroke="url(#circuitGradient)" 
               strokeWidth="1.5"
               filter="url(#glow)"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: [0, 1, 0] }}
               transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 4 }}
             />
+            
+            {/* Linhas Verticais */}
+            <motion.line 
+              x1="20%" y1="0" x2="25%" y2="100%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="2"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            />
+            <motion.line 
+              x1="70%" y1="0" x2="75%" y2="100%" 
+              stroke="url(#circuitGradient)" 
+              strokeWidth="1.5"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 16, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            />
+
+            {/* Circuitos Curvos Complexos */}
+            <motion.path
+              d="M 0 30 Q 25 10 50 35 T 100 25"
+              stroke="url(#circuitGradient)"
+              strokeWidth="2"
+              fill="transparent"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+            />
+            <motion.path
+              d="M 0 70 Q 35 50 70 75 T 100 65"
+              stroke="url(#circuitGradient)"
+              strokeWidth="1.5"
+              fill="transparent"
+              filter="url(#glow)"
+              initial={{ pathLength: 0 }}
+              animate={{ pathLength: [0, 1, 0] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 5 }}
+            />
           </svg>
 
-          {/* Pulsos Radiais */}
+          {/* Efeito Matrix Avançado */}
+          <div className={`absolute inset-0 ${theme === 'dark' ? 'opacity-20' : 'opacity-25'}`}>
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={`matrix-${i}`}
+                animate={{
+                  y: [-200, window.innerHeight + 200],
+                }}
+                transition={{
+                  duration: 12 + i * 3,
+                  repeat: Infinity,
+                  ease: "linear",
+                  delay: i * 3
+                }}
+                className={`absolute text-sm font-mono ${
+                  theme === 'dark' ? 'text-cyan-400/70' : 'text-blue-600/70'
+                }`}
+                style={{
+                  left: `${5 + i * 10}%`,
+                  fontFamily: 'monospace',
+                  fontSize: window.innerWidth < 768 ? '12px' : '14px'
+                }}
+              >
+                {Array.from({ length: 30 }, (_, j) => (
+                  <div key={j} style={{ opacity: 1 - (j * 0.035) }}>
+                    {['01', '10', '11', '00', '</', '/>', '{}', '[]', '()', '&&', '||', '==', '!=', '=>', '++', '--', 'AI', 'ML', 'API', 'SQL'][Math.floor(Math.random() * 20)]}
+                  </div>
+                ))}
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Pulsos Radiais Múltiplos */}
           <motion.div
             animate={{
               scale: [1, 3.5, 1],
@@ -327,57 +402,161 @@ const Services = () => {
             }}
             className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full ${theme === 'dark' ? 'bg-cyan-500/20' : 'bg-blue-500/20'}`}
           />
+          <motion.div
+            animate={{
+              scale: [1, 2.8, 1],
+              opacity: [0.03, 0.12, 0.03]
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 5
+            }}
+            className={`absolute top-1/4 right-1/4 w-24 h-24 rounded-full ${theme === 'dark' ? 'bg-blue-500/15' : 'bg-indigo-500/15'}`}
+          />
+          <motion.div
+            animate={{
+              scale: [1, 2.2, 1],
+              opacity: [0.04, 0.18, 0.04]
+            }}
+            transition={{
+              duration: 22,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 10
+            }}
+            className={`absolute bottom-1/4 left-1/4 w-20 h-20 rounded-full ${theme === 'dark' ? 'bg-purple-500/15' : 'bg-blue-500/15'}`}
+          />
         </div>
 
-        <div className="container-custom relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
-            className="max-w-3xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <motion.h1 
-              className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-6 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
-              initial={{ opacity: 0, y: 20 }}
+            {/* Título com Typing Animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8 }}
+              className="mb-6"
             >
-              Nossos Serviços
-            </motion.h1>
-            <motion.p 
-              className={`text-xl mb-8 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              Soluções digitais completas para transformar seu negócio
-            </motion.p>
+              <h1 className={`text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}>
+                <span className="block mb-2">Nossos</span>
+                <span className={`block bg-gradient-to-r ${
+                  theme === 'dark' 
+                    ? 'from-cyan-400 via-blue-500 to-purple-600' 
+                    : 'from-blue-600 via-purple-600 to-indigo-700'
+                } bg-clip-text text-transparent font-extrabold`}>
+                  Serviços
+                </span>
+              </h1>
+            </motion.div>
+
+            {/* Subtítulo com Typing Effect */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-col sm:flex-row justify-center gap-4"
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="mb-8"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <p className={`text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              }`}>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1, duration: 0.8 }}
+                >
+                  Soluções digitais completas para{' '}
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.3, duration: 0.8 }}
+                  className={`font-semibold ${
+                    theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                  }`}
+                >
+                  transformar seu negócio
+                </motion.span>
+              </p>
+            </motion.div>
+
+            {/* Botões com NeonButton */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="flex flex-col sm:flex-row justify-center gap-4 mb-12"
+            >
+              <NeonButton
                 onClick={() => document.getElementById('services-overview')?.scrollIntoView({ behavior: 'smooth' })}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${theme === 'dark' 
-                  ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]' 
-                  : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]'}`}
+                variant="primary"
+                size="lg"
+                className="group"
               >
-                Explorar Serviços
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                <span className="flex items-center gap-2">
+                  Explorar Serviços
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </NeonButton>
+              
+              <NeonButton
                 onClick={() => navigate('/contact')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${theme === 'dark' 
-                  ? 'border-2 border-cyan-400/50 text-cyan-300 hover:bg-cyan-400/10 hover:border-cyan-400' 
-                  : 'border-2 border-blue-500/50 text-blue-600 hover:bg-blue-500/10 hover:border-blue-500'}`}
+                variant="outline"
+                size="lg"
               >
                 Fale Conosco
-              </motion.button>
+              </NeonButton>
+            </motion.div>
+
+            {/* Stats Preview */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto"
+            >
+              {[
+                { icon: <Monitor className="w-6 h-6" />, label: 'Sites', count: '50+' },
+                { icon: <Smartphone className="w-6 h-6" />, label: 'Apps', count: '30+' },
+                { icon: <Users className="w-6 h-6" />, label: 'Clientes', count: '100+' },
+                { icon: <Clock className="w-6 h-6" />, label: 'Anos', count: '5+' }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 1.4 + index * 0.1, duration: 0.5 }}
+                  className={`text-center p-4 rounded-xl backdrop-blur-sm border ${
+                    theme === 'dark' 
+                      ? 'bg-white/5 border-white/10' 
+                      : 'bg-white/20 border-white/30'
+                  }`}
+                >
+                  <div className={`flex justify-center mb-2 ${
+                    theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                  }`}>
+                    {stat.icon}
+                  </div>
+                  <div className={`text-2xl font-bold mb-1 ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {stat.count}
+                  </div>
+                  <div className={`text-sm ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -391,30 +570,97 @@ const Services = () => {
         />
       </section>
 
-      {/* Services Overview com animações */}
+      {/* Services Overview com Digital Fusion */}
       <section 
         id="services-overview"
-        className="py-20 relative overflow-hidden"
+        className="py-24 relative overflow-hidden"
         style={{ background: servicesBackground }}
       >
-        <div className="container-custom relative z-10">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Gradient Orbs */}
+          <div className={`absolute top-1/4 -left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${
+            theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'
+          }`} />
+          <div className={`absolute bottom-1/4 -right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15 ${
+            theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'
+          }`} />
+          
+          {/* Floating Elements */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            animate={{
+              y: [-20, 20, -20],
+              rotate: [0, 180, 360]
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className={`absolute top-1/3 right-1/4 w-4 h-4 rounded-full ${
+              theme === 'dark' ? 'bg-cyan-400/30' : 'bg-blue-400/30'
+            }`}
+          />
+          <motion.div
+            animate={{
+              y: [20, -20, 20],
+              rotate: [360, 180, 0]
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+            className={`absolute bottom-1/3 left-1/4 w-6 h-6 rounded-full ${
+              theme === 'dark' ? 'bg-purple-400/20' : 'bg-indigo-400/20'
+            }`}
+          />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-              Nossos Serviços
-            </h2>
-            <p className={`text-lg max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+            <motion.h2 
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <span className="block mb-2">Nossos</span>
+              <span className={`bg-gradient-to-r ${
+                theme === 'dark' 
+                  ? 'from-cyan-400 via-blue-500 to-purple-600' 
+                  : 'from-blue-600 via-purple-600 to-indigo-700'
+              } bg-clip-text text-transparent font-extrabold`}>
+                Serviços
+              </span>
+            </motion.h2>
+            
+            <motion.p 
+              className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
               Soluções digitais completas para impulsionar seu negócio no mundo digital
-            </p>
+            </motion.p>
           </motion.div>
 
+          {/* Services Grid */}
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -424,161 +670,403 @@ const Services = () => {
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="h-full"
+                className="h-full group"
               >
-                <motion.a 
-                  href={`#${service.id}`}
-                  className={`block h-full p-6 md:p-8 rounded-xl backdrop-blur-md border transition-all duration-300 ${theme === 'dark' 
-                    ? 'bg-black/20 border-white/10 hover:border-cyan-400/30 text-white' 
-                    : 'bg-white/80 border-gray-200/50 hover:border-blue-400/30 text-gray-900'}`}
+                <GlassCard
+                  className="h-full p-6 lg:p-8 cursor-pointer transition-all duration-500 group-hover:scale-[1.02]"
+                  onClick={() => document.getElementById(service.id)?.scrollIntoView({ behavior: 'smooth' })}
                 >
+                  {/* Icon */}
                   <motion.div 
-                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 ${theme === 'dark' 
-                      ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 text-cyan-400' 
-                      : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 text-blue-600'}`}
-                    variants={iconVariants}
-                    initial="initial"
-                    whileHover="hover"
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${
+                      theme === 'dark' 
+                        ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-400/20' 
+                        : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 border border-blue-400/20'
+                    }`}
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
                   >
-                    {service.icon}
+                    <div className={`text-2xl ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                    }`}>
+                      {service.icon}
+                    </div>
                   </motion.div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                  <p className={`mb-4 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+                  
+                  {/* Content */}
+                  <h3 className={`text-xl lg:text-2xl font-bold mb-4 ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {service.title}
+                  </h3>
+                  
+                  <p className={`mb-6 leading-relaxed ${
+                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                  }`}>
                     {service.description.split('.')[0]}.
                   </p>
-                  <div className="flex items-center mt-auto text-sm font-medium">
-                    <span className={theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}>Saiba mais</span>
-                    <ArrowRight className="w-4 h-4 ml-1" />
+                  
+                  {/* Features Preview */}
+                  <div className="mb-6">
+                    <div className="flex flex-wrap gap-2">
+                      {service.features.slice(0, 3).map((feature, featureIndex) => (
+                        <span 
+                          key={featureIndex}
+                          className={`text-xs px-3 py-1 rounded-full ${
+                            theme === 'dark' 
+                              ? 'bg-cyan-400/10 text-cyan-300 border border-cyan-400/20' 
+                              : 'bg-blue-500/10 text-blue-600 border border-blue-400/20'
+                          }`}
+                        >
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </motion.a>
+                  
+                  {/* CTA */}
+                  <motion.div 
+                    className={`flex items-center text-sm font-semibold group-hover:translate-x-1 transition-transform duration-300 ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                    }`}
+                    whileHover={{ x: 5 }}
+                  >
+                    <span>Saiba mais</span>
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </motion.div>
+                </GlassCard>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Individual Service Sections com animações */}
+      {/* Individual Service Sections com Digital Fusion */}
       {services.map((service, index) => (
         <motion.section 
           key={index}
           id={service.id}
-          className={`py-24 relative overflow-hidden ${index % 2 === 0 ? 'theme-bg' : theme === 'dark' ? 'bg-black/40' : 'bg-gray-50'}`}
+          className={`py-24 lg:py-32 relative overflow-hidden ${
+            index % 2 === 0 
+              ? (theme === 'dark' ? 'bg-gray-900/50' : 'bg-gray-50/50')
+              : (theme === 'dark' ? 'bg-black/30' : 'bg-white/50')
+          }`}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.8, ease: 'easeOut' }}
         >
-          {/* Background Elements */}
-          {index % 2 === 0 && (
-            <div className="absolute inset-0 overflow-hidden">
-              {/* Gradient Orbs */}
-              <div className={`absolute -top-[30%] -right-[10%] w-[60%] h-[60%] rounded-full blur-3xl opacity-20 ${theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'}`} />
-              <div className={`absolute -bottom-[30%] -left-[10%] w-[60%] h-[60%] rounded-full blur-3xl opacity-10 ${theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'}`} />
-            </div>
-          )}
+          {/* Enhanced Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Gradient Orbs */}
+            <div className={`absolute ${
+              index % 2 === 0 ? '-top-1/4 -right-1/4' : '-bottom-1/4 -left-1/4'
+            } w-96 h-96 rounded-full blur-3xl opacity-20 ${
+              theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'
+            }`} />
+            <div className={`absolute ${
+              index % 2 === 0 ? '-bottom-1/4 -left-1/4' : '-top-1/4 -right-1/4'
+            } w-80 h-80 rounded-full blur-3xl opacity-15 ${
+              theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'
+            }`} />
+            
+            {/* Floating Particles */}
+            <motion.div
+              animate={{
+                y: [-30, 30, -30],
+                x: [-20, 20, -20],
+                rotate: [0, 360]
+              }}
+              transition={{
+                duration: 25 + index * 5,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className={`absolute top-1/4 right-1/3 w-3 h-3 rounded-full ${
+                theme === 'dark' ? 'bg-cyan-400/40' : 'bg-blue-400/40'
+              }`}
+            />
+            <motion.div
+              animate={{
+                y: [20, -20, 20],
+                x: [30, -30, 30],
+                rotate: [360, 0]
+              }}
+              transition={{
+                duration: 20 + index * 3,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className={`absolute bottom-1/3 left-1/4 w-2 h-2 rounded-full ${
+                theme === 'dark' ? 'bg-purple-400/30' : 'bg-indigo-400/30'
+              }`}
+            />
+          </div>
 
-          <div className="container-custom relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Content */}
               <motion.div 
-                className={`${index % 2 !== 0 ? 'order-2' : ''}`}
+                className={`${index % 2 !== 0 ? 'lg:order-2' : ''}`}
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <motion.div 
-                  className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${theme === 'dark' 
-                    ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 text-cyan-400' 
-                    : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 text-blue-600'}`}
-                  variants={iconVariants}
-                  initial="initial"
-                  whileHover="hover"
-                >
-                  {service.icon}
-                </motion.div>
-                <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-                  {service.title}
-                </h2>
-                <p className={`text-lg mb-8 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {service.description}
-                </p>
-                <motion.ul 
-                  className="space-y-4 mb-8"
-                  variants={containerVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                >
-                  {service.features.map((feature, i) => (
-                    <motion.li 
-                      key={i} 
-                      className={`flex items-start ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}
-                      variants={itemVariants}
-                    >
-                      <motion.div 
-                        className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 mt-0.5 ${theme === 'dark' 
-                          ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' 
-                          : 'bg-blue-500/20 text-blue-600 border border-blue-500/30'}`}
-                        whileHover={{ scale: 1.2 }}
-                      >
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M10 3L4.5 8.5L2 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </motion.div>
-                      <span>{feature}</span>
-                    </motion.li>
-                  ))}
-                </motion.ul>
-                <motion.div 
-                  className="rounded-lg overflow-hidden"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <motion.a
-                    href="/contact"
-                    className={`inline-block px-6 py-3 rounded-lg font-semibold transition-all duration-300 ${theme === 'dark' 
-                      ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]' 
-                      : 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:shadow-[0_0_20px_rgba(37,99,235,0.5)]'}`}
-                  >
-                    {service.ctaText}
-                  </motion.a>
-                </motion.div>
-              </motion.div>
-              
-              {/* Imagem com efeito de glassmorphism */}
-              <motion.div 
-                className={`hidden lg:block ${index % 2 !== 0 ? 'order-1' : ''}`}
-                variants={imageVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                <div className={`relative rounded-xl overflow-hidden ${theme === 'dark' ? 'shadow-[0_0_30px_rgba(6,182,212,0.15)]' : 'shadow-[0_0_30px_rgba(37,99,235,0.15)]'}`}>
-                  {/* Glassmorphism border */}
-                  <div className={`absolute inset-0 rounded-xl border ${theme === 'dark' ? 'border-white/10' : 'border-blue-500/10'} backdrop-blur-sm z-10`}></div>
-                  
-                  {/* Image */}
+                <GlassCard className="p-8 lg:p-10">
+                  {/* Icon */}
                   <motion.div 
-                    className="w-full h-[450px] relative rounded-xl overflow-hidden"
-                    whileHover={{ scale: 1.03 }}
-                    transition={{ duration: 0.5 }}
+                    className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 ${
+                      theme === 'dark' 
+                        ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-400/30' 
+                        : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 border border-blue-400/30'
+                    }`}
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotate: 5,
+                      transition: { duration: 0.3 }
+                    }}
                   >
-                    <motion.img 
-                      src={service.image}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                      variants={imageVariants}
-                      whileHover="hover"
-                    />
-                    
-                    {/* Overlay gradient */}
-                    <div className={`absolute inset-0 opacity-30 ${theme === 'dark' 
-                      ? 'bg-gradient-to-tr from-cyan-900/50 to-transparent' 
-                      : 'bg-gradient-to-tr from-blue-900/30 to-transparent'}`}>
+                    <div className={`text-3xl ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                    }`}>
+                      {service.icon}
                     </div>
                   </motion.div>
-                </div>
+                  
+                  {/* Title */}
+                  <motion.h2 
+                    className={`text-3xl lg:text-4xl xl:text-5xl font-bold mb-6 ${
+                      theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                  >
+                    {service.title}
+                  </motion.h2>
+                  
+                  {/* Description */}
+                  <motion.p 
+                    className={`text-lg lg:text-xl mb-8 leading-relaxed ${
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                    }`}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                  >
+                    {service.description}
+                  </motion.p>
+                  
+                  {/* Features */}
+                  <motion.div 
+                    className="mb-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    <h3 className={`text-lg font-semibold mb-4 ${
+                      theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                    }`}>
+                      Principais recursos:
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {service.features.map((feature, i) => (
+                        <motion.div 
+                          key={i} 
+                          className={`flex items-center p-3 rounded-lg ${
+                            theme === 'dark' 
+                              ? 'bg-white/5 border border-white/10' 
+                              : 'bg-white/50 border border-gray-200/50'
+                          }`}
+                          variants={itemVariants}
+                          whileHover={{ scale: 1.02, x: 5 }}
+                        >
+                          <motion.div 
+                            className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0 ${
+                              theme === 'dark' 
+                                ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' 
+                                : 'bg-blue-500/20 text-blue-600 border border-blue-500/30'
+                            }`}
+                            whileHover={{ scale: 1.2, rotate: 360 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <CheckCircle className="w-3 h-3" />
+                          </motion.div>
+                          <span className={`text-sm font-medium ${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                          }`}>
+                            {feature}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* CTA Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                  >
+                    <NeonButton
+                      onClick={() => navigate('/contact')}
+                      variant="primary"
+                      size="lg"
+                      className="group"
+                    >
+                      <span className="flex items-center gap-2">
+                        {service.ctaText}
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </NeonButton>
+                  </motion.div>
+                </GlassCard>
+              </motion.div>
+              
+              {/* Visual/Demo Section */}
+              <motion.div 
+                className={`hidden lg:block ${index % 2 !== 0 ? 'lg:order-1' : ''}`}
+                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+              >
+                <GlassCard className="p-8 h-full">
+                  {/* Service Preview */}
+                  <div className="relative h-[500px] rounded-2xl overflow-hidden group">
+                    {/* Background Pattern */}
+                    <div className={`absolute inset-0 ${
+                      theme === 'dark' 
+                        ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-black' 
+                        : 'bg-gradient-to-br from-gray-100 via-white to-gray-50'
+                    }`}>
+                      {/* Grid Pattern */}
+                      <div className={`absolute inset-0 opacity-20 ${
+                        theme === 'dark' ? 'bg-cyan-400/10' : 'bg-blue-500/10'
+                      }`} style={{
+                        backgroundImage: `radial-gradient(circle at 1px 1px, ${
+                          theme === 'dark' ? 'rgba(6,182,212,0.3)' : 'rgba(37,99,235,0.3)'
+                        } 1px, transparent 0)`,
+                        backgroundSize: '20px 20px'
+                      }} />
+                    </div>
+                    
+                    {/* Service Icon Large */}
+                    <motion.div 
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                      whileHover={{ 
+                        scale: 1.1,
+                        rotate: 5,
+                        transition: { duration: 0.3 }
+                      }}
+                    >
+                      <div className={`w-32 h-32 rounded-3xl flex items-center justify-center ${
+                        theme === 'dark' 
+                          ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border-2 border-cyan-400/30' 
+                          : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 border-2 border-blue-400/30'
+                      } backdrop-blur-sm`}>
+                        <div className={`text-6xl ${
+                          theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                        }`}>
+                          {service.icon}
+                        </div>
+                      </div>
+                    </motion.div>
+                    
+                    {/* Floating Elements */}
+                    <motion.div
+                      animate={{
+                        y: [-10, 10, -10],
+                        rotate: [0, 180, 360]
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                      className={`absolute top-1/4 right-1/4 w-4 h-4 rounded-full ${
+                        theme === 'dark' ? 'bg-cyan-400/60' : 'bg-blue-400/60'
+                      }`}
+                    />
+                    <motion.div
+                      animate={{
+                        y: [15, -15, 15],
+                        rotate: [360, 180, 0]
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                      className={`absolute bottom-1/4 left-1/4 w-3 h-3 rounded-full ${
+                        theme === 'dark' ? 'bg-purple-400/50' : 'bg-indigo-400/50'
+                      }`}
+                    />
+                    
+                    {/* Corner Accents */}
+                    <div className={`absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 rounded-tl-lg ${
+                      theme === 'dark' ? 'border-cyan-400/50' : 'border-blue-500/50'
+                    }`} />
+                    <div className={`absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 rounded-tr-lg ${
+                      theme === 'dark' ? 'border-cyan-400/50' : 'border-blue-500/50'
+                    }`} />
+                    <div className={`absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 rounded-bl-lg ${
+                      theme === 'dark' ? 'border-cyan-400/50' : 'border-blue-500/50'
+                    }`} />
+                    <div className={`absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 rounded-br-lg ${
+                      theme === 'dark' ? 'border-cyan-400/50' : 'border-blue-500/50'
+                    }`} />
+                    
+                    {/* Hover Overlay */}
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                      theme === 'dark' 
+                        ? 'bg-gradient-to-br from-cyan-500/10 to-blue-600/10' 
+                        : 'bg-gradient-to-br from-blue-500/10 to-indigo-600/10'
+                    }`} />
+                  </div>
+                  
+                  {/* Service Stats */}
+                  <div className="mt-6 grid grid-cols-3 gap-4">
+                    {[
+                      { label: 'Projetos', value: '15+' },
+                      { label: 'Clientes', value: '25+' },
+                      { label: 'Sucesso', value: '98%' }
+                    ].map((stat, statIndex) => (
+                      <motion.div
+                        key={statIndex}
+                        className={`text-center p-3 rounded-lg ${
+                          theme === 'dark' 
+                            ? 'bg-white/5 border border-white/10' 
+                            : 'bg-white/50 border border-gray-200/50'
+                        }`}
+                        whileHover={{ scale: 1.05 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.5 + statIndex * 0.1, duration: 0.5 }}
+                      >
+                        <div className={`text-xl font-bold ${
+                          theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                        }`}>
+                          {stat.value}
+                        </div>
+                        <div className={`text-sm ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          {stat.label}
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </GlassCard>
               </motion.div>
             </div>
           </div>
@@ -694,10 +1182,10 @@ const Services = () => {
         </div>
       </motion.section>
 
-      {/* FAQ Section */}
+      {/* FAQ Section com Digital Fusion */}
       <motion.section 
         id="faq"
-        className="py-24 relative overflow-hidden"
+        className="py-24 lg:py-32 relative overflow-hidden"
         style={{ 
           background: theme === 'dark' 
             ? 'linear-gradient(180deg, #0F172A 0%, #1E293B 100%)' 
@@ -706,55 +1194,92 @@ const Services = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        {/* Background Elements */}
+        {/* Enhanced Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Animated Dots */}
-          <div className="absolute inset-0" style={{ opacity: theme === 'dark' ? 0.2 : 0.1 }}>
-            {Array.from({ length: 5 }).map((_, i) => (
+          {/* Gradient Orbs */}
+          <div className={`absolute top-1/4 -left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${
+            theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'
+          }`} />
+          <div className={`absolute bottom-1/4 -right-1/4 w-80 h-80 rounded-full blur-3xl opacity-15 ${
+            theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'
+          }`} />
+          
+          {/* Floating Particles */}
+          <div className="absolute inset-0" style={{ opacity: theme === 'dark' ? 0.3 : 0.2 }}>
+            {Array.from({ length: 8 }).map((_, i) => (
               <motion.div 
                 key={i}
-                className={`absolute rounded-full ${theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'}`}
+                className={`absolute rounded-full ${
+                  theme === 'dark' ? 'bg-cyan-400' : 'bg-blue-400'
+                }`}
                 style={{
-                  width: Math.random() * 8 + 2 + 'px',
-                  height: Math.random() * 8 + 2 + 'px',
+                  width: Math.random() * 6 + 2 + 'px',
+                  height: Math.random() * 6 + 2 + 'px',
                   left: Math.random() * 100 + '%',
                   top: Math.random() * 100 + '%',
-                  opacity: Math.random() * 0.5 + 0.3
                 }}
                 animate={{
-                  y: [0, Math.random() * 30 - 15],
-                  opacity: [0.3, 0.7, 0.3]
+                  y: [0, Math.random() * 40 - 20],
+                  x: [0, Math.random() * 20 - 10],
+                  opacity: [0.2, 0.8, 0.2]
                 }}
                 transition={{
-                  duration: Math.random() * 5 + 5,
+                  duration: Math.random() * 8 + 6,
                   repeat: Infinity,
-                  repeatType: 'reverse'
+                  repeatType: 'reverse',
+                  ease: 'easeInOut'
                 }}
               />
             ))}
           </div>
         </div>
 
-        <div className="container-custom relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Header */}
           <motion.div 
             className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
           >
-            <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-              Perguntas Frequentes
-            </h2>
-            <p className={`text-lg max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>
+            <motion.h2 
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <span className="block mb-2">Perguntas</span>
+              <span className={`bg-gradient-to-r ${
+                theme === 'dark' 
+                  ? 'from-cyan-400 via-blue-500 to-purple-600' 
+                  : 'from-blue-600 via-purple-600 to-indigo-700'
+              } bg-clip-text text-transparent font-extrabold`}>
+                Frequentes
+              </span>
+            </motion.h2>
+            
+            <motion.p 
+              className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
               Respostas para as dúvidas mais comuns sobre nossos serviços
-            </p>
+            </motion.p>
           </motion.div>
 
+          {/* FAQ Items */}
           <motion.div 
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
             initial="hidden"
             whileInView="visible"
             variants={containerVariants}
@@ -763,19 +1288,23 @@ const Services = () => {
             {[
               {
                 question: 'Qual é o prazo médio para desenvolvimento de um projeto?',
-                answer: 'O prazo varia de acordo com a complexidade do projeto. Um site institucional simples pode levar de 2 a 4 semanas, enquanto aplicações web mais complexas podem levar de 2 a 6 meses. Fornecemos um cronograma detalhado no início do projeto.'
+                answer: 'O prazo varia de acordo com a complexidade do projeto. Um site institucional simples pode levar de 2 a 4 semanas, enquanto aplicações web mais complexas podem levar de 2 a 6 meses. Fornecemos um cronograma detalhado no início do projeto.',
+                icon: <Clock className="w-6 h-6" />
               },
               {
                 question: 'Como funciona o processo de pagamento?',
-                answer: 'Trabalhamos com um modelo de pagamento em etapas. Geralmente, 30% no início do projeto, 30% na entrega dos protótipos e 40% na conclusão. Para projetos maiores, podemos criar um plano de pagamento personalizado.'
+                answer: 'Trabalhamos com um modelo de pagamento em etapas. Geralmente, 30% no início do projeto, 30% na entrega dos protótipos e 40% na conclusão. Para projetos maiores, podemos criar um plano de pagamento personalizado.',
+                icon: <Target className="w-6 h-6" />
               },
               {
                 question: 'Vocês oferecem suporte após o lançamento?',
-                answer: 'Sim, oferecemos planos de suporte e manutenção mensais que incluem atualizações, correções de bugs, backups regulares e pequenas melhorias. Também fornecemos treinamento para que sua equipe possa gerenciar o conteúdo.'
+                answer: 'Sim, oferecemos planos de suporte e manutenção mensais que incluem atualizações, correções de bugs, backups regulares e pequenas melhorias. Também fornecemos treinamento para que sua equipe possa gerenciar o conteúdo.',
+                icon: <Users className="w-6 h-6" />
               },
               {
                 question: 'Quais tecnologias vocês utilizam?',
-                answer: 'Utilizamos tecnologias modernas e robustas como React, Next.js, Node.js, Python, Django, Laravel, AWS, entre outras. A escolha da tecnologia depende das necessidades específicas do seu projeto para garantir a melhor performance e escalabilidade.'
+                answer: 'Utilizamos tecnologias modernas e robustas como React, Next.js, Node.js, Python, Django, Laravel, AWS, entre outras. A escolha da tecnologia depende das necessidades específicas do seu projeto para garantir a melhor performance e escalabilidade.',
+                icon: <Code className="w-6 h-6" />
               }
             ].map((faq, index) => (
               <motion.div 
@@ -783,38 +1312,59 @@ const Services = () => {
                 className="mb-6"
                 variants={itemVariants}
               >
-                <motion.div 
-                  className={`border rounded-xl overflow-hidden ${theme === 'dark' 
-                    ? 'border-white/10 bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm' 
-                    : 'border-gray-200 bg-white/80 backdrop-blur-sm'}`}
-                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
-                >
+                <GlassCard className="overflow-hidden group hover:scale-[1.01] transition-transform duration-300">
                   <Disclosure>
                     {({ open }) => (
                       <>
-                        <Disclosure.Button 
-                          className={`flex justify-between w-full px-6 py-5 text-left text-lg font-medium focus:outline-none ${theme === 'dark' 
-                            ? 'text-white hover:bg-white/5' 
-                            : 'text-gray-900 hover:bg-gray-50'}`}
-                        >
-                          <span>{faq.question}</span>
+                        <Disclosure.Button className="flex items-center justify-between w-full p-6 lg:p-8 text-left focus:outline-none group">
+                          <div className="flex items-center gap-4">
+                            {/* Icon */}
+                            <motion.div 
+                              className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                                theme === 'dark' 
+                                  ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border border-cyan-400/30' 
+                                  : 'bg-gradient-to-br from-blue-500/20 to-indigo-600/20 border border-blue-400/30'
+                              }`}
+                              whileHover={{ scale: 1.1, rotate: 5 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <div className={`${
+                                theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                              }`}>
+                                {faq.icon}
+                              </div>
+                            </motion.div>
+                            
+                            {/* Question */}
+                            <span className={`text-lg lg:text-xl font-semibold ${
+                              theme === 'dark' ? 'text-white' : 'text-gray-900'
+                            }`}>
+                              {faq.question}
+                            </span>
+                          </div>
+                          
+                          {/* Chevron */}
                           <motion.div
                             animate={{ rotate: open ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
+                            className="flex-shrink-0 ml-4"
                           >
                             <ChevronDownIcon
-                              className={`w-5 h-5 ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}`}
+                              className={`w-6 h-6 ${
+                                theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
+                              }`}
                             />
                           </motion.div>
                         </Disclosure.Button>
-                        <Disclosure.Panel 
-                          className={`px-6 py-5 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}
-                          static
-                        >
+                        
+                        <Disclosure.Panel className="px-6 lg:px-8 pb-6 lg:pb-8">
                           <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: open ? 1 : 0, height: open ? 'auto' : 0 }}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
+                            className={`text-base lg:text-lg leading-relaxed ml-16 ${
+                              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                            }`}
                           >
                             {faq.answer}
                           </motion.div>
@@ -822,9 +1372,35 @@ const Services = () => {
                       </>
                     )}
                   </Disclosure>
-                </motion.div>
+                </GlassCard>
               </motion.div>
             ))}
+          </motion.div>
+          
+          {/* CTA Section */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            <p className={`text-lg mb-8 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            }`}>
+              Ainda tem dúvidas? Estamos aqui para ajudar!
+            </p>
+            <NeonButton
+              onClick={() => navigate('/contact')}
+              variant="primary"
+              size="lg"
+              className="group"
+            >
+              <span className="flex items-center gap-2">
+                Fale Conosco
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </NeonButton>
           </motion.div>
         </div>
       </motion.section>
