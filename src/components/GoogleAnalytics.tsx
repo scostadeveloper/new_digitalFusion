@@ -2,10 +2,16 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GA_CONFIG } from '../lib/analytics-config';
 
+type GtagCommand = 'config' | 'event' | 'js' | 'set';
+type GtagConfigParams = {
+  debug_mode?: boolean;
+  [key: string]: unknown;
+};
+
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: unknown[];
+    gtag: (command: GtagCommand, ...args: unknown[]) => void;
   }
 }
 
@@ -16,14 +22,15 @@ export const GoogleAnalytics = () => {
     // Inicializa o GA4 apenas se ainda não estiver inicializado
     if (!window.gtag) {
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
+      function gtag(command: GtagCommand, ...args: unknown[]) {
+        // eslint-disable-next-line prefer-rest-params
         window.dataLayer.push(arguments);
       }
       window.gtag = gtag;
       gtag('js', new Date());
       gtag('config', GA_CONFIG.MEASUREMENT_ID, {
         debug_mode: GA_CONFIG.DEBUG_MODE,
-        ...GA_CONFIG.DEFAULT_EVENT_PARAMS
+        ...GA_CONFIG.DEFAULT_EVENT_PARAMS,
       });
     }
   }, []);
@@ -34,10 +41,10 @@ export const GoogleAnalytics = () => {
       window.gtag('event', 'page_view', {
         page_path: location.pathname + location.search,
         page_title: document.title,
-        ...GA_CONFIG.DEFAULT_EVENT_PARAMS
+        ...GA_CONFIG.DEFAULT_EVENT_PARAMS,
       });
     }
   }, [location]);
 
   return null;
-}; 
+};

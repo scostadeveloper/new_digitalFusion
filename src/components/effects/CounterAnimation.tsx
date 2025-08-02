@@ -25,11 +25,11 @@ export function CounterAnimation({
   suffix = '',
   decimals = 0,
   enableScrollTrigger = true,
-  onComplete
+  onComplete,
 }: CounterAnimationProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
   const shouldAnimate = enableScrollTrigger ? isInView : true;
 
   return (
@@ -109,18 +109,18 @@ export function StatsCard({
   description,
   icon,
   className = '',
-  variant = 'glass'
+  variant = 'glass',
 }: StatsCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   const cardSpring = useSpring({
     from: { opacity: 0, y: 50, scale: 0.9 },
-    to: isInView 
+    to: isInView
       ? { opacity: 1, y: 0, scale: 1 }
       : { opacity: 0, y: 50, scale: 0.9 },
     config: { tension: 280, friction: 60 },
-    delay: 200
+    delay: 200,
   });
 
   const getVariantClasses = () => {
@@ -151,7 +151,7 @@ export function StatsCard({
           {icon}
         </div>
       )}
-      
+
       <div className="text-center">
         <div className="mb-2">
           {variant === 'neon' ? (
@@ -170,16 +170,10 @@ export function StatsCard({
             />
           )}
         </div>
-        
-        <h3 className="text-white font-semibold text-lg mb-1">
-          {title}
-        </h3>
-        
-        {description && (
-          <p className="text-gray-400 text-sm">
-            {description}
-          </p>
-        )}
+
+        <h3 className="text-white font-semibold text-lg mb-1">{title}</h3>
+
+        {description && <p className="text-gray-400 text-sm">{description}</p>}
       </div>
     </animated.div>
   );
@@ -199,18 +193,18 @@ export function ProgressCounter({
   value,
   max = 100,
   className = '',
-  showPercentage = true
+  showPercentage = true,
 }: ProgressCounterProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  
+
   const percentage = Math.min((value / max) * 100, 100);
 
   const progressSpring = useSpring({
     from: { width: '0%' },
     to: isInView ? { width: `${percentage}%` } : { width: '0%' },
     config: { duration: 2000 },
-    delay: 300
+    delay: 300,
   });
 
   return (
@@ -228,7 +222,7 @@ export function ProgressCounter({
           </span>
         )}
       </div>
-      
+
       <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
         <animated.div
           style={progressSpring}

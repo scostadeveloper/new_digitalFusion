@@ -28,7 +28,10 @@ interface ModernServicesProps {
   className?: string;
 }
 
-export function ModernServices({ services, className = '' }: ModernServicesProps) {
+export function ModernServices({
+  services,
+  className = '',
+}: ModernServicesProps) {
   return (
     <SectionWrapper
       title="Nossos Serviços"
@@ -40,11 +43,7 @@ export function ModernServices({ services, className = '' }: ModernServicesProps
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {services.map((service, index) => (
-          <ServiceCard
-            key={service.id}
-            service={service}
-            index={index}
-          />
+          <ServiceCard key={service.id} service={service} index={index} />
         ))}
       </div>
     </SectionWrapper>
@@ -68,11 +67,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
       className="group"
     >
       <TiltCard maxTilt={8} glare>
-        <GlowEffect 
-          color={isEven ? 'cyan' : 'purple'} 
-          intensity="medium" 
-          hover
-        >
+        <GlowEffect color={isEven ? 'cyan' : 'purple'} intensity="medium" hover>
           <GlassCard className="h-full p-8 border-glass hover:border-neon-cyan/50 transition-all duration-500">
             <div className="space-y-6">
               {/* Icon and Title */}
@@ -81,18 +76,18 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                   whileHover={{ rotate: 10, scale: 1.1 }}
                   className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-neon-cyan/20 to-cyber-purple/20 border border-neon-cyan/30 flex items-center justify-center"
                 >
-                  <div className="text-neon-cyan text-2xl">
-                    {service.icon}
-                  </div>
+                  <div className="text-neon-cyan text-2xl">{service.icon}</div>
                 </motion.div>
-                
+
                 <div className="flex-1 min-w-0">
                   <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
                     {service.title}
                   </h3>
                   {service.stats && (
                     <div className="flex items-center space-x-2 text-sm">
-                      <span className="text-gray-400">{service.stats.label}:</span>
+                      <span className="text-gray-400">
+                        {service.stats.label}:
+                      </span>
                       <CounterAnimation
                         value={service.stats.value}
                         suffix={service.stats.suffix}
@@ -136,7 +131,10 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                   size="sm"
                   className="w-full group/btn"
                 >
-                  <Link to={service.link} className="flex items-center justify-center space-x-2">
+                  <Link
+                    to={service.link}
+                    className="flex items-center justify-center space-x-2"
+                  >
                     <span>Saiba Mais</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
                   </Link>
@@ -155,75 +153,79 @@ export const defaultServices: ServiceData[] = [
   {
     id: 'websites',
     title: 'Websites',
-    description: 'Criamos sites responsivos, rápidos e otimizados para conversão, alinhados à identidade da sua marca com tecnologia de ponta.',
+    description:
+      'Criamos sites responsivos, rápidos e otimizados para conversão, alinhados à identidade da sua marca com tecnologia de ponta.',
     icon: <Monitor />,
     link: '/services#websites',
     stats: {
       label: 'Projetos',
       value: 80,
-      suffix: '+'
+      suffix: '+',
     },
     features: [
       'Design responsivo',
       'Otimização SEO',
       'Performance máxima',
-      'Integração com CMS'
-    ]
+      'Integração com CMS',
+    ],
   },
   {
     id: 'webapps',
     title: 'Aplicativos Web',
-    description: 'Desenvolvemos aplicações web robustas que automatizam processos e impulsionam a eficiência do seu negócio.',
+    description:
+      'Desenvolvemos aplicações web robustas que automatizam processos e impulsionam a eficiência do seu negócio.',
     icon: <Layout />,
     link: '/services#webapps',
     stats: {
       label: 'Apps',
       value: 45,
-      suffix: '+'
+      suffix: '+',
     },
     features: [
       'Arquitetura escalável',
       'APIs personalizadas',
       'Dashboard intuitivo',
-      'Segurança avançada'
-    ]
+      'Segurança avançada',
+    ],
   },
   {
     id: 'mobile',
     title: 'Apps Mobile',
-    description: 'Aplicativos nativos e híbridos para iOS e Android que oferecem experiência superior aos usuários.',
+    description:
+      'Aplicativos nativos e híbridos para iOS e Android que oferecem experiência superior aos usuários.',
     icon: <Smartphone />,
     link: '/services#mobile',
     stats: {
       label: 'Downloads',
       value: 50000,
-      suffix: '+'
+      suffix: '+',
     },
     features: [
       'Desenvolvimento nativo',
       'UX otimizada',
       'Push notifications',
-      'Offline support'
-    ]
+      'Offline support',
+    ],
   },
   {
     id: 'seo',
     title: 'SEO & Marketing',
-    description: 'Otimização para mecanismos de busca e estratégias de marketing digital para maximizar sua visibilidade online.',
+    description:
+      'Otimização para mecanismos de busca e estratégias de marketing digital para maximizar sua visibilidade online.',
     icon: <Search />,
     link: '/services#seo',
     stats: {
       label: 'ROI Médio',
       value: 300,
-      suffix: '%'
+      suffix: '%',
     },
     features: [
       'Auditoria completa',
       'Estratégia de conteúdo',
       'Link building',
-      'Analytics avançado'
-    ]
-  }
+      'Analytics avançado',
+    ],
+  },
 ];
 
 export default ModernServices;

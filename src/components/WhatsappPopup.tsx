@@ -29,9 +29,13 @@ const WhatsappPopup = () => {
       onMouseOver={e => (e.currentTarget.style.transform = 'scale(1.08)')}
       onMouseOut={e => (e.currentTarget.style.transform = 'scale(1)')}
     >
-      <img src="/whatsapp.png" alt="WhatsApp" style={{ width: 36, height: 36 }} />
+      <img
+        src="/whatsapp.png"
+        alt="WhatsApp"
+        style={{ width: 36, height: 36 }}
+      />
     </a>
   );
 };
 
-export default WhatsappPopup; 
+export default WhatsappPopup;

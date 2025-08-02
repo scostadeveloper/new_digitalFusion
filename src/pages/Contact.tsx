@@ -1,95 +1,243 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useTheme } from '@/contexts/ThemeContext';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MapPin, Clock, ArrowRight } from 'lucide-react';
-import { Icon } from '@iconify/react';
-import { useToast } from '@/hooks/use-toast';
-import { useAnalytics } from '../hooks/useAnalytics';
-import { ANALYTICS_EVENTS } from '../lib/analytics-events';
+import { Button } from '@/components/ui/button';
+import ScrollNavigator from '@/components/modern/ScrollNavigator';
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Instagram,
+  Facebook,
+  Linkedin,
+} from 'lucide-react';
 
 const Contact = () => {
-  const { toast } = useToast();
-  const { trackEvent } = useAnalytics();
-  
-  const handleSubmit = async (e: React.FormEvent) => {
-    // Não previne o comportamento padrão para permitir o envio do formulário
-    toast({
-      title: "Enviando mensagem...",
-      description: "Por favor, aguarde enquanto processamos sua mensagem.",
-      duration: 3000,
-    });
+  const { theme } = useTheme();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [currentSection, setCurrentSection] = useState('hero');
 
-    // Rastreia o envio do formulário
-    trackEvent({
-      action: ANALYTICS_EVENTS.CONTACT.SUBMIT,
-      category: 'Contact Form',
-      label: 'Form Submit'
-    });
+  // Detectar seção atual baseada no scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'contact-form'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setCurrentSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Verificar posição inicial
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        form.reset();
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const handleSocialClick = (platform: string) => {
-    trackEvent({
-      action: ANALYTICS_EVENTS.NAVIGATION.EXTERNAL_LINK,
-      category: 'Social Media',
-      label: platform
-    });
-  };
+  // Estilos de background baseados no tema
+  const heroBackground =
+    theme === 'dark'
+      ? 'linear-gradient(135deg, #000000 0%, #001622 50%, #002433 100%)'
+      : 'linear-gradient(135deg, #ffffff 0%, #E5F2FF 50%, #B8E0FF 100%)';
+
+  const sectionBackground =
+    theme === 'dark'
+      ? 'radial-gradient(circle at center, rgba(110, 249, 245, 0.08) 0%, rgba(0, 0, 0, 0.95) 70%)'
+      : 'radial-gradient(circle at center, rgba(0, 123, 255, 0.08) 0%, rgba(229, 242, 255, 0.9) 70%)';
 
   return (
-    <div className="pt-16">
+    <div className="min-h-screen theme-bg theme-text transition-colors duration-300">
       {/* Hero Section */}
-      <section className="bg-df-black text-white py-20 md:py-32 relative">
-        {/* Banner Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1920&auto=format&fit=crop"
-            alt="Contato Digital Fusion"
-            className="w-full h-full object-cover opacity-40"
+      <section
+        id="hero"
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        style={{ background: heroBackground }}
+      >
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            animate={{
+              backgroundPosition: ['0px 0px', '60px 60px'],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+            className={`absolute inset-0 ${theme === 'dark' ? 'opacity-25' : 'opacity-30'}`}
+            style={{
+              backgroundImage:
+                theme === 'dark'
+                  ? 'linear-gradient(rgba(110, 249, 245, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(110, 249, 245, 0.15) 1px, transparent 1px)'
+                  : 'linear-gradient(rgba(0, 123, 255, 0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 123, 255, 0.25) 1px, transparent 1px)',
+              backgroundSize: '60px 60px',
+            }}
           />
         </div>
-        <div className="container-custom relative z-10">
-          <div className="max-w-3xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Vamos Criar Algo Incrível Juntos?
+
+        {/* Hero Content */}
+        <div className="relative z-10 text-center space-y-8 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h1
+              className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-heading ${
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-white via-cyan-300 to-blue-300 bg-clip-text text-transparent'
+                  : 'bg-gradient-to-r from-gray-900 via-blue-600 to-cyan-600 bg-clip-text text-transparent'
+              }`}
+            >
+              Entre em Contato
             </h1>
-            <p className="text-xl text-gray-300">
-              Nossa equipe está pronta para transformar suas ideias em realidade digital
+            <p
+              className={`text-lg sm:text-xl md:text-2xl max-w-3xl mx-auto font-body ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              }`}
+            >
+              Pronto para transformar suas ideias em soluções digitais inovadoras?
+              Nossa equipe está aqui para ajudar você a alcançar seus objetivos.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Content */}
-      <section className="section-padding">
-        <div className="container-custom">
+      <section 
+        id="contact-form"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        style={{ background: sectionBackground }}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Contact Form */}
-            <div className="lg:col-span-3 animate-on-scroll">
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold mb-6">Envie uma mensagem</h2>
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className={`p-8 rounded-2xl backdrop-blur-md border transition-all duration-300 ${
+                  theme === 'dark'
+                    ? 'bg-black/20 border-white/10'
+                    : 'bg-white/40 border-blue-200/30'
+                }`}
+              >
+                <h2
+                  className={`text-2xl sm:text-3xl font-bold mb-6 font-heading ${
+                    theme === 'dark' ? 'text-white' : 'text-gray-900'
+                  }`}
+                >
+                  Envie uma mensagem
+                </h2>
+                
+                {submitStatus === 'success' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-green-500/20 border border-green-500/30 flex items-center gap-3"
+                  >
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                    <span className="text-green-400">Mensagem enviada com sucesso!</span>
+                  </motion.div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 rounded-lg bg-red-500/20 border border-red-500/30 flex items-center gap-3"
+                  >
+                    <AlertCircle className="w-5 h-5 text-red-400" />
+                    <span className="text-red-400">Erro ao enviar mensagem. Tente novamente.</span>
+                  </motion.div>
+                )}
+
                 <form
-                  action="https://formsubmit.co/contato@digitalfusion.com.br"
+                  name="contact"
                   method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
                   onSubmit={handleSubmit}
                 >
-                  <input type="hidden" name="_next" value="https://digitalfusion.com.br/contact" />
-                  <input type="hidden" name="_subject" value="Novo contato pelo site" />
-                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p className="hidden">
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Nome</label>
+                      <label 
+                        htmlFor="name" 
+                        className={`block text-sm font-medium mb-1 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                      >
+                        Nome
+                      </label>
                       <Input
                         id="name"
                         name="name"
                         placeholder="Seu nome"
                         required
                         className="w-full"
+                        disabled={isSubmitting}
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                      <label 
+                        htmlFor="email" 
+                        className={`block text-sm font-medium mb-1 ${
+                          theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                        }`}
+                      >
+                        Email
+                      </label>
                       <Input
                         id="email"
                         name="email"
@@ -97,186 +245,325 @@ const Contact = () => {
                         placeholder="seu@email.com"
                         required
                         className="w-full"
+                        disabled={isSubmitting}
                       />
                     </div>
                   </div>
                   
                   <div className="mb-4">
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
+                    <label 
+                      htmlFor="phone" 
+                      className={`block text-sm font-medium mb-1 ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                      }`}
+                    >
+                      Telefone
+                    </label>
                     <Input
                       id="phone"
                       name="phone"
                       placeholder="(00) 00000-0000"
                       className="w-full"
+                      disabled={isSubmitting}
                     />
                   </div>
                   
                   <div className="mb-4">
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Assunto</label>
+                    <label 
+                      htmlFor="subject" 
+                      className={`block text-sm font-medium mb-1 ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                      }`}
+                    >
+                      Assunto
+                    </label>
                     <Input
                       id="subject"
                       name="subject"
                       placeholder="Assunto da mensagem"
                       required
                       className="w-full"
+                      disabled={isSubmitting}
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Mensagem</label>
+                    <label 
+                      htmlFor="message" 
+                      className={`block text-sm font-medium mb-1 ${
+                        theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                      }`}
+                    >
+                      Mensagem
+                    </label>
                     <Textarea
                       id="message"
                       name="message"
                       placeholder="Como podemos ajudar?"
                       rows={5}
                       required
-                      className="w-full"
+                      className="w-full text-gray-700"
+                      disabled={isSubmitting}
                     />
                   </div>
                   
-                  <Button type="submit" className="btn-primary w-full">
-                    Enviar Mensagem
+                  <Button 
+                    type="submit" 
+                    className={`w-full py-3 text-lg font-semibold transition-all duration-300 ${
+                      theme === 'dark'
+                        ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-black hover:shadow-[0_0_30px_rgba(110,249,245,0.5)]'
+                        : 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white hover:shadow-[0_0_20px_rgba(0,123,255,0.4)]'
+                    }`}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+                        Enviando...
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2">
+                        <Send className="w-5 h-5" />
+                        Enviar Mensagem
+                      </div>
+                    )}
                   </Button>
                 </form>
-              </div>
+              </motion.div>
             </div>
-            
+
             {/* Contact Info */}
-            <div className="lg:col-span-2 animate-on-scroll">
-              <div className="bg-df-blue text-white p-8 rounded-lg shadow-lg mb-8">
-                <h2 className="text-2xl font-bold mb-6">Informações de Contato</h2>
-                
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <Mail className="w-6 h-6 mr-4 mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">Email</h3>
-                      <a href="mailto:contato@digitalfusion.com.br" className="hover:text-df-cyan transition-colors">
-                        contato@digitalfusion.com.br
-                      </a>
-                    </div>
-                  </div>
+            <div className="lg:col-span-2">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="space-y-8"
+              >
+                <div>
+                  <h3
+                    className={`text-xl sm:text-2xl font-bold mb-6 font-heading ${
+                      theme === 'dark' ? 'text-white' : 'text-gray-900'
+                    }`}
+                  >
+                    Informações de Contato
+                  </h3>
                   
-                  <div className="flex items-start">
-                    <Phone className="w-6 h-6 mr-4 mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">WhatsApp</h3>
-                      <a href="tel:+5521976958970" className="hover:text-df-cyan transition-colors">
-                        (21) 9 7695-8970
-                      </a>
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`p-3 rounded-lg ${
+                          theme === 'dark'
+                            ? 'bg-cyan-500/20 text-cyan-400'
+                            : 'bg-blue-500/20 text-blue-600'
+                        }`}
+                      >
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4
+                          className={`font-semibold mb-1 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                          }`}
+                        >
+                          Email
+                        </h4>
+                        <p
+                          className={`${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                          }`}
+                        >
+                          contato@digitalfusion.com.br
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Clock className="w-6 h-6 mr-4 mt-1" />
-                    <div>
-                      <h3 className="font-medium mb-1">Horário de Atendimento</h3>
-                      <p>Segunda a Sexta: 9h às 18h<br />Sábado: 9h às 13h</p>
+
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`p-3 rounded-lg ${
+                          theme === 'dark'
+                            ? 'bg-cyan-500/20 text-cyan-400'
+                            : 'bg-blue-500/20 text-blue-600'
+                        }`}
+                      >
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4
+                          className={`font-semibold mb-1 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                          }`}
+                        >
+                          Telefone
+                        </h4>
+                        <p
+                          className={`${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                          }`}
+                        >
+                          (21) 97695-8970
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`p-3 rounded-lg ${
+                          theme === 'dark'
+                            ? 'bg-cyan-500/20 text-cyan-400'
+                            : 'bg-blue-500/20 text-blue-600'
+                        }`}
+                      >
+                        <MapPin className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4
+                          className={`font-semibold mb-1 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                          }`}
+                        >
+                          Localização
+                        </h4>
+                        <p
+                          className={`${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                          }`}
+                        >
+                          Rio de Janeiro, RJ, Brasil
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-4">
+                      <div
+                        className={`p-3 rounded-lg ${
+                          theme === 'dark'
+                            ? 'bg-cyan-500/20 text-cyan-400'
+                            : 'bg-blue-500/20 text-blue-600'
+                        }`}
+                      >
+                        <Clock className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h4
+                          className={`font-semibold mb-1 ${
+                            theme === 'dark' ? 'text-white' : 'text-gray-900'
+                          }`}
+                        >
+                          Horário de Atendimento
+                        </h4>
+                        <p
+                          className={`${
+                            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+                          }`}
+                        >
+                          Segunda a Sexta: 8h às 18h
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Redes Sociais */}
+                    <div className="pt-6 border-t border-gray-200/20">
+                      <h4
+                        className={`font-semibold mb-4 ${
+                          theme === 'dark' ? 'text-white' : 'text-gray-900'
+                        }`}
+                      >
+                        Siga-nos nas Redes Sociais
+                      </h4>
+                      <div className="flex gap-4">
+                        <motion.a
+                          href="https://www.instagram.com/somosdigitalfusion?utm_source=ig_web_button_share_sheet&igsh=dTQ0NXphNzUzcmJn"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-lg transition-all duration-300 ${
+                            theme === 'dark'
+                              ? 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30'
+                              : 'bg-pink-500/20 text-pink-600 hover:bg-pink-500/30'
+                          }`}
+                        >
+                          <Instagram className="w-5 h-5" />
+                        </motion.a>
+                        
+                        <motion.a
+                          href="https://www.facebook.com/somosdigitalfusion"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-lg transition-all duration-300 ${
+                            theme === 'dark'
+                              ? 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30'
+                              : 'bg-blue-500/20 text-blue-600 hover:bg-blue-500/30'
+                          }`}
+                        >
+                          <Facebook className="w-5 h-5" />
+                        </motion.a>
+                        
+                        <motion.a
+                          href="#"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`p-3 rounded-lg transition-all duration-300 ${
+                            theme === 'dark'
+                              ? 'bg-blue-600/20 text-blue-400 hover:bg-blue-600/30'
+                              : 'bg-blue-600/20 text-blue-700 hover:bg-blue-600/30'
+                          }`}
+                        >
+                          <Linkedin className="w-5 h-5" />
+                        </motion.a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              
-              <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold mb-6">Redes Sociais</h2>
-                <div className="flex justify-center gap-6">
-                  <a 
-                    href="https://wa.me/5521976958970"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-df-blue hover:text-df-cyan transition-all duration-300 transform hover:scale-110"
-                    title="Fale conosco no WhatsApp"
-                    onClick={() => handleSocialClick('WhatsApp')}
-                  >
-                    <Icon icon="logos:whatsapp-icon" width="32" height="32" />
-                  </a>
-                  <a 
-                    href="https://www.instagram.com/somosdigitalfusion/?utm_source=ig_web_button_share_sheet"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-df-blue hover:text-df-cyan transition-all duration-300 transform hover:scale-110"
-                    title="Siga-nos no Instagram"
-                    onClick={() => handleSocialClick('Instagram')}
-                  >
-                    <Icon icon="skill-icons:instagram" width="32" height="32" />
-                  </a>
-                  <a 
-                    href="https://www.facebook.com/somosdigitalfusion"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-df-blue hover:text-df-cyan transition-all duration-300 transform hover:scale-110"
-                    title="Curta nossa página no Facebook"
-                    onClick={() => handleSocialClick('Facebook')}
-                  >
-                    <Icon icon="logos:facebook" width="32" height="32" />
-                  </a>
-                  <a 
-                    href="https://youtube.com/digitalfusion_oficial"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-df-blue hover:text-df-cyan transition-all duration-300 transform hover:scale-110"
-                    title="Inscreva-se no nosso canal"
-                    onClick={() => handleSocialClick('YouTube')}
-                  >
-                    <Icon icon="logos:youtube-icon" width="32" height="32" />
-                  </a>
-                </div>
-              </div>
+
+                {/* WhatsApp CTA */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`p-6 rounded-2xl backdrop-blur-md border cursor-pointer transition-all duration-300 ${
+                    theme === 'dark'
+                      ? 'bg-green-500/10 border-green-500/30 hover:bg-green-500/20'
+                      : 'bg-green-500/10 border-green-500/30 hover:bg-green-500/20'
+                  }`}
+                  onClick={() => window.open('https://wa.me/5521976958970?text=Olá! Gostaria de conhecer os serviços da Digital Fusion.', '_blank')}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-green-500 rounded-lg">
+                      <Phone className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-green-400 mb-1">
+                        WhatsApp
+                      </h4>
+                      <p className="text-sm text-green-300">
+                        Fale conosco agora mesmo!
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-
-      {/* FAQ Section */}
-      <section className="section-padding bg-df-gray">
-        <div className="container-custom">
-          <div className="text-center mb-16 animate-on-scroll">
-            <h2 className="section-title">Perguntas Frequentes</h2>
-            <p className="section-subtitle max-w-2xl mx-auto">
-              Respostas para as dúvidas mais comuns sobre como trabalhar conosco
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                question: 'Como iniciar um projeto com a Digital Fusion?',
-                answer: 'Entre em contato conosco pelo formulário, email ou telefone. Agendaremos uma reunião para entender suas necessidades e elaborar uma proposta personalizada.'
-              },
-              {
-                question: 'Quanto tempo leva para receber um orçamento?',
-                answer: 'Normalmente, enviamos uma proposta inicial em até 48 horas após nossa primeira conversa, dependendo da complexidade do projeto.'
-              },
-              {
-                question: 'Vocês atendem projetos fora do Rio de Janeiro?',
-                answer: 'Sim! Atendemos clientes em todo o Brasil e também no exterior. Todas as reuniões podem ser realizadas remotamente.'
-              },
-              {
-                question: 'Como funciona o suporte técnico após a entrega?',
-                answer: 'Oferecemos planos de suporte e manutenção mensal que incluem atualizações, correções e pequenas melhorias para manter seu projeto sempre atualizado.'
-              }
-            ].map((faq, index) => (
-              <div 
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg animate-on-scroll"
-              >
-                <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
-                <p className="text-gray-600">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-12">
-            <Button asChild className="btn-primary animate-on-scroll">
-              <a href="#top" className="flex items-center">
-                <span className="mr-2">Fale Conosco Agora</span>
-                <ArrowRight size={16} />
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
+      {/* Scroll Navigator */}
+      <ScrollNavigator
+        sections={['hero', 'contact-form']}
+        currentSection={currentSection}
+        onNavigate={(section) => {
+          const element = document.getElementById(section);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+      />
     </div>
   );
 };

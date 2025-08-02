@@ -4,24 +4,50 @@ import { ArrowRight, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { TechBackground } from '@/components/effects/TechBackground';
-import { TypingAnimation, HeroTyping, SubtitleTyping } from '@/components/effects/TypingAnimation';
+import {
+  TypingAnimation,
+  HeroTyping,
+  SubtitleTyping,
+} from '@/components/effects/TypingAnimation';
 import { NeonButton } from '@/components/modern/NeonButton';
 import { GlassCard } from '@/components/modern/GlassCard';
-import { TechFloatingSymbols, FloatingShapes } from '@/components/effects/FloatingElements';
+import {
+  TechFloatingSymbols,
+  FloatingShapes,
+} from '@/components/effects/FloatingElements';
 import { StatsCard } from '@/components/effects/CounterAnimation';
-import { GlowEffect, ParallaxElement, MagneticButton } from '@/components/effects/VisualEffects';
+import {
+  GlowEffect,
+  ParallaxElement,
+  MagneticButton,
+} from '@/components/effects/VisualEffects';
 
 export function ModernHero() {
   const heroTexts = [
-    "Design Inteligente.",
-    "Código Eficiente.", 
-    "Resultados que Impactam."
+    'Design Inteligente.',
+    'Código Eficiente.',
+    'Resultados que Impactam.',
   ];
 
   const stats = [
-    { title: "Projetos", value: 150, suffix: "+", icon: <Sparkles className="w-6 h-6" /> },
-    { title: "Clientes", value: 80, suffix: "+", icon: <Zap className="w-6 h-6" /> },
-    { title: "Anos", value: 5, suffix: "+", icon: <ArrowRight className="w-6 h-6" /> }
+    {
+      title: 'Projetos',
+      value: 150,
+      suffix: '+',
+      icon: <Sparkles className="w-6 h-6" />,
+    },
+    {
+      title: 'Clientes',
+      value: 80,
+      suffix: '+',
+      icon: <Zap className="w-6 h-6" />,
+    },
+    {
+      title: 'Anos',
+      value: 5,
+      suffix: '+',
+      icon: <ArrowRight className="w-6 h-6" />,
+    },
   ];
 
   return (
@@ -54,17 +80,17 @@ export function ModernHero() {
                 Inovação Digital
               </span>
             </motion.div>
-            
+
             {/* Title */}
             <div className="space-y-4">
-              <HeroTyping 
+              <HeroTyping
                 text={heroTexts}
                 className="block text-4xl md:text-6xl lg:text-7xl font-bold leading-tight"
               />
             </div>
 
             {/* Subtitle */}
-            <SubtitleTyping 
+            <SubtitleTyping
               text="Transformamos ideias em experiências digitais extraordinárias, impulsionando o crescimento exponencial do seu negócio através da tecnologia de ponta."
               className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl"
             />
@@ -72,9 +98,9 @@ export function ModernHero() {
             {/* Actions */}
             <div className="flex flex-col sm:flex-row gap-6 mt-8">
               <MagneticButton magnetStrength={0.2}>
-                <NeonButton 
-                  asChild 
-                  variant="electric" 
+                <NeonButton
+                  asChild
+                  variant="electric"
                   size="lg"
                   className="group"
                 >
@@ -84,16 +110,10 @@ export function ModernHero() {
                   </Link>
                 </NeonButton>
               </MagneticButton>
-              
+
               <MagneticButton magnetStrength={0.2}>
-                <NeonButton 
-                  asChild 
-                  variant="ghost" 
-                  size="lg"
-                >
-                  <Link to="/portfolio">
-                    Conheça Nosso Trabalho
-                  </Link>
+                <NeonButton asChild variant="ghost" size="lg">
+                  <Link to="/portfolio">Conheça Nosso Trabalho</Link>
                 </NeonButton>
               </MagneticButton>
             </div>
@@ -116,16 +136,16 @@ export function ModernHero() {
                       <div className="w-3 h-3 bg-yellow-500 rounded-full" />
                       <div className="w-3 h-3 bg-green-500 rounded-full" />
                     </div>
-                    
+
                     <div className="space-y-3">
                       <div className="h-2 bg-gradient-to-r from-neon-cyan to-cyber-purple rounded-full animate-pulse-glow" />
                       <div className="h-2 bg-gray-700 rounded-full w-3/4" />
                       <div className="h-2 bg-gray-700 rounded-full w-1/2" />
                     </div>
-                    
+
                     <div className="grid grid-cols-2 gap-4">
                       <div className="h-20 bg-gradient-to-br from-cyber-purple/20 to-neon-cyan/20 rounded-lg border border-gray-700 flex items-center justify-center">
-                        <TypingAnimation 
+                        <TypingAnimation
                           text="&lt;/&gt;"
                           className="text-neon-cyan font-mono text-lg"
                           duration={100}
@@ -133,7 +153,7 @@ export function ModernHero() {
                         />
                       </div>
                       <div className="h-20 bg-gradient-to-br from-neon-green/20 to-neon-pink/20 rounded-lg border border-gray-700 flex items-center justify-center">
-                        <TypingAnimation 
+                        <TypingAnimation
                           text="{ }"
                           className="text-neon-green font-mono text-lg"
                           duration={150}
@@ -178,20 +198,22 @@ export function ModernHero() {
                 transition={{ delay: 3, duration: 0.8 }}
                 className="flex flex-wrap gap-3 justify-center"
               >
-                {['React', 'Node.js', 'TypeScript', 'Next.js', 'AI'].map((tech, index) => (
-                  <motion.div
-                    key={tech}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 3.2 + index * 0.1, type: "spring" }}
-                  >
-                    <GlowEffect color="purple" intensity="low">
-                      <div className="px-4 py-2 bg-black/60 backdrop-blur-sm border border-cyber-purple/40 rounded-full text-sm font-medium text-cyber-purple hover:text-white hover:border-cyber-purple transition-all duration-300">
-                        {tech}
-                      </div>
-                    </GlowEffect>
-                  </motion.div>
-                ))}
+                {['React', 'Node.js', 'TypeScript', 'Next.js', 'AI'].map(
+                  (tech, index) => (
+                    <motion.div
+                      key={tech}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 3.2 + index * 0.1, type: 'spring' }}
+                    >
+                      <GlowEffect color="purple" intensity="low">
+                        <div className="px-4 py-2 bg-black/60 backdrop-blur-sm border border-cyber-purple/40 rounded-full text-sm font-medium text-cyber-purple hover:text-white hover:border-cyber-purple transition-all duration-300">
+                          {tech}
+                        </div>
+                      </GlowEffect>
+                    </motion.div>
+                  )
+                )}
               </motion.div>
             </ParallaxElement>
           </motion.div>

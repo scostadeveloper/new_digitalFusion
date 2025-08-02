@@ -49,9 +49,9 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
       initial="hidden"
       animate="visible"
     >
-      {categories.map((category) => {
+      {categories.map(category => {
         const isActive = activeCategory === category.id;
-        
+
         return (
           <motion.button
             key={category.id}
@@ -66,8 +66,8 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
                     ? 'bg-gradient-to-r from-cyan-400 to-blue-500 text-white shadow-lg shadow-cyan-400/25'
                     : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25'
                   : theme === 'dark'
-                  ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
-                  : 'bg-white/80 text-gray-700 hover:bg-white border border-gray-200 shadow-sm'
+                    ? 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 border border-gray-700'
+                    : 'bg-white/80 text-gray-700 hover:bg-white border border-gray-200 shadow-sm'
               }
               backdrop-blur-sm
               hover:scale-105 hover:shadow-xl
@@ -77,8 +77,8 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
                     ? 'hover:shadow-cyan-400/30'
                     : 'hover:shadow-blue-500/30'
                   : theme === 'dark'
-                  ? 'hover:shadow-gray-700/50'
-                  : 'hover:shadow-gray-300/50'
+                    ? 'hover:shadow-gray-700/50'
+                    : 'hover:shadow-gray-300/50'
               }
             `}
             whileHover={{ scale: 1.05 }}
@@ -132,8 +132,8 @@ const ProjectFilter: React.FC<ProjectFilterProps> = ({
                       isActive
                         ? 'bg-white/20 text-white'
                         : theme === 'dark'
-                        ? 'bg-gray-700 text-gray-300'
-                        : 'bg-gray-100 text-gray-600'
+                          ? 'bg-gray-700 text-gray-300'
+                          : 'bg-gray-100 text-gray-600'
                     }
                   `}
                 >

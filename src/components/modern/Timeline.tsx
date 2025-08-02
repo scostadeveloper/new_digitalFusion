@@ -25,7 +25,7 @@ export const Timeline: React.FC<TimelineProps> = ({
   title = 'Nosso Processo',
   subtitle = 'Como trabalhamos para entregar soluções de alta qualidade',
   className = '',
-  variant = 'horizontal'
+  variant = 'horizontal',
 }) => {
   const { theme } = useTheme();
 
@@ -35,30 +35,31 @@ export const Timeline: React.FC<TimelineProps> = ({
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   const headerVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: {
         duration: 0.8,
-        ease: 'easeOut'
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   return (
-    <motion.section 
+    <motion.section
       className={`py-24 lg:py-32 relative overflow-hidden ${className}`}
-      style={{ 
-        background: theme === 'dark' 
-          ? 'linear-gradient(135deg, rgba(0, 22, 34, 0.98) 0%, rgba(0, 95, 117, 0.95) 100%)'
-          : 'linear-gradient(135deg, rgba(229, 242, 255, 0.98) 0%, rgba(0, 123, 255, 0.95) 100%)'
+      style={{
+        background:
+          theme === 'dark'
+            ? 'linear-gradient(135deg, rgba(0, 22, 34, 0.98) 0%, rgba(0, 95, 117, 0.95) 100%)'
+            : 'linear-gradient(135deg, rgba(229, 242, 255, 0.98) 0%, rgba(0, 123, 255, 0.95) 100%)',
       }}
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
@@ -68,32 +69,50 @@ export const Timeline: React.FC<TimelineProps> = ({
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated SVG Background */}
-        <svg 
-          className="absolute inset-0 w-full h-full" 
-          viewBox="0 0 1200 800" 
+        <svg
+          className="absolute inset-0 w-full h-full"
+          viewBox="0 0 1200 800"
           preserveAspectRatio="xMidYMid slice"
         >
           <defs>
-            <linearGradient id="processGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor={theme === 'dark' ? '#6EF9F5' : '#007BFF'} stopOpacity="0.3" />
-              <stop offset="50%" stopColor={theme === 'dark' ? '#007BFF' : '#6EF9F5'} stopOpacity="0.2" />
-              <stop offset="100%" stopColor={theme === 'dark' ? '#005F75' : '#005F75'} stopOpacity="0.1" />
+            <linearGradient
+              id="processGradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stopColor={theme === 'dark' ? '#6EF9F5' : '#007BFF'}
+                stopOpacity="0.3"
+              />
+              <stop
+                offset="50%"
+                stopColor={theme === 'dark' ? '#007BFF' : '#6EF9F5'}
+                stopOpacity="0.2"
+              />
+              <stop
+                offset="100%"
+                stopColor={theme === 'dark' ? '#005F75' : '#005F75'}
+                stopOpacity="0.1"
+              />
             </linearGradient>
           </defs>
-          
+
           {/* Animated Path */}
-          <motion.path 
-            d="M0,400 Q300,200 600,400 T1200,400" 
-            fill="none" 
-            stroke="url(#processGradient)" 
+          <motion.path
+            d="M0,400 Q300,200 600,400 T1200,400"
+            fill="none"
+            stroke="url(#processGradient)"
             strokeWidth="3"
             strokeDasharray="10,5"
             initial={{ pathLength: 0, opacity: 0 }}
             whileInView={{ pathLength: 1, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 2, ease: "easeOut" }}
+            transition={{ duration: 2, ease: 'easeOut' }}
           />
-          
+
           {/* Floating Particles */}
           {Array.from({ length: 6 }).map((_, i) => (
             <motion.circle
@@ -106,52 +125,58 @@ export const Timeline: React.FC<TimelineProps> = ({
               animate={{
                 cy: [400, 380, 400],
                 opacity: [0.6, 1, 0.6],
-                scale: [1, 1.2, 1]
+                scale: [1, 1.2, 1],
               }}
               transition={{
                 duration: 3,
                 repeat: Infinity,
                 delay: i * 0.5,
-                ease: "easeInOut"
+                ease: 'easeInOut',
               }}
             />
           ))}
         </svg>
-        
+
         {/* Gradient Orbs */}
-        <div className={`absolute top-1/4 -left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${
-          theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'
-        }`} />
-        <div className={`absolute bottom-1/4 -right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15 ${
-          theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'
-        }`} />
+        <div
+          className={`absolute top-1/4 -left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20 ${
+            theme === 'dark' ? 'bg-cyan-500' : 'bg-blue-500'
+          }`}
+        />
+        <div
+          className={`absolute bottom-1/4 -right-1/4 w-96 h-96 rounded-full blur-3xl opacity-15 ${
+            theme === 'dark' ? 'bg-purple-500' : 'bg-indigo-500'
+          }`}
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={headerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.h2 
+          <motion.h2
             className={`text-3xl md:text-4xl lg:text-5xl font-bold mb-6 ${
               theme === 'dark' ? 'text-white' : 'text-gray-900'
             }`}
           >
             <span className="block mb-2">{title.split(' ')[0]}</span>
-            <span className={`bg-gradient-to-r ${
-              theme === 'dark' 
-                ? 'from-cyan-400 via-blue-500 to-purple-600' 
-                : 'from-blue-600 via-purple-600 to-indigo-700'
-            } bg-clip-text text-transparent font-extrabold`}>
+            <span
+              className={`bg-gradient-to-r ${
+                theme === 'dark'
+                  ? 'from-cyan-400 via-blue-500 to-purple-600'
+                  : 'from-blue-600 via-purple-600 to-indigo-700'
+              } bg-clip-text text-transparent font-extrabold`}
+            >
               {title.split(' ').slice(1).join(' ')}
             </span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className={`text-lg md:text-xl max-w-3xl mx-auto leading-relaxed ${
               theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
             }`}
@@ -166,7 +191,7 @@ export const Timeline: React.FC<TimelineProps> = ({
 
         {/* Timeline Steps */}
         {variant === 'horizontal' ? (
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
             variants={containerVariants}
             initial="hidden"
@@ -183,7 +208,7 @@ export const Timeline: React.FC<TimelineProps> = ({
             ))}
           </motion.div>
         ) : (
-          <motion.div 
+          <motion.div
             className="max-w-4xl mx-auto space-y-8"
             variants={containerVariants}
             initial="hidden"
@@ -194,7 +219,7 @@ export const Timeline: React.FC<TimelineProps> = ({
               <div key={index} className="relative">
                 {/* Vertical Line */}
                 {index < steps.length - 1 && (
-                  <motion.div 
+                  <motion.div
                     className={`absolute left-8 top-20 w-0.5 h-16 ${
                       theme === 'dark' ? 'bg-cyan-500/30' : 'bg-blue-500/30'
                     }`}
@@ -204,7 +229,7 @@ export const Timeline: React.FC<TimelineProps> = ({
                     viewport={{ once: true }}
                   />
                 )}
-                
+
                 <ProcessStep
                   step={step}
                   index={index}
@@ -215,21 +240,23 @@ export const Timeline: React.FC<TimelineProps> = ({
             ))}
           </motion.div>
         )}
-        
+
         {/* Call to Action */}
-        <motion.div 
+        <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <p className={`text-lg mb-8 ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-          }`}>
+          <p
+            className={`text-lg mb-8 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            }`}
+          >
             Pronto para começar seu projeto?
           </p>
-          
+
           <motion.button
             className={`px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 ${
               theme === 'dark'

@@ -5,13 +5,25 @@ interface AnalyticsEvent {
   category: string;
   label?: string;
   value?: number;
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
 }
 
 export const useAnalytics = () => {
-  const trackEvent = ({ action, category, label, value, params = {} }: AnalyticsEvent) => {
+  const trackEvent = ({
+    action,
+    category,
+    label,
+    value,
+    params = {},
+  }: AnalyticsEvent) => {
     if (GA_CONFIG.DEBUG_MODE) {
-      console.log('Analytics Event:', { action, category, label, value, params });
+      console.log('Analytics Event:', {
+        action,
+        category,
+        label,
+        value,
+        params,
+      });
     }
 
     window.gtag('event', action, {
@@ -19,7 +31,7 @@ export const useAnalytics = () => {
       event_label: label,
       value: value,
       ...GA_CONFIG.DEFAULT_EVENT_PARAMS,
-      ...params
+      ...params,
     });
   };
 
@@ -30,8 +42,8 @@ export const useAnalytics = () => {
       label: projectName,
       params: {
         project_id: projectId,
-        project_name: projectName
-      }
+        project_name: projectName,
+      },
     });
   };
 
@@ -42,8 +54,8 @@ export const useAnalytics = () => {
       label: success ? 'Success' : 'Error',
       params: {
         success,
-        timestamp: new Date().toISOString()
-      }
+        timestamp: new Date().toISOString(),
+      },
     });
   };
 
@@ -54,8 +66,8 @@ export const useAnalytics = () => {
       label,
       params: {
         url,
-        destination: label
-      }
+        destination: label,
+      },
     });
   };
 
@@ -63,6 +75,6 @@ export const useAnalytics = () => {
     trackEvent,
     trackProjectView,
     trackContactForm,
-    trackExternalLink
+    trackExternalLink,
   };
-}; 
+};

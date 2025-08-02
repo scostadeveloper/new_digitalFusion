@@ -22,12 +22,12 @@ function Particles({ count = 100 }) {
     return temp;
   }, [count, viewport]);
 
-  useFrame((state) => {
+  useFrame(state => {
     if (mesh.current) {
       particles.forEach((particle, i) => {
         const { position, speed } = particle;
         position[1] -= speed;
-        
+
         // Reset particle when it goes off screen
         if (position[1] < -viewport.height) {
           position[1] = viewport.height;
@@ -52,11 +52,11 @@ function Particles({ count = 100 }) {
 // Grid lines component
 function GridLines() {
   const { viewport } = useThree();
-  
+
   return (
     <group>
-      <gridHelper 
-        args={[viewport.width * 2, 50, '#005f73', '#005f73']} 
+      <gridHelper
+        args={[viewport.width * 2, 50, '#005f73', '#005f73']}
         rotation={[Math.PI / 2, 0, 0]}
         position={[0, 0, -10]}
       />
@@ -68,10 +68,12 @@ function GridLines() {
 function FloatingShapes() {
   const groupRef = useRef<THREE.Group>(null);
 
-  useFrame((state) => {
+  useFrame(state => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
-      groupRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
+      groupRef.current.rotation.y =
+        Math.sin(state.clock.elapsedTime * 0.3) * 0.1;
+      groupRef.current.rotation.x =
+        Math.cos(state.clock.elapsedTime * 0.2) * 0.1;
     }
   });
 
@@ -80,19 +82,34 @@ function FloatingShapes() {
       {/* Rotating cube */}
       <mesh position={[-5, 2, -5]}>
         <boxGeometry args={[0.5, 0.5, 0.5]} />
-        <meshBasicMaterial color="#8a2be2" transparent opacity={0.3} wireframe />
+        <meshBasicMaterial
+          color="#8a2be2"
+          transparent
+          opacity={0.3}
+          wireframe
+        />
       </mesh>
-      
+
       {/* Rotating tetrahedron */}
       <mesh position={[3, -1, -3]}>
         <tetrahedronGeometry args={[0.7]} />
-        <meshBasicMaterial color="#39ff14" transparent opacity={0.2} wireframe />
+        <meshBasicMaterial
+          color="#39ff14"
+          transparent
+          opacity={0.2}
+          wireframe
+        />
       </mesh>
-      
+
       {/* Rotating octahedron */}
       <mesh position={[0, 3, -7]}>
         <octahedronGeometry args={[0.6]} />
-        <meshBasicMaterial color="#ff1493" transparent opacity={0.25} wireframe />
+        <meshBasicMaterial
+          color="#ff1493"
+          transparent
+          opacity={0.25}
+          wireframe
+        />
       </mesh>
     </group>
   );
@@ -106,17 +123,17 @@ interface TechBackgroundProps {
   showShapes?: boolean;
 }
 
-export function TechBackground({ 
+export function TechBackground({
   className = '',
   intensity = 'medium',
   showGrid = true,
   showParticles = true,
-  showShapes = true
+  showShapes = true,
 }: TechBackgroundProps) {
   const particleCount = {
     low: 50,
     medium: 100,
-    high: 200
+    high: 200,
   }[intensity];
 
   return (
@@ -130,7 +147,7 @@ export function TechBackground({
         {showShapes && <FloatingShapes />}
         <ambientLight intensity={0.5} />
       </Canvas>
-      
+
       {/* CSS overlay for additional effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-transparent to-cyber-blue/10 pointer-events-none" />
       <div className="absolute inset-0 bg-noise opacity-5 pointer-events-none" />

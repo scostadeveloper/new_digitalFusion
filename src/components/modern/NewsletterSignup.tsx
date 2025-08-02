@@ -6,7 +6,9 @@ import { useTheme } from '@/contexts/ThemeContext';
 const NewsletterSignup = () => {
   const { theme } = useTheme();
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -14,7 +16,7 @@ const NewsletterSignup = () => {
     if (!email) return;
 
     setStatus('loading');
-    
+
     // Simular envio (implementar com EmailJS ou API real posteriormente)
     setTimeout(() => {
       if (email.includes('@')) {
@@ -25,7 +27,7 @@ const NewsletterSignup = () => {
         setStatus('error');
         setMessage('Por favor, insira um email válido.');
       }
-      
+
       // Reset após 3 segundos
       setTimeout(() => {
         setStatus('idle');
@@ -47,25 +49,33 @@ const NewsletterSignup = () => {
       }`}
     >
       <div className="text-center mb-6">
-        <div className={`inline-flex p-3 rounded-full mb-4 ${
-          theme === 'dark'
-            ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20'
-            : 'bg-gradient-to-r from-blue-500/20 to-purple-500/20'
-        }`}>
-          <Mail className={`w-6 h-6 ${
-            theme === 'dark' ? 'text-neon-cyan' : 'text-blue-600'
-          }`} />
+        <div
+          className={`inline-flex p-3 rounded-full mb-4 ${
+            theme === 'dark'
+              ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20'
+              : 'bg-gradient-to-r from-blue-500/20 to-purple-500/20'
+          }`}
+        >
+          <Mail
+            className={`w-6 h-6 ${
+              theme === 'dark' ? 'text-neon-cyan' : 'text-blue-600'
+            }`}
+          />
         </div>
-        
-        <h3 className={`text-2xl font-bold mb-2 ${
-          theme === 'dark' ? 'text-white' : 'text-gray-900'
-        }`}>
+
+        <h3
+          className={`text-2xl font-bold mb-2 ${
+            theme === 'dark' ? 'text-white' : 'text-gray-900'
+          }`}
+        >
           Fique por Dentro
         </h3>
-        
-        <p className={`text-base ${
-          theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-        }`}>
+
+        <p
+          className={`text-base ${
+            theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
+          }`}
+        >
           Receba dicas, trends e novidades do mundo digital
         </p>
       </div>
@@ -75,7 +85,7 @@ const NewsletterSignup = () => {
           <input
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             placeholder="seu@email.com"
             disabled={status === 'loading'}
             className={`w-full px-4 py-3 rounded-xl border transition-all duration-300 focus:outline-none focus:ring-2 ${
@@ -84,12 +94,12 @@ const NewsletterSignup = () => {
                 : 'bg-white/50 border-gray-300 text-gray-900 placeholder-gray-500 focus:ring-blue-400/50 focus:border-blue-400'
             } ${status === 'error' ? 'border-red-400' : ''} ${status === 'success' ? 'border-green-400' : ''}`}
           />
-          
+
           {status === 'loading' && (
             <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                 className={`w-5 h-5 border-2 border-t-transparent rounded-full ${
                   theme === 'dark' ? 'border-cyan-400' : 'border-blue-400'
                 }`}
@@ -120,10 +130,14 @@ const NewsletterSignup = () => {
           animate={{ opacity: 1, y: 0 }}
           className={`mt-4 p-3 rounded-lg flex items-center gap-2 text-sm ${
             status === 'success'
-              ? (theme === 'dark' ? 'bg-green-500/20 text-green-300' : 'bg-green-100 text-green-800')
+              ? theme === 'dark'
+                ? 'bg-green-500/20 text-green-300'
+                : 'bg-green-100 text-green-800'
               : status === 'error'
-              ? (theme === 'dark' ? 'bg-red-500/20 text-red-300' : 'bg-red-100 text-red-800')
-              : ''
+                ? theme === 'dark'
+                  ? 'bg-red-500/20 text-red-300'
+                  : 'bg-red-100 text-red-800'
+                : ''
           }`}
         >
           {status === 'success' ? (

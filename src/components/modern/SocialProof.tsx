@@ -8,23 +8,23 @@ const SocialProof = () => {
 
   const testimonials = [
     {
-      name: "Carlos Silva",
-      company: "Tech Startup",
-      text: "A Digital Fusion transformou nossa presença online. O site desenvolvido superou todas as expectativas e nosso tráfego aumentou 300%.",
-      rating: 5
+      name: 'Carlos Silva',
+      company: 'Tech Startup',
+      text: 'A Digital Fusion transformou nossa presença online. O site desenvolvido superou todas as expectativas e nosso tráfego aumentou 300%.',
+      rating: 5,
     },
     {
-      name: "Ana Paula",
-      company: "E-commerce Fashion",
-      text: "Profissionais extremamente competentes. O design do nosso e-commerce ficou incrível e as vendas dispararam!",
-      rating: 5
+      name: 'Ana Paula',
+      company: 'E-commerce Fashion',
+      text: 'Profissionais extremamente competentes. O design do nosso e-commerce ficou incrível e as vendas dispararam!',
+      rating: 5,
     },
     {
-      name: "Roberto Lima",
-      company: "Clínica Médica",
-      text: "Excelente trabalho no desenvolvimento do nosso sistema de agendamentos. Muito profissionais e cumpriram todos os prazos.",
-      rating: 5
-    }
+      name: 'Roberto Lima',
+      company: 'Clínica Médica',
+      text: 'Excelente trabalho no desenvolvimento do nosso sistema de agendamentos. Muito profissionais e cumpriram todos os prazos.',
+      rating: 5,
+    },
   ];
 
   return (
@@ -44,11 +44,13 @@ const SocialProof = () => {
           }`}
         >
           {/* Quote Icon */}
-          <div className={`absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center ${
-            theme === 'dark'
-              ? 'bg-gradient-to-r from-cyan-500 to-purple-500'
-              : 'bg-gradient-to-r from-blue-500 to-purple-500'
-          }`}>
+          <div
+            className={`absolute -top-3 -left-3 w-8 h-8 rounded-full flex items-center justify-center ${
+              theme === 'dark'
+                ? 'bg-gradient-to-r from-cyan-500 to-purple-500'
+                : 'bg-gradient-to-r from-blue-500 to-purple-500'
+            }`}
+          >
             <Quote className="w-4 h-4 text-white" />
           </div>
 
@@ -65,30 +67,41 @@ const SocialProof = () => {
           </div>
 
           {/* Testimonial Text */}
-          <p className={`text-sm leading-relaxed mb-4 ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-          }`}>
+          <p
+            className={`text-sm leading-relaxed mb-4 ${
+              theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+            }`}
+          >
             "{testimonial.text}"
           </p>
 
           {/* Author */}
           <div className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
-              theme === 'dark'
-                ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
-                : 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-600'
-            }`}>
-              {testimonial.name.split(' ').map(n => n[0]).join('')}
+            <div
+              className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm ${
+                theme === 'dark'
+                  ? 'bg-gradient-to-r from-cyan-500/20 to-purple-500/20 text-cyan-300'
+                  : 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-600'
+              }`}
+            >
+              {testimonial.name
+                .split(' ')
+                .map(n => n[0])
+                .join('')}
             </div>
             <div>
-              <div className={`font-semibold text-sm ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}>
+              <div
+                className={`font-semibold text-sm ${
+                  theme === 'dark' ? 'text-white' : 'text-gray-900'
+                }`}
+              >
                 {testimonial.name}
               </div>
-              <div className={`text-xs ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-              }`}>
+              <div
+                className={`text-xs ${
+                  theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                }`}
+              >
                 {testimonial.company}
               </div>
             </div>

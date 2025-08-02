@@ -12,14 +12,21 @@ interface ProjectCardProps {
   index: number;
 }
 
-const ProjectCard = ({ id, title, category, description, imageUrl, index }: ProjectCardProps) => {
+const ProjectCard = ({
+  id,
+  title,
+  category,
+  description,
+  imageUrl,
+  index,
+}: ProjectCardProps) => {
   const { trackEvent } = useAnalytics();
 
   const handleClick = () => {
     trackEvent({
       action: ANALYTICS_EVENTS.PROJECT.CLICK,
       category: 'Project',
-      label: title
+      label: title,
     });
   };
 
@@ -27,8 +34,8 @@ const ProjectCard = ({ id, title, category, description, imageUrl, index }: Proj
     <Link
       to={`/portfolio/${id}`}
       className="group fade-in-element"
-      style={{ 
-        animationDelay: `${index * 0.1}s`, 
+      style={{
+        animationDelay: `${index * 0.1}s`,
       }}
       onClick={handleClick}
     >
@@ -44,8 +51,12 @@ const ProjectCard = ({ id, title, category, description, imageUrl, index }: Proj
           </div>
         </div>
         <div className="p-6">
-          <div className="text-sm text-df-blue font-medium mb-2">{category}</div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-df-blue transition-colors">{title}</h3>
+          <div className="text-sm text-df-blue font-medium mb-2">
+            {category}
+          </div>
+          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-df-blue transition-colors">
+            {title}
+          </h3>
           <p className="text-gray-600 line-clamp-2">{description}</p>
         </div>
       </div>

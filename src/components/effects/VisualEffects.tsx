@@ -9,23 +9,23 @@ interface ParallaxElementProps {
   className?: string;
 }
 
-export function ParallaxElement({ 
-  children, 
-  speed = 0.5, 
+export function ParallaxElement({
+  children,
+  speed = 0.5,
   direction = 'up',
-  className = '' 
+  className = '',
 }: ParallaxElementProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"]
+    offset: ['start end', 'end start'],
   });
 
   const transforms = {
     up: useTransform(scrollYProgress, [0, 1], [0, -speed * 100]),
     down: useTransform(scrollYProgress, [0, 1], [0, speed * 100]),
     left: useTransform(scrollYProgress, [0, 1], [0, -speed * 100]),
-    right: useTransform(scrollYProgress, [0, 1], [0, speed * 100])
+    right: useTransform(scrollYProgress, [0, 1], [0, speed * 100]),
   };
 
   const getTransformStyle = () => {
@@ -42,11 +42,7 @@ export function ParallaxElement({
   };
 
   return (
-    <motion.div
-      ref={ref}
-      style={getTransformStyle()}
-      className={className}
-    >
+    <motion.div ref={ref} style={getTransformStyle()} className={className}>
       {children}
     </motion.div>
   );
@@ -60,35 +56,35 @@ interface GlowEffectProps {
   hover?: boolean;
 }
 
-export function GlowEffect({ 
-  children, 
-  color = 'cyan', 
+export function GlowEffect({
+  children,
+  color = 'cyan',
   intensity = 'medium',
   className = '',
-  hover = false
+  hover = false,
 }: GlowEffectProps) {
   const colorMap = {
     cyan: 'shadow-neon-cyan border-neon-cyan',
     purple: 'shadow-cyber-purple border-cyber-purple',
     green: 'shadow-neon-green border-neon-green',
-    pink: 'shadow-neon-pink border-neon-pink'
+    pink: 'shadow-neon-pink border-neon-pink',
   };
 
   const intensityMap = {
     low: 'shadow-sm',
     medium: 'shadow-md',
-    high: 'shadow-xl'
+    high: 'shadow-xl',
   };
 
   return (
-    <div 
+    <div
       className={cn(
         'relative transition-all duration-300',
         hover && 'hover:scale-105',
         className
       )}
     >
-      <div 
+      <div
         className={cn(
           'absolute inset-0 rounded-lg blur-sm opacity-50',
           colorMap[color],
@@ -96,9 +92,7 @@ export function GlowEffect({
           hover && 'group-hover:opacity-75 group-hover:blur-md'
         )}
       />
-      <div className="relative z-10">
-        {children}
-      </div>
+      <div className="relative z-10">{children}</div>
     </div>
   );
 }
@@ -110,11 +104,11 @@ interface PulseElementProps {
   className?: string;
 }
 
-export function PulseElement({ 
-  children, 
-  duration = 2, 
+export function PulseElement({
+  children,
+  duration = 2,
   scale = 1.05,
-  className = '' 
+  className = '',
 }: PulseElementProps) {
   return (
     <motion.div
@@ -124,7 +118,7 @@ export function PulseElement({
       transition={{
         duration,
         repeat: Infinity,
-        ease: "easeInOut"
+        ease: 'easeInOut',
       }}
       className={className}
     >
@@ -141,12 +135,12 @@ interface RevealTextProps {
   stagger?: number;
 }
 
-export function RevealText({ 
-  text, 
-  className = '', 
-  delay = 0, 
+export function RevealText({
+  text,
+  className = '',
+  delay = 0,
   duration = 0.5,
-  stagger = 0.05 
+  stagger = 0.05,
 }: RevealTextProps) {
   const words = text.split(' ');
 
@@ -154,11 +148,11 @@ export function RevealText({
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { 
-        staggerChildren: stagger, 
-        delayChildren: delay 
-      }
-    })
+      transition: {
+        staggerChildren: stagger,
+        delayChildren: delay,
+      },
+    }),
   };
 
   const child = {
@@ -166,22 +160,22 @@ export function RevealText({
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: 'spring',
         damping: 12,
         stiffness: 100,
-        duration
-      }
+        duration,
+      },
     },
     hidden: {
       opacity: 0,
       y: 20,
       transition: {
-        type: "spring",
+        type: 'spring',
         damping: 12,
         stiffness: 100,
-        duration
-      }
-    }
+        duration,
+      },
+    },
   };
 
   return (
@@ -192,11 +186,7 @@ export function RevealText({
       animate="visible"
     >
       {words.map((word, index) => (
-        <motion.span
-          key={index}
-          variants={child}
-          className="inline-block mr-1"
-        >
+        <motion.span key={index} variants={child} className="inline-block mr-1">
           {word}
         </motion.span>
       ))}
@@ -210,10 +200,10 @@ interface MagneticButtonProps {
   magnetStrength?: number;
 }
 
-export function MagneticButton({ 
-  children, 
+export function MagneticButton({
+  children,
   className = '',
-  magnetStrength = 0.3 
+  magnetStrength = 0.3,
 }: MagneticButtonProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -250,10 +240,10 @@ interface ScrollProgressProps {
   height?: string;
 }
 
-export function ScrollProgress({ 
-  className = '', 
+export function ScrollProgress({
+  className = '',
   color = 'bg-neon-cyan',
-  height = 'h-1' 
+  height = 'h-1',
 }: ScrollProgressProps) {
   const { scrollYProgress } = useScroll();
 
@@ -277,11 +267,11 @@ interface TiltCardProps {
   glare?: boolean;
 }
 
-export function TiltCard({ 
-  children, 
-  maxTilt = 20, 
+export function TiltCard({
+  children,
+  maxTilt = 20,
   className = '',
-  glare = true 
+  glare = true,
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -299,7 +289,9 @@ export function TiltCard({
     ref.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
     if (glare) {
-      const glareElement = ref.current.querySelector('.glare-effect') as HTMLElement;
+      const glareElement = ref.current.querySelector(
+        '.glare-effect'
+      ) as HTMLElement;
       if (glareElement) {
         const glareX = (x / rect.width) * 100;
         const glareY = (y / rect.height) * 100;
@@ -310,10 +302,13 @@ export function TiltCard({
 
   const handleMouseLeave = () => {
     if (!ref.current) return;
-    ref.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-    
+    ref.current.style.transform =
+      'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+
     if (glare) {
-      const glareElement = ref.current.querySelector('.glare-effect') as HTMLElement;
+      const glareElement = ref.current.querySelector(
+        '.glare-effect'
+      ) as HTMLElement;
       if (glareElement) {
         glareElement.style.background = 'transparent';
       }
@@ -325,12 +320,15 @@ export function TiltCard({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('transition-transform duration-300 ease-out relative', className)}
+      className={cn(
+        'transition-transform duration-300 ease-out relative',
+        className
+      )}
       style={{ transformStyle: 'preserve-3d' }}
     >
       {children}
       {glare && (
-        <div 
+        <div
           className="glare-effect absolute inset-0 pointer-events-none rounded-lg"
           style={{ mixBlendMode: 'overlay' }}
         />

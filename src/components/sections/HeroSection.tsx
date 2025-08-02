@@ -21,7 +21,7 @@ export function HeroSection({
   backgroundElement,
   className = '',
   variant = 'default',
-  overlay = true
+  overlay = true,
 }: HeroSectionProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -29,9 +29,9 @@ export function HeroSection({
       opacity: 1,
       transition: {
         staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -41,9 +41,9 @@ export function HeroSection({
       y: 0,
       transition: {
         duration: 0.8,
-        ease: "easeOut"
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   const getVariantClasses = () => {
@@ -58,12 +58,12 @@ export function HeroSection({
   };
 
   return (
-    <section className={cn('relative min-h-screen flex items-center py-20', className)}>
+    <section
+      className={cn('relative min-h-screen flex items-center py-20', className)}
+    >
       {/* Background Element */}
       {backgroundElement && (
-        <div className="absolute inset-0 -z-10">
-          {backgroundElement}
-        </div>
+        <div className="absolute inset-0 -z-10">{backgroundElement}</div>
       )}
 
       {/* Overlay */}
@@ -118,9 +118,7 @@ export function HeroSection({
 
           {/* Actions */}
           {actions && (
-            <motion.div variants={itemVariants}>
-              {actions}
-            </motion.div>
+            <motion.div variants={itemVariants}>{actions}</motion.div>
           )}
         </motion.div>
       </div>

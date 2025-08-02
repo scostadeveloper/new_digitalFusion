@@ -44,7 +44,7 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
 
   const getGridClasses = () => {
     const baseClasses = 'grid gap-6 md:gap-8';
-    
+
     switch (columns) {
       case 1:
         return `${baseClasses} grid-cols-1`;
@@ -78,82 +78,66 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
       <div
         className={`
           h-48 md:h-56 animate-pulse
-          ${
-            theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-          }
+          ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
         `}
       />
-      
+
       {/* Content Skeleton */}
       <div className="p-6 space-y-4">
         {/* Category */}
         <div
           className={`
             h-6 w-20 rounded-full animate-pulse
-            ${
-              theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-            }
+            ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
           `}
         />
-        
+
         {/* Title */}
         <div className="space-y-2">
           <div
             className={`
               h-6 w-3/4 rounded animate-pulse
-              ${
-                theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-              }
+              ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
             `}
           />
           <div
             className={`
               h-6 w-1/2 rounded animate-pulse
-              ${
-                theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-              }
+              ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
             `}
           />
         </div>
-        
+
         {/* Description */}
         <div className="space-y-2">
           <div
             className={`
               h-4 w-full rounded animate-pulse
-              ${
-                theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-              }
+              ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
             `}
           />
           <div
             className={`
               h-4 w-4/5 rounded animate-pulse
-              ${
-                theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-              }
+              ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
             `}
           />
           <div
             className={`
               h-4 w-2/3 rounded animate-pulse
-              ${
-                theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-              }
+              ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
             `}
           />
         </div>
-        
+
         {/* Technologies */}
         <div className="flex gap-2">
-          {[1, 2, 3].map((i) => (
+          {[1, 2, 3].map(i => (
             <div
               key={i}
               className={`
                 h-6 w-16 rounded animate-pulse
-                ${
-                  theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'
-                }
+                ${theme === 'dark' ? 'bg-gray-800/50' : 'bg-gray-200/50'}
               `}
             />
           ))}
@@ -194,24 +178,20 @@ const ProjectGrid: React.FC<ProjectGridProps> = ({
           />
         </svg>
       </div>
-      
+
       <h3
         className={`
           text-xl font-semibold mb-2
-          ${
-            theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-          }
+          ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}
         `}
       >
         Nenhum projeto encontrado
       </h3>
-      
+
       <p
         className={`
           text-center max-w-md
-          ${
-            theme === 'dark' ? 'text-gray-400' : 'text-gray-500'
-          }
+          ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}
         `}
       >
         {emptyMessage}

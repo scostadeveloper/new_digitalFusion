@@ -10,7 +10,8 @@ const projectsData = {
   'cardapio-digital': {
     title: 'Cardápio Digital - Restaurante Sabor Nordestino',
     category: 'Aplicativos Web',
-    description: 'Sistema completo de cardápio digital com painel administrativo para gestão de categorias, produtos e promoções. Inclui integração com WhatsApp para pedidos e sistema de reservas online.',
+    description:
+      'Sistema completo de cardápio digital com painel administrativo para gestão de categorias, produtos e promoções. Inclui integração com WhatsApp para pedidos e sistema de reservas online.',
     fullDescription: `
 Projeto: Cardápio Online Sabor Nordestino
 
@@ -41,12 +42,13 @@ Desenvolvemos uma aplicação web moderna e robusta, utilizando tecnologias avan
 `,
     imageUrl: '/sabor-nordestino.jpg',
     technologies: ['React', 'Node.js', 'MongoDB', 'TypeScript', 'Tailwind CSS'],
-    demoUrl: 'https://sabor-nordestino.netlify.app/'
+    demoUrl: 'https://sabor-nordestino.netlify.app/',
   },
   'landing-marketing': {
-    title: 'Landing Page - Curso de Marketing Digital', 
-    category: 'Landing Pages', 
-    description: 'Página de alta conversão desenvolvida para captação de leads, com elementos persuasivos, depoimentos em vídeo e integração com sistema de pagamentos.',
+    title: 'Landing Page - Curso de Marketing Digital',
+    category: 'Landing Pages',
+    description:
+      'Página de alta conversão desenvolvida para captação de leads, com elementos persuasivos, depoimentos em vídeo e integração com sistema de pagamentos.',
     fullDescription: `
 Landing Page de Alta Conversão para Marketing Digital
 Desenvolvemos uma página web estratégica com um único e poderoso objetivo: converter visitantes interessados em clientes pagantes para um curso de marketing digital. Esta não é apenas uma página bonita; é uma ferramenta de vendas digital otimizada para guiar o usuário por uma jornada persuasiva, destacando os benefícios do curso e removendo barreiras à inscrição. É a solução ideal para empresas e empreendedores que desejam lançar ou impulsionar a venda de produtos digitais, cursos, e-books ou serviços online. 
@@ -65,13 +67,20 @@ Acessibilidade: Garantimos que a página seja fácil de usar para todas as pesso
 Com esta solução, entregamos não apenas uma landing page, mas uma máquina de conversão digital projetada para maximizar seus resultados e o retorno sobre seu investimento em marketing.
 `,
     imageUrl: '/marketing-digital-lp.jpg',
-    technologies: ['React', 'Next.js', 'Stripe', 'Google Analytics', 'Facebook Pixel'],
-    demoUrl: 'https://marketingdigitalcourse.netlify.app/'
+    technologies: [
+      'React',
+      'Next.js',
+      'Stripe',
+      'Google Analytics',
+      'Facebook Pixel',
+    ],
+    demoUrl: 'https://marketingdigitalcourse.netlify.app/',
   },
   'cardapio-digital-simples': {
     title: 'Cardápio Digital',
     category: 'Aplicativos Web',
-    description: 'Sistema de cardápio digital sem necessidade de banco de dados, com interface moderna e responsiva.',
+    description:
+      'Sistema de cardápio digital sem necessidade de banco de dados, com interface moderna e responsiva.',
     fullDescription: `
 Cardápio Digital - Transforme a Experiência do Seu Restaurante
 
@@ -130,16 +139,25 @@ Funcionalidades:
 - Integração com WhatsApp
 - Design moderno e intuitivo
 `,
-    challenges: 'O principal desafio foi criar um sistema que funcionasse sem um banco de dados, mantendo a facilidade de uso e a performance.',
-    solution: 'Desenvolvemos uma solução que utiliza apenas armazenamento local para gerenciar os dados do cardápio, garantindo uma experiência fluida, eficiente e totalmente independente de servidores ou integrações externas.',
+    challenges:
+      'O principal desafio foi criar um sistema que funcionasse sem um banco de dados, mantendo a facilidade de uso e a performance.',
+    solution:
+      'Desenvolvemos uma solução que utiliza apenas armazenamento local para gerenciar os dados do cardápio, garantindo uma experiência fluida, eficiente e totalmente independente de servidores ou integrações externas.',
     imageUrl: '/cardapio-digital-simples.png',
-    technologies: ['React', 'Vite', 'TypeScript', 'Tailwind CSS', 'LocalStorage'],
-    demoUrl: 'https://cardapiosemdb.netlify.app/'
+    technologies: [
+      'React',
+      'Vite',
+      'TypeScript',
+      'Tailwind CSS',
+      'LocalStorage',
+    ],
+    demoUrl: 'https://cardapiosemdb.netlify.app/',
   },
-  'construsolve': {
+  construsolve: {
     title: 'ConstruSolve - Landing Page Construção Civil',
     category: 'Sites',
-    description: 'Landing page institucional para empresa de construção civil, destacando diferenciais, serviços e chamada para orçamento. Design moderno, responsivo e com foco em conversão.',
+    description:
+      'Landing page institucional para empresa de construção civil, destacando diferenciais, serviços e chamada para orçamento. Design moderno, responsivo e com foco em conversão.',
     fullDescription: `
 Projeto: ConstruSolve - Landing Page Construção Civil
 
@@ -170,8 +188,8 @@ Desenvolvemos uma landing page moderna, com layout limpo e elementos visuais que
 `,
     imageUrl: '/ConstruSolve.jpg',
     technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-    demoUrl: 'https://landingpage-construcao-civil.netlify.app/'
-  }
+    demoUrl: 'https://landingpage-construcao-civil.netlify.app/',
+  },
 };
 
 const PortfolioDetail = () => {
@@ -184,7 +202,7 @@ const PortfolioDetail = () => {
       trackEvent({
         action: ANALYTICS_EVENTS.PROJECT.VIEW,
         category: 'Project',
-        label: project.title
+        label: project.title,
       });
     }
   }, [project, trackEvent]);
@@ -193,7 +211,7 @@ const PortfolioDetail = () => {
     trackEvent({
       action: ANALYTICS_EVENTS.PROJECT.CLICK,
       category: 'Project Demo',
-      label: project?.title
+      label: project?.title,
     });
   };
 
@@ -201,7 +219,9 @@ const PortfolioDetail = () => {
     return (
       <div className="pt-16 min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Projeto não encontrado</h1>
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            Projeto não encontrado
+          </h1>
           <Button asChild>
             <Link to="/portfolio">Voltar para o Portfólio</Link>
           </Button>
@@ -217,15 +237,17 @@ const PortfolioDetail = () => {
         <div className="container-custom">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-df-blue font-medium mb-4">{project.category}</p>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{project.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {project.title}
+            </h1>
             <p className="text-xl text-gray-300">{project.description}</p>
             {project.demoUrl && (
-              <Button
-                asChild
-                className="mt-8"
-                onClick={handleDemoClick}
-              >
-                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+              <Button asChild className="mt-8" onClick={handleDemoClick}>
+                <a
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Ver Demo
                 </a>
               </Button>
@@ -239,7 +261,12 @@ const PortfolioDetail = () => {
         <div className="container-custom">
           <div className="rounded-lg overflow-hidden shadow-xl">
             {project.demoUrl ? (
-              <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="relative block w-full h-[500px]">
+              <a
+                href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block w-full h-[500px]"
+              >
                 <img
                   src={project.imageUrl}
                   alt={project.title}
@@ -268,28 +295,38 @@ const PortfolioDetail = () => {
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-3xl font-bold text-df-black">Sobre o Projeto</h2>
+              <h2 className="text-3xl font-bold text-df-black">
+                Sobre o Projeto
+              </h2>
               <div className="prose max-w-none">
-                <p className="text-gray-700 whitespace-pre-line">{project.fullDescription}</p>
+                <p className="text-gray-700 whitespace-pre-line">
+                  {project.fullDescription}
+                </p>
               </div>
 
               <div className="mt-12">
-                <h3 className="text-xl font-bold mb-4 text-df-black">Desafios</h3>
+                <h3 className="text-xl font-bold mb-4 text-df-black">
+                  Desafios
+                </h3>
                 <p className="text-gray-700">{project.challenges}</p>
               </div>
 
               <div className="mt-8">
-                <h3 className="text-xl font-bold mb-4 text-df-black">Nossa Solução</h3>
+                <h3 className="text-xl font-bold mb-4 text-df-black">
+                  Nossa Solução
+                </h3>
                 <p className="text-gray-700">{project.solution}</p>
               </div>
             </div>
 
             <div>
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h3 className="text-xl font-bold mb-4 text-df-black">Tecnologias Utilizadas</h3>
+                <h3 className="text-xl font-bold mb-4 text-df-black">
+                  Tecnologias Utilizadas
+                </h3>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
-                    <span 
+                    <span
                       key={index}
                       className="bg-df-blue/10 text-df-blue px-3 py-1 rounded-full text-sm"
                     >
@@ -300,7 +337,9 @@ const PortfolioDetail = () => {
               </div>
 
               <div className="mt-8">
-                <h3 className="text-xl font-bold mb-4 text-df-black">Interessado em um projeto similar?</h3>
+                <h3 className="text-xl font-bold mb-4 text-df-black">
+                  Interessado em um projeto similar?
+                </h3>
                 <Button asChild className="w-full">
                   <Link to="/contact">Fale com Nossa Equipe</Link>
                 </Button>

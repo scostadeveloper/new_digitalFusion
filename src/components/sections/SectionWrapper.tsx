@@ -27,23 +27,24 @@ export function SectionWrapper({
   variant = 'default',
   padding = 'lg',
   enableAnimations = true,
-  backgroundPattern = false
+  backgroundPattern = false,
 }: SectionWrapperProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   const paddingClasses = {
     sm: 'py-12',
     md: 'py-16',
     lg: 'py-20',
-    xl: 'py-24'
+    xl: 'py-24',
   };
 
   const variantClasses = {
     default: 'bg-transparent',
     dark: 'bg-black/20',
-    gradient: 'bg-gradient-to-br from-cyber-purple/10 via-transparent to-neon-cyan/10',
-    glass: 'glass-section backdrop-blur-sm'
+    gradient:
+      'bg-gradient-to-br from-cyber-purple/10 via-transparent to-neon-cyan/10',
+    glass: 'glass-section backdrop-blur-sm',
   };
 
   const containerVariants = {
@@ -52,9 +53,9 @@ export function SectionWrapper({
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -64,9 +65,9 @@ export function SectionWrapper({
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: 'easeOut',
+      },
+    },
   };
 
   return (
@@ -92,7 +93,7 @@ export function SectionWrapper({
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            animate={isInView ? 'visible' : 'hidden'}
             className="max-w-6xl mx-auto"
           >
             {/* Section Header */}
@@ -117,9 +118,7 @@ export function SectionWrapper({
             )}
 
             {/* Section Content */}
-            <motion.div variants={itemVariants}>
-              {children}
-            </motion.div>
+            <motion.div variants={itemVariants}>{children}</motion.div>
           </motion.div>
         ) : (
           <div className="max-w-6xl mx-auto">
@@ -154,7 +153,10 @@ export function SectionWrapper({
 }
 
 // Specialized section components
-export function ServicesSection({ children, ...props }: Omit<SectionWrapperProps, 'variant' | 'title'>) {
+export function ServicesSection({
+  children,
+  ...props
+}: Omit<SectionWrapperProps, 'variant' | 'title'>) {
   return (
     <SectionWrapper
       title="Nossos Serviços"
@@ -169,7 +171,10 @@ export function ServicesSection({ children, ...props }: Omit<SectionWrapperProps
   );
 }
 
-export function PortfolioSection({ children, ...props }: Omit<SectionWrapperProps, 'variant' | 'title'>) {
+export function PortfolioSection({
+  children,
+  ...props
+}: Omit<SectionWrapperProps, 'variant' | 'title'>) {
   return (
     <SectionWrapper
       title="Nosso Portfólio"
@@ -183,7 +188,10 @@ export function PortfolioSection({ children, ...props }: Omit<SectionWrapperProp
   );
 }
 
-export function AboutSection({ children, ...props }: Omit<SectionWrapperProps, 'variant' | 'title'>) {
+export function AboutSection({
+  children,
+  ...props
+}: Omit<SectionWrapperProps, 'variant' | 'title'>) {
   return (
     <SectionWrapper
       title="Sobre Nós"
@@ -197,7 +205,10 @@ export function AboutSection({ children, ...props }: Omit<SectionWrapperProps, '
   );
 }
 
-export function ContactSection({ children, ...props }: Omit<SectionWrapperProps, 'variant' | 'title'>) {
+export function ContactSection({
+  children,
+  ...props
+}: Omit<SectionWrapperProps, 'variant' | 'title'>) {
   return (
     <SectionWrapper
       title="Entre em Contato"

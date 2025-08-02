@@ -20,7 +20,7 @@ export function TypingAnimation({
   cursorChar = '|',
   delay = 0,
   infinite = false,
-  onComplete
+  onComplete,
 }: TypingAnimationProps) {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,45 +33,58 @@ export function TypingAnimation({
 
   useEffect(() => {
     const startDelay = setTimeout(() => {
-      const timeout = setTimeout(() => {
-        if (!isDeleting) {
-          // Typing
-          if (currentIndex < currentText.length) {
-            setDisplayText(currentText.slice(0, currentIndex + 1));
-            setCurrentIndex(currentIndex + 1);
-          } else {
-            // Finished typing current text
-            if (textArray.length > 1) {
-              // Multiple texts - start deleting after pause
-              setTimeout(() => setIsDeleting(true), 1500);
+      const timeout = setTimeout(
+        () => {
+          if (!isDeleting) {
+            // Typing
+            if (currentIndex < currentText.length) {
+              setDisplayText(currentText.slice(0, currentIndex + 1));
+              setCurrentIndex(currentIndex + 1);
             } else {
-              // Single text - call onComplete
-              onComplete?.();
+              // Finished typing current text
+              if (textArray.length > 1) {
+                // Multiple texts - start deleting after pause
+                setTimeout(() => setIsDeleting(true), 1500);
+              } else {
+                // Single text - call onComplete
+                onComplete?.();
+              }
             }
-          }
-        } else {
-          // Deleting
-          if (currentIndex > 0) {
-            setDisplayText(currentText.slice(0, currentIndex - 1));
-            setCurrentIndex(currentIndex - 1);
           } else {
-            // Finished deleting
-            setIsDeleting(false);
-            setTextArrayIndex((textArrayIndex + 1) % textArray.length);
-            setCurrentIndex(0);
-            
-            if (!infinite && textArrayIndex === textArray.length - 1) {
-              onComplete?.();
+            // Deleting
+            if (currentIndex > 0) {
+              setDisplayText(currentText.slice(0, currentIndex - 1));
+              setCurrentIndex(currentIndex - 1);
+            } else {
+              // Finished deleting
+              setIsDeleting(false);
+              setTextArrayIndex((textArrayIndex + 1) % textArray.length);
+              setCurrentIndex(0);
+
+              if (!infinite && textArrayIndex === textArray.length - 1) {
+                onComplete?.();
+              }
             }
           }
-        }
-      }, isDeleting ? duration / 2 : duration);
+        },
+        isDeleting ? duration / 2 : duration
+      );
 
       return () => clearTimeout(timeout);
     }, delay);
 
     return () => clearTimeout(startDelay);
-  }, [currentIndex, isDeleting, textArrayIndex, currentText, duration, delay, infinite, onComplete, textArray]);
+  }, [
+    currentIndex,
+    isDeleting,
+    textArrayIndex,
+    currentText,
+    duration,
+    delay,
+    infinite,
+    onComplete,
+    textArray,
+  ]);
 
   // Cursor blinking effect
   useEffect(() => {
@@ -87,7 +100,7 @@ export function TypingAnimation({
     <span className={cn('inline-block', className)}>
       {displayText}
       {cursor && (
-        <span 
+        <span
           className={cn(
             'inline-block text-neon-cyan animate-pulse ml-1',
             showCursor ? 'opacity-100' : 'opacity-0'
@@ -101,18 +114,33 @@ export function TypingAnimation({
 }
 
 // Preset variants
-export function HeroTyping({ text, className = '' }: { text: string | string[]; className?: string }) {
+export function HeroTyping({
+  text,
+  className = '',
+}: {
+  text: string | string[];
+  className?: string;
+}) {
   return (
     <TypingAnimation
       text={text}
-      className={cn('text-4xl md:text-6xl font-bold text-gradient-neon', className)}
+      className={cn(
+        'text-4xl md:text-6xl font-bold text-gradient-neon',
+        className
+      )}
       duration={80}
       infinite={Array.isArray(text)}
     />
   );
 }
 
-export function SubtitleTyping({ text, className = '' }: { text: string; className?: string }) {
+export function SubtitleTyping({
+  text,
+  className = '',
+}: {
+  text: string;
+  className?: string;
+}) {
   return (
     <TypingAnimation
       text={text}
@@ -124,7 +152,13 @@ export function SubtitleTyping({ text, className = '' }: { text: string; classNa
   );
 }
 
-export function CodeTyping({ text, className = '' }: { text: string; className?: string }) {
+export function CodeTyping({
+  text,
+  className = '',
+}: {
+  text: string;
+  className?: string;
+}) {
   return (
     <TypingAnimation
       text={text}

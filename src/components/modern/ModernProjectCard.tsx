@@ -207,21 +207,21 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
             <p
               className={`
                 text-sm line-clamp-3 mb-4
-                ${
-                  theme === 'dark' ? 'text-gray-300' : 'text-gray-600'
-                }
+                ${theme === 'dark' ? 'text-gray-300' : 'text-gray-600'}
               `}
             >
               {project.description}
             </p>
 
             {/* Technologies */}
-            {showTechnologies && project.technologies && project.technologies.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.slice(0, 3).map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className={`
+            {showTechnologies &&
+              project.technologies &&
+              project.technologies.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 3).map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className={`
                       px-2 py-1 rounded-md text-xs font-medium
                       ${
                         theme === 'dark'
@@ -229,13 +229,13 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                           : 'bg-gray-100 text-gray-600'
                       }
                     `}
-                  >
-                    {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 3 && (
-                  <span
-                    className={`
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 3 && (
+                    <span
+                      className={`
                       px-2 py-1 rounded-md text-xs font-medium
                       ${
                         theme === 'dark'
@@ -243,12 +243,12 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
                           : 'bg-gray-100 text-gray-600'
                       }
                     `}
-                  >
-                    +{project.technologies.length - 3}
-                  </span>
-                )}
-              </div>
-            )}
+                    >
+                      +{project.technologies.length - 3}
+                    </span>
+                  )}
+                </div>
+              )}
           </div>
 
           {/* Glow Effect */}
@@ -263,9 +263,10 @@ const ModernProjectCard: React.FC<ModernProjectCardProps> = ({
               }
             `}
             style={{
-              background: theme === 'dark'
-                ? 'linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)'
-                : 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%)',
+              background:
+                theme === 'dark'
+                  ? 'linear-gradient(135deg, rgba(103, 232, 249, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%)',
             }}
           />
         </div>

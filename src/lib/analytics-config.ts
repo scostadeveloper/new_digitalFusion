@@ -4,6 +4,6 @@ export const GA_CONFIG = {
   SEND_PAGE_VIEWS: true,
   DEFAULT_EVENT_PARAMS: {
     site_version: '1.0.0',
-    environment: process.env.NODE_ENV
-  }
-} as const; 
+    environment: process.env.NODE_ENV,
+  },
+} as const;

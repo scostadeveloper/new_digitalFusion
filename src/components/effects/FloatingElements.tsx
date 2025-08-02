@@ -26,17 +26,17 @@ export function FloatingElements({
   className = '',
   enableHover = true,
   enableClick = false,
-  autoFloat = true
+  autoFloat = true,
 }: FloatingElementsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true });
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={cn('relative w-full h-full pointer-events-none', className)}
     >
-      {elements.map((element) => (
+      {elements.map(element => (
         <FloatingItem
           key={element.id}
           element={element}
@@ -63,33 +63,33 @@ function FloatingItem({
   isVisible,
   enableHover,
   enableClick,
-  autoFloat
+  autoFloat,
 }: FloatingItemProps) {
   const itemRef = useRef<HTMLDivElement>(null);
 
   // Initial animation
   const initialSpring = useSpring({
-    from: { 
-      opacity: 0, 
-      transform: 'translate3d(0, 100px, 0) scale(0.8) rotate(0deg)' 
+    from: {
+      opacity: 0,
+      transform: 'translate3d(0, 100px, 0) scale(0.8) rotate(0deg)',
     },
-    to: isVisible 
-      ? { 
-          opacity: 1, 
-          transform: `translate3d(${element.position.x}px, ${element.position.y}px, 0) scale(${element.scale || 1}) rotate(${element.rotation || 0}deg)` 
+    to: isVisible
+      ? {
+          opacity: 1,
+          transform: `translate3d(${element.position.x}px, ${element.position.y}px, 0) scale(${element.scale || 1}) rotate(${element.rotation || 0}deg)`,
         }
-      : { 
-          opacity: 0, 
-          transform: 'translate3d(0, 100px, 0) scale(0.8) rotate(0deg)' 
+      : {
+          opacity: 0,
+          transform: 'translate3d(0, 100px, 0) scale(0.8) rotate(0deg)',
         },
     config: { tension: 280, friction: 60 },
-    delay: element.delay || 0
+    delay: element.delay || 0,
   });
 
   // Auto floating animation
   const floatingSpring = useSpring({
     from: { y: 0 },
-    to: async (next) => {
+    to: async next => {
       if (autoFloat && isVisible) {
         while (true) {
           await next({ y: -10 });
@@ -97,21 +97,21 @@ function FloatingItem({
         }
       }
     },
-    config: { duration: element.duration || 3000 }
+    config: { duration: element.duration || 3000 },
   });
 
   // Hover animation
   const [hoverSpring, setHoverSpring] = useSpring(() => ({
     scale: 1,
     rotate: 0,
-    config: { tension: 300, friction: 20 }
+    config: { tension: 300, friction: 20 },
   }));
 
   const handleMouseEnter = () => {
     if (enableHover) {
       setHoverSpring({
         scale: 1.1,
-        rotate: 5
+        rotate: 5,
       });
     }
   };
@@ -120,7 +120,7 @@ function FloatingItem({
     if (enableHover) {
       setHoverSpring({
         scale: 1,
-        rotate: 0
+        rotate: 0,
       });
     }
   };
@@ -129,12 +129,12 @@ function FloatingItem({
     if (enableClick) {
       setHoverSpring({
         scale: 0.95,
-        rotate: -5
+        rotate: -5,
       });
       setTimeout(() => {
         setHoverSpring({
           scale: 1,
-          rotate: 0
+          rotate: 0,
         });
       }, 150);
     }
@@ -147,11 +147,13 @@ function FloatingItem({
         ...initialSpring,
         y: autoFloat ? floatingSpring.y : 0,
         scale: hoverSpring.scale,
-        rotate: hoverSpring.rotate
+        rotate: hoverSpring.rotate,
       }}
       className={cn(
         'absolute select-none',
-        enableHover || enableClick ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'
+        enableHover || enableClick
+          ? 'pointer-events-auto cursor-pointer'
+          : 'pointer-events-none'
       )}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -176,18 +178,19 @@ export function FloatingIcon({
   position,
   size = 'md',
   variant = 'glass',
-  className = ''
+  className = '',
 }: FloatingIconProps) {
   const sizeClasses = {
     sm: 'w-8 h-8 text-lg',
     md: 'w-12 h-12 text-xl',
-    lg: 'w-16 h-16 text-2xl'
+    lg: 'w-16 h-16 text-2xl',
   };
 
   const variantClasses = {
     neon: 'bg-black/40 border-neon-cyan border-2 shadow-neon-cyan/30 text-neon-cyan',
     glass: 'glass-card border-glass text-white',
-    gradient: 'bg-gradient-to-br from-cyber-purple/40 to-neon-cyan/40 border-gray-600 text-white'
+    gradient:
+      'bg-gradient-to-br from-cyber-purple/40 to-neon-cyan/40 border-gray-600 text-white',
   };
 
   const element: FloatingElement = {
@@ -205,20 +208,18 @@ export function FloatingIcon({
       >
         {icon}
       </div>
-    )
+    ),
   };
 
-  return (
-    <FloatingElements
-      elements={[element]}
-      enableHover
-      autoFloat
-    />
-  );
+  return <FloatingElements elements={[element]} enableHover autoFloat />;
 }
 
 // Tech symbols floating background
-export function TechFloatingSymbols({ className = '' }: { className?: string }) {
+export function TechFloatingSymbols({
+  className = '',
+}: {
+  className?: string;
+}) {
   const symbols = [
     { icon: '</>', position: { x: 100, y: 50 }, delay: 0 },
     { icon: '{}', position: { x: 300, y: 120 }, delay: 500 },
@@ -227,7 +228,7 @@ export function TechFloatingSymbols({ className = '' }: { className?: string }) 
     { icon: 'JS', position: { x: 400, y: 180 }, delay: 2000 },
     { icon: '⚛️', position: { x: 250, y: 300 }, delay: 2500 },
     { icon: '🚀', position: { x: 450, y: 250 }, delay: 3000 },
-    { icon: '💻', position: { x: 80, y: 350 }, delay: 3500 }
+    { icon: '💻', position: { x: 80, y: 350 }, delay: 3500 },
   ];
 
   const elements: FloatingElement[] = symbols.map((symbol, index) => ({
@@ -240,7 +241,7 @@ export function TechFloatingSymbols({ className = '' }: { className?: string }) 
       <div className="text-neon-cyan/60 font-mono text-xl opacity-50 hover:opacity-100 transition-opacity">
         {symbol.icon}
       </div>
-    )
+    ),
   }));
 
   return (
@@ -256,30 +257,30 @@ export function TechFloatingSymbols({ className = '' }: { className?: string }) 
 // Geometric shapes floating
 export function FloatingShapes({ className = '' }: { className?: string }) {
   const shapes = [
-    { 
-      shape: 'square', 
-      position: { x: 120, y: 80 }, 
+    {
+      shape: 'square',
+      position: { x: 120, y: 80 },
       size: 20,
-      color: 'border-neon-cyan' 
+      color: 'border-neon-cyan',
     },
-    { 
-      shape: 'circle', 
-      position: { x: 320, y: 150 }, 
+    {
+      shape: 'circle',
+      position: { x: 320, y: 150 },
       size: 24,
-      color: 'border-cyber-purple' 
+      color: 'border-cyber-purple',
     },
-    { 
-      shape: 'triangle', 
-      position: { x: 200, y: 250 }, 
+    {
+      shape: 'triangle',
+      position: { x: 200, y: 250 },
       size: 18,
-      color: 'border-neon-green' 
+      color: 'border-neon-green',
     },
-    { 
-      shape: 'diamond', 
-      position: { x: 400, y: 100 }, 
+    {
+      shape: 'diamond',
+      position: { x: 400, y: 100 },
       size: 22,
-      color: 'border-neon-pink' 
-    }
+      color: 'border-neon-pink',
+    },
   ];
 
   const elements: FloatingElement[] = shapes.map((shape, index) => ({
@@ -297,16 +298,19 @@ export function FloatingShapes({ className = '' }: { className?: string }) {
         )}
         style={{
           width: shape.size,
-          height: shape.size
+          height: shape.size,
         }}
       />
-    )
+    ),
   }));
 
   return (
     <FloatingElements
       elements={elements}
-      className={cn('absolute inset-0 overflow-hidden pointer-events-none', className)}
+      className={cn(
+        'absolute inset-0 overflow-hidden pointer-events-none',
+        className
+      )}
       autoFloat
     />
   );

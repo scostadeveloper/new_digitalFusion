@@ -392,7 +392,7 @@ const About = () => {
       {/* Nossa História Section */}
       <section 
         id="story"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -532,7 +532,7 @@ const About = () => {
       {/* Equipe Section */}
       <section 
         id="team"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -572,12 +572,12 @@ const About = () => {
               }`}
             >
               <div className="text-center">
-                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-400/30'
                     : 'bg-gradient-to-r from-blue-500/15 to-cyan-500/15 border border-blue-500/30'
                 }`}>
-                  <img src="/perfil-sergio.jpg" alt="Sergio Costa" className="w-full h-full object-cover" />
+                  👨‍💻
                 </div>
                 <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -595,7 +595,7 @@ const About = () => {
                   Especialista em desenvolvimento web, apaixonado por criar soluções digitais inovadoras, escaláveis e de alto impacto. Atua como CTO liderando projetos que unem tecnologia de ponta, experiência do usuário e resultados reais para empresas que querem crescer no mundo digital.
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {['NodeJS', 'TypeScript', 'T-SQL', 'React', 'NextJS', 'micro-services', 'C#', '.NET'].map((skill, index) => (
+                  {['NodeJS', 'TypeScript', 'T-SQL', 'React'].map((skill, index) => (
                     <span 
                       key={index}
                       className={`px-3 py-1 text-xs rounded-full ${
@@ -625,12 +625,12 @@ const About = () => {
               }`}
             >
               <div className="text-center">
-                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border border-blue-400/30'
                     : 'bg-gradient-to-r from-blue-500/15 to-purple-500/15 border border-blue-500/30'
                 }`}>
-                  <img src="/perfil-rebeca.jpg" alt="Rebeca Costa" className="w-full h-full object-cover" />
+                  👩‍🎨
                 </div>
                 <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -678,12 +678,12 @@ const About = () => {
               }`}
             >
               <div className="text-center">
-                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center overflow-hidden ${
+                <div className={`w-24 h-24 mx-auto mb-6 rounded-full flex items-center justify-center text-4xl ${
                   theme === 'dark'
                     ? 'bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-400/30'
                     : 'bg-gradient-to-r from-cyan-500/15 to-purple-500/15 border border-cyan-500/30'
                 }`}>
-                  <img src="/perfil-kaique.jpeg" alt="Kaique Brito" className="w-full h-full object-cover" />
+                  🧑‍💼
                 </div>
                 <h3 className={`text-xl sm:text-2xl font-bold mb-2 font-heading ${
                   theme === 'dark' ? 'text-white' : 'text-gray-900'
@@ -723,7 +723,7 @@ const About = () => {
       {/* Valores Section */}
       <section 
         id="values"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -834,7 +834,7 @@ const About = () => {
       {/* Tech Stack Section */}
       <section 
         id="tech-stack"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -920,7 +920,7 @@ const About = () => {
       {/* Conquistas Section */}
       <section 
         id="achievements"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -1001,7 +1001,7 @@ const About = () => {
       {/* CTA Section */}
       <section 
         id="contact"
-        className="py-16 sm:py-20 lg:py-24 relative overflow-hidden"
+        className="min-h-screen flex items-center justify-center py-16 sm:py-20 lg:py-24 relative overflow-hidden"
         style={{ background: sectionBackground }}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
