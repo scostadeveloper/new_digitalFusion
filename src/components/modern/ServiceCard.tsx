@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
-import { GlassCard } from './GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 import { NeonButton } from './NeonButton';
 
 interface ServiceCardProps {
@@ -36,8 +36,9 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       whileHover={{ y: -8 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
-      <GlassCard
-        variant={theme === 'dark' ? 'dark' : 'default'}
+      <BaseCard
+        size="lg"
+        hover="lift"
         className="h-full p-6 lg:p-8 cursor-pointer transition-all duration-500 group-hover:scale-[1.02] overflow-hidden"
         onClick={onClick}
       >
@@ -201,7 +202,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
             </span>
           </NeonButton>
         </div>
-      </GlassCard>
+      </BaseCard>
     </motion.div>
   );
 };

@@ -8,8 +8,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Mail, Phone, User, Building, MessageSquare, Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAnalytics } from '@/hooks/useAnalytics';
+import { useFormValidation } from '@/hooks/useFormValidation';
 import { ANALYTICS_EVENTS } from '@/lib/analytics-events';
-import { GlassCard } from '@/components/modern/GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 
 interface FormData {
   name: string;
@@ -30,53 +31,81 @@ interface ContactFormProps {
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData }) => {
   const { toast } = useToast();
   const { trackEvent } = useAnalytics();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [errors, setErrors] = useState<Partial<FormData>>({});
   
-  const [formData, setFormData] = useState<FormData>({
-    name: initialData?.name || '',
-    email: initialData?.email || '',
-    phone: initialData?.phone || '',
-    company: initialData?.company || '',
-    service: initialData?.service || '',
-    budget: initialData?.budget || '',
-    timeline: initialData?.timeline || '',
-    message: initialData?.message || ''
-  });
+  const {
+    formData,
+    errors,
+    isValid,
+    isSubmitting,
+    handleInputChange,
+    validateForm,
+    resetForm,
+    setIsSubmitting
+  } = useFormValidation(
+    {
+      name: initialData?.name || '',
+      email: initialData?.email || '',
+      phone: initialData?.phone || '',
+      company: initialData?.company || '',
+      service: initialData?.service || '',
+      budget: initialData?.budget || '',
+      timeline: initialData?.timeline || '',
+      message: initialData?.message || ''
+    },
+    {
+      name: { required: true, minLength: 2 },
+      email: { required: true, email: true },
+      phone: { pattern: /^[\d\s\(\)\+\-]{10,}$/ },
+      message: { required: true, minLength: 10 }
+    }
+  );
 
-  const validateField = (name: keyof FormData, value: string) => {
-    switch (name) {
-      case 'name':
-        return value.length < 2 ? 'Nome deve ter pelo menos 2 caracteres' : '';
-      case 'email':
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return !emailRegex.test(value) ? 'Email inválido' : '';
-      case 'phone':
-        const phoneRegex = /^[\d\s\(\)\+\-]{10,}$/;
-        return value && !phoneRegex.test(value) ? 'Telefone inválido' : '';
-      case 'message':
-        return value.length < 10 ? 'Mensagem deve ter pelo menos 10 caracteres' : '';
-      default:
-        return '';
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      toast({
+        title: 'Erro de validação',
+        description: 'Por favor, corrija os erros no formulário.',
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      if (onSubmit) {
+        await onSubmit(formData);
+      } else {
+        // Simulação de envio
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      
+      setIsSuccess(true);
+      resetForm();
+      
+      trackEvent(ANALYTICS_EVENTS.CONTACT_FORM_SUBMIT, {
+        service: formData.service,
+        budget: formData.budget,
+        timeline: formData.timeline
+      });
+      
+      toast({
+        title: 'Mensagem enviada!',
+        description: 'Entraremos em contato em breve.',
+      });
+    } catch (error) {
+      toast({
+        title: 'Erro ao enviar',
+        description: 'Tente novamente ou entre em contato diretamente.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const handleInputChange = (name: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
-    // Validação em tempo real
-    const error = validateField(name, value);
-    setErrors(prev => ({ ...prev, [name]: error }));
-  };
-
-  const validateForm = (): boolean => {
-    const newErrors: Partial<FormData> = {};
-    
-    Object.entries(formData).forEach(([key, value]) => {
-      const error = validateField(key as keyof FormData, value);
-      if (error) newErrors[key as keyof FormData] = error;
-    });
 
     // Campos obrigatórios
     if (!formData.name) newErrors.name = 'Nome é obrigatório';
@@ -179,7 +208,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData }) => {
 
   if (isSuccess) {
     return (
-      <GlassCard className="p-8 text-center">
+      <BaseCard size="lg" className="p-8 text-center">
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -189,12 +218,12 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData }) => {
           <h3 className="text-2xl font-bold text-white mb-2">Mensagem Enviada!</h3>
           <p className="text-gray-300">Obrigado pelo contato. Retornaremos em breve!</p>
         </motion.div>
-      </GlassCard>
+      </BaseCard>
     );
   }
 
   return (
-    <GlassCard className="p-8">
+    <BaseCard size="lg" className="p-8">
       {/* Progress Bar */}
       <div className="mb-6">
         <div className="flex justify-between items-center mb-2">
@@ -405,7 +434,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, initialData }) => {
           </Button>
         </motion.div>
       </form>
-    </GlassCard>
+    </BaseCard>
   );
 };
 

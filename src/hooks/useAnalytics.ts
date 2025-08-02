@@ -71,10 +71,90 @@ export const useAnalytics = () => {
     });
   };
 
+  const trackServiceView = (serviceId: string, serviceName: string) => {
+    trackEvent({
+      action: 'view_service',
+      category: 'Service',
+      label: serviceName,
+      params: {
+        service_id: serviceId,
+        service_name: serviceName,
+      },
+    });
+  };
+
+  const trackPageView = (pageName: string, pageTitle?: string) => {
+    trackEvent({
+      action: 'page_view',
+      category: 'Navigation',
+      label: pageName,
+      params: {
+        page_name: pageName,
+        page_title: pageTitle || pageName,
+        timestamp: new Date().toISOString(),
+      },
+    });
+  };
+
+  const trackUserInteraction = (element: string, action: string, context?: string) => {
+    trackEvent({
+      action: `${action}_${element}`,
+      category: 'User Interaction',
+      label: context || element,
+      params: {
+        element_type: element,
+        interaction_type: action,
+        context,
+      },
+    });
+  };
+
+  const trackDownload = (fileName: string, fileType: string) => {
+    trackEvent({
+      action: 'download_file',
+      category: 'Download',
+      label: fileName,
+      params: {
+        file_name: fileName,
+        file_type: fileType,
+      },
+    });
+  };
+
+  const trackSearch = (query: string, resultsCount?: number) => {
+    trackEvent({
+      action: 'search',
+      category: 'Search',
+      label: query,
+      params: {
+        search_query: query,
+        results_count: resultsCount,
+      },
+    });
+  };
+
+  const trackSocialShare = (platform: string, content: string) => {
+    trackEvent({
+      action: 'social_share',
+      category: 'Social Media',
+      label: platform,
+      params: {
+        platform,
+        content_shared: content,
+      },
+    });
+  };
+
   return {
     trackEvent,
     trackProjectView,
     trackContactForm,
     trackExternalLink,
+    trackServiceView,
+    trackPageView,
+    trackUserInteraction,
+    trackDownload,
+    trackSearch,
+    trackSocialShare,
   };
 };

@@ -4,7 +4,7 @@ import { MapPin, Navigation, ExternalLink, Copy, Check } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { ANALYTICS_EVENTS } from '@/lib/analytics-events';
-import { GlassCard } from '@/components/modern/GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 import { Button } from '@/components/ui/button';
 
 interface LocationMapProps {
@@ -105,7 +105,7 @@ const LocationMap: React.FC<LocationMapProps> = ({
 
   return (
     <div className={`w-full ${className}`}>
-      <GlassCard className="p-0 overflow-hidden">
+      <BaseCard size="lg" className="p-0 overflow-hidden">
         {/* Header */}
         <div className="p-6 border-b border-white/10">
           <div className="flex items-start justify-between">
@@ -240,7 +240,7 @@ const LocationMap: React.FC<LocationMapProps> = ({
             </div>
           </div>
         )}
-      </GlassCard>
+      </BaseCard>
     </div>
   );
 };

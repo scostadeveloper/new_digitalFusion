@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAnalytics } from '../hooks/useAnalytics';
 import { ANALYTICS_EVENTS } from '../lib/analytics-events';
+import { BaseCard } from '@/components/ui/BaseCard';
+import { useThemeStyles } from '@/hooks/useThemeStyles';
 
 interface ProjectCardProps {
   id: string;
@@ -21,6 +23,7 @@ const ProjectCard = ({
   index,
 }: ProjectCardProps) => {
   const { trackEvent } = useAnalytics();
+  const { accent } = useThemeStyles('card');
 
   const handleClick = () => {
     trackEvent({
@@ -33,13 +36,14 @@ const ProjectCard = ({
   return (
     <Link
       to={`/portfolio/${id}`}
-      className="group fade-in-element"
-      style={{
-        animationDelay: `${index * 0.1}s`,
-      }}
+      className="group"
       onClick={handleClick}
     >
-      <div className="overflow-hidden rounded-lg bg-white shadow-lg transition-all duration-300 hover:shadow-xl h-full">
+      <BaseCard
+        hover="lift"
+        animationDelay={index * 0.1}
+        className="overflow-hidden h-full p-0"
+      >
         <div className="relative h-56 overflow-hidden">
           <img
             src={imageUrl}
@@ -54,12 +58,12 @@ const ProjectCard = ({
           <div className="text-sm text-df-blue font-medium mb-2">
             {category}
           </div>
-          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-df-blue transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-df-blue transition-colors">
             {title}
           </h3>
-          <p className="text-gray-600 line-clamp-2">{description}</p>
+          <p className="text-gray-600 dark:text-gray-300 line-clamp-2">{description}</p>
         </div>
-      </div>
+      </BaseCard>
     </Link>
   );
 };

@@ -10,7 +10,7 @@ import {
   SubtitleTyping,
 } from '@/components/effects/TypingAnimation';
 import { NeonButton } from '@/components/modern/NeonButton';
-import { GlassCard } from '@/components/modern/GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 import {
   TechFloatingSymbols,
   FloatingShapes,
@@ -129,7 +129,7 @@ export function ModernHero() {
             {/* Interactive preview card */}
             <ParallaxElement speed={0.3}>
               <GlowEffect color="cyan" intensity="high" hover>
-                <GlassCard className="p-8 border-neon-cyan/30 hover:border-neon-cyan/60 transition-all duration-500 group">
+                <BaseCard size="lg" hover="lift" className="p-8 border-neon-cyan/30 hover:border-neon-cyan/60 transition-all duration-500 group">
                   <div className="space-y-6">
                     <div className="flex items-center justify-between">
                       <div className="w-3 h-3 bg-red-500 rounded-full" />
@@ -163,7 +163,7 @@ export function ModernHero() {
                       </div>
                     </div>
                   </div>
-                </GlassCard>
+                </BaseCard>
               </GlowEffect>
             </ParallaxElement>
 

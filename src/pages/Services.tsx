@@ -20,7 +20,7 @@ import {
   Rocket,
 } from 'lucide-react';
 import ScrollNavigator from '@/components/modern/ScrollNavigator';
-import { GlassCard } from '@/components/modern/GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 import { NeonButton } from '@/components/modern/NeonButton';
 import { Disclosure } from '@headlessui/react';
 
@@ -848,7 +848,9 @@ const Services = () => {
                 variants={itemVariants}
                 className="h-full group"
               >
-                <GlassCard
+                <BaseCard
+                  size="lg"
+                  hover="lift"
                   className="h-full p-6 lg:p-8 cursor-pointer transition-all duration-500 group-hover:scale-[1.02]"
                   onClick={() =>
                     document
@@ -925,7 +927,7 @@ const Services = () => {
                     <span>Saiba mais</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </motion.div>
-                </GlassCard>
+                </BaseCard>
               </motion.div>
             ))}
           </motion.div>
@@ -1016,7 +1018,7 @@ const Services = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
               >
-                <GlassCard className="p-8 lg:p-10">
+                <BaseCard size="lg" className="p-8 lg:p-10">
                   {/* Icon */}
                   <motion.div
                     className={`w-20 h-20 rounded-2xl flex items-center justify-center mb-8 ${
@@ -1136,7 +1138,7 @@ const Services = () => {
                       </span>
                     </NeonButton>
                   </motion.div>
-                </GlassCard>
+                </BaseCard>
               </motion.div>
 
               {/* Visual/Demo Section */}
@@ -1147,7 +1149,7 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
-                <GlassCard className="p-8 h-full">
+                <BaseCard size="lg" className="p-8 h-full">
                   {/* Service Preview */}
                   <div className="relative h-[500px] rounded-2xl overflow-hidden group">
                     {/* Background Pattern */}
@@ -1312,7 +1314,7 @@ const Services = () => {
                       </motion.div>
                     ))}
                   </div>
-                </GlassCard>
+                </BaseCard>
               </motion.div>
             </div>
           </div>
@@ -1609,7 +1611,7 @@ const Services = () => {
               },
             ].map((faq, index) => (
               <motion.div key={index} className="mb-6" variants={itemVariants}>
-                <GlassCard className="overflow-hidden group hover:scale-[1.01] transition-transform duration-300">
+                <BaseCard size="lg" hover="lift" className="overflow-hidden group hover:scale-[1.01] transition-transform duration-300">
                   <Disclosure>
                     {({ open }) => (
                       <>
@@ -1681,7 +1683,7 @@ const Services = () => {
                       </>
                     )}
                   </Disclosure>
-                </GlassCard>
+                </BaseCard>
               </motion.div>
             ))}
           </motion.div>

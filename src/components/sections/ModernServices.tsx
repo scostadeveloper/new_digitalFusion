@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Monitor, Smartphone, Layout, Search } from 'lucide-react';
 import { SectionWrapper } from '@/components/sections/SectionWrapper';
-import { GlassCard } from '@/components/modern/GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 import { NeonButton } from '@/components/modern/NeonButton';
 import { GlowEffect, TiltCard } from '@/components/effects/VisualEffects';
 import { CounterAnimation } from '@/components/effects/CounterAnimation';
@@ -68,7 +68,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
     >
       <TiltCard maxTilt={8} glare>
         <GlowEffect color={isEven ? 'cyan' : 'purple'} intensity="medium" hover>
-          <GlassCard className="h-full p-8 border-glass hover:border-neon-cyan/50 transition-all duration-500">
+          <BaseCard size="lg" hover="lift" className="h-full p-8 border-glass hover:border-neon-cyan/50 transition-all duration-500">
             <div className="space-y-6">
               {/* Icon and Title */}
               <div className="flex items-start space-x-4">
@@ -141,7 +141,7 @@ function ServiceCard({ service, index }: ServiceCardProps) {
                 </NeonButton>
               </div>
             </div>
-          </GlassCard>
+          </BaseCard>
         </GlowEffect>
       </TiltCard>
     </motion.div>

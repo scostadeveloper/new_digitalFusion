@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle } from 'lucide-react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Disclosure } from '@headlessui/react';
-import { GlassCard } from './GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 
 interface FAQItem {
   question: string;
@@ -56,8 +56,9 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({
     >
       {items.map((faq, index) => (
         <motion.div key={index} variants={itemVariants} className="group">
-          <GlassCard
-            variant={theme === 'dark' ? 'dark' : 'default'}
+          <BaseCard
+            size="md"
+            hover="lift"
             className="overflow-hidden transition-all duration-300 group-hover:scale-[1.01]"
           >
             <Disclosure>
@@ -198,7 +199,7 @@ export const FAQAccordion: React.FC<FAQAccordionProps> = ({
                 </>
               )}
             </Disclosure>
-          </GlassCard>
+          </BaseCard>
         </motion.div>
       ))}
     </motion.div>

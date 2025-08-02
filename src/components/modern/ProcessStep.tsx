@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/contexts/ThemeContext';
-import { GlassCard } from './GlassCard';
+import { BaseCard } from '@/components/ui/BaseCard';
 
 interface ProcessStepProps {
   step: {
@@ -46,8 +46,9 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <GlassCard
-        variant={theme === 'dark' ? 'dark' : 'default'}
+      <BaseCard
+        size="lg"
+        hover="lift"
         className="h-full p-6 lg:p-8 group hover:scale-[1.02] transition-all duration-300"
       >
         {/* Background Glow Effect */}
@@ -195,7 +196,7 @@ export const ProcessStep: React.FC<ProcessStepProps> = ({
             }}
           />
         )}
-      </GlassCard>
+      </BaseCard>
     </motion.div>
   );
 };
